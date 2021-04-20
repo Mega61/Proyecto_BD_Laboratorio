@@ -7,5 +7,6 @@ Lista de funciones y caracteristicas:
 2.  cachucha
 3. PRuieba numero 23
 4. gg
+5. autosave
 
 
