@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(
-        name = "MyServlet", 
-        urlPatterns = {"/hello"}
+        name = "HelloServlet", 
+        urlPatterns = {"/login"}
     )
 public class HelloServlet extends HttpServlet {
 
@@ -21,23 +21,28 @@ public class HelloServlet extends HttpServlet {
 
         Singleton singleton = Singleton.getSingleton();
         
-        String correo = "";
-        String contrasegna = "";
-        
-        System.out.println("Se ha oprimido el boton correspondiente");
+        /*String correo = "";
+        String contrasegna = "";*/
+        //Singleton.connectarBD();
 
-        Singleton.connectarBD();
+        RequestDispatcher rDispatcher = req.getRequestDispatcher("login.html");
 
-        RequestDispatcher rDispatcher = req.getRequestDispatcher("index.html");
+        if (req.getParameter("botonresultados") != null || req.getParameter("botoningresar") != null){
+            
+            System.out.println("Se ha oprimido alguno de los botones");
+            
+        }
 
-        if(req.getParameter("botonlogin") != null){
+        /*if(req.getParameter("botonlogin") != null){
             correo = req.getParameter("user");
             contrasegna = req.getParameter("pass");
 
             Singleton.insertData(correo, contrasegna);
             //traerData();
-        }
-
+        }*/
+        
+        
+        
         rDispatcher.forward(req, resp);
 
     }
