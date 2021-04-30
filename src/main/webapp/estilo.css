@@ -1,0 +1,579 @@
+body{
+    
+background-size: cover;
+text-align: center;
+overflow-y: scroll;
+overflow-x: hidden;
+/* Página laboratorio médico/10 */
+
+background: #E6FFFB;
+
+}
+
+
+#logo{
+    position: absolute;
+    width: 195px;
+    height: 51px;
+    left: 81px;
+    top: 4px;
+    
+}
+.botingresar{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1px 8px;
+    border: #08979C;
+    position: absolute;
+    width: 105px;
+    height: 40px;
+    left: 1677px;
+    top: 12px;
+    
+    /* Cyan / 7 */
+    
+    background: #08979C;
+    /* drop-shadow / button-primary */
+    
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
+    border-radius: 10px;
+
+    font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 22px;
+/* identical to box height, or 137% */
+
+text-align: center;
+
+/* Página laboratorio médico/10 */
+
+color: #E6FFFB;
+
+
+/* Inside Auto Layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+margin: 0px 0px;
+
+}
+.botingresar:hover {
+    background: #00474F;
+    color:#E6FFFB;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #5CDBD3,
+                0 0 25px #5CDBD3,
+                0 0 50px #5CDBD3,
+                0 0 100px #5CDBD3;
+    transform: scale(1.1);
+  }
+
+.botresultados{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1px 8px;
+    border: #08979C;
+    position: absolute;
+    width: 159px;
+    height: 40px;
+    left: 1461px;
+    top: 12px;
+
+/* Cyan / 7 */
+
+    background: #08979C;
+/* drop-shadow / button-primary */
+
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
+    border-radius: 10px;
+
+    font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 22px;
+/* identical to box height, or 137% */
+
+text-align: center;
+
+/* Página laboratorio médico/10 */
+
+color: #E6FFFB;
+
+
+/* Inside Auto Layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+margin: 0px 0px;
+}
+.botresultados:hover {
+    background: #00474F;
+    color:#E6FFFB;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #5CDBD3,
+                0 0 25px #5CDBD3,
+                0 0 50px #5CDBD3,
+                0 0 100px #5CDBD3;
+    transform: scale(1.1);
+  }
+
+.menu{position: absolute;
+    position: absolute;
+    width: 1920px;
+    height: 64px;
+    left: 0px;
+    top: 62px;
+    
+    /* Página laboratorio médico/50 */
+    
+    background: #36CFC9;
+}
+.inicio{
+
+    position: absolute;
+    width: 79px;
+    height: 40.78px;
+    left: 812px;
+    top: 75px;
+
+    
+}
+
+.inicio img {
+    transition: all 0.2s linear;
+    }
+    
+
+    .inicio:hover img {
+    transform: scale(1.1);/*Damos un ligero zoom a la imagen*/
+    filter:invert(0.8);
+    text-decoration: underline; 
+    }
+    
+.servicios{
+    position: absolute;
+    width: 77px;
+    height: 40.78px;
+    left: 972px;
+    top: 75px;
+
+}
+.servicios img {
+    transition: all 0.2s linear;
+    }
+    
+
+    .servicios:hover img {
+    transform: scale(1.1);/*Damos un ligero zoom a la imagen*/
+    filter:invert(0.8);
+    }
+
+.nosotros{
+    position: absolute;
+    width: 79px;
+    height: 40.78px;
+    left: 1136px;
+    top: 75px;
+    
+    }
+    .nosotros img {
+        transition: all 0.2s linear;
+        }
+        
+    
+        .nosotros:hover img {
+        transform: scale(1.1);/*Damos un ligero zoom a la imagen*/
+        filter:invert(0.8);
+        }
+
+.sedes{
+    position: absolute;
+    width: 81px;
+    height: 90.73px;
+    left: 1379px;
+    top: 75px;
+        
+        }
+        .sedes img {
+            transition: all 0.2s linear;
+            }
+            
+        
+        .sedes:hover img {
+        transform: scale(1.1);/*Damos un ligero zoom a la imagen*/
+        filter:invert(0.8);
+        }
+.contacto{
+    position: absolute;
+    width: 81px;
+    height: 40.78px;
+    left: 1624px;
+    top: 75px;    
+            
+            }
+            .contacto img {
+                transition: all 0.2s linear;
+                }
+                
+            
+                .contacto:hover img {
+                transform: scale(1.1);/*Damos un ligero zoom a la imagen*/
+                
+                filter:invert(0.8);
+                }
+
+#carrusel{
+    position: absolute;
+    width: 1920px;
+    height: 361px;
+    left: 0px;
+    top: 126px;
+    
+}
+#covid{
+    position: absolute;
+    width: 1889px;
+    height: 372px;
+    left: 0px;
+    top: 529px;
+    
+     
+}
+.botinfo1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1px 8px;
+    border: #08979C;
+    position: absolute;
+    width: 137px;
+    height: 40px;
+    left: 1685.41px;
+    top: 763px;
+    
+    /* Cyan / 7 */
+    
+    background: #08979C;
+    /* drop-shadow / button-primary */
+    
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
+    border-radius: 10px;
+
+    font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 22px;
+/* identical to box height, or 137% */
+
+text-align: center;
+
+/* Página laboratorio médico/10 */
+
+color: #E6FFFB;
+
+
+/* Inside Auto Layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+margin: 0px 0px;
+}
+.botinfo1:hover {
+    transform: scale(1.1);
+    background: #00474F;
+    color:#E6FFFB;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #5CDBD3,
+                0 0 25px #5CDBD3,
+                0 0 50px #5CDBD3,
+                0 0 100px #5CDBD3;
+  }
+#equipo{
+    position: absolute;
+    width: 1910px;
+    height: 378px;
+    left: 10px;
+    top: 943px;
+    
+
+}
+.botinfo2{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1px 8px;
+    border: #08979C;
+    position: absolute;
+    width: 137px;
+    height: 40px;
+    left: 125.1px;
+    top: 1148px;
+    
+    /* Cyan / 7 */
+    
+    background: #08979C;
+    /* drop-shadow / button-primary */
+    
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
+    border-radius: 10px;
+
+    font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 22px;
+/* identical to box height, or 137% */
+
+text-align: center;
+
+/* Página laboratorio médico/10 */
+
+color: #E6FFFB;
+
+
+/* Inside Auto Layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+margin: 0px 0px;
+
+}
+.botinfo2:hover {
+    transform: scale(1.1);
+    background: #00474F;
+    color:#E6FFFB;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #5CDBD3,
+                0 0 25px #5CDBD3,
+                0 0 50px #5CDBD3,
+                0 0 100px #5CDBD3;
+  }
+#noticias{
+
+    position: absolute;
+    width: 1920px;
+    height: 63px;
+    left: 0px;
+    top: 1321px;
+    
+
+}
+#foton1{
+position: absolute;
+width: 280px;
+height: 300px;
+left: 383px;
+top: 1426px;
+
+/* Página laboratorio médico/50 */
+
+background: #36CFC9;
+border-radius: 31px;
+}
+#foton2{
+    position: absolute;
+    width: 280px;
+    height: 300px;
+    left: 810px;
+    top: 1426px;
+    
+    }
+    #foton3{
+        position: absolute;
+        width: 280px;
+        height: 300px;
+        left: 1257px;
+        top: 1426px;
+        }
+.botinfo3{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1px 8px;
+    border: #08979C;
+    position: absolute;
+    width: 280px;
+    height: 40px;
+    left: 383px;
+    top: 1686px;
+    
+    /* Cyan / 7 */
+    
+    background: #08979C;
+    /* drop-shadow / button-primary */
+    
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
+    border-radius: 10px;
+    font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 22px;
+/* identical to box height, or 137% */
+
+text-align: center;
+
+/* Página laboratorio médico/10 */
+
+color: #E6FFFB;
+
+
+/* Inside Auto Layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+margin: 0px 0px;
+
+
+}
+.botinfo3:hover {
+    background: #00474F;
+    color:#E6FFFB;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #5CDBD3,
+                0 0 25px #5CDBD3,
+                0 0 50px #5CDBD3,
+                0 0 100px #5CDBD3;
+  }
+.botinfo4{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1px 8px;
+    border: #08979C;
+    position: absolute;
+    width: 280px;
+    height: 40px;
+    left: 810px;
+    top: 1686px;
+    
+    /* Cyan / 7 */
+    
+    background: #08979C;
+    /* drop-shadow / button-primary */
+    
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
+    border-radius: 10px;
+    font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 22px;
+/* identical to box height, or 137% */
+
+text-align: center;
+
+/* Página laboratorio médico/10 */
+
+color: #E6FFFB;
+
+
+/* Inside Auto Layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+margin: 0px 0px;
+
+}
+.botinfo4:hover {
+    background: #00474F;
+    color:#E6FFFB;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #5CDBD3,
+                0 0 25px #5CDBD3,
+                0 0 50px #5CDBD3,
+                0 0 100px #5CDBD3;
+  }
+
+.botinfo5{
+    display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 1px 8px;
+border: #08979C;
+position: absolute;
+width: 280px;
+height: 40px;
+left: 1257px;
+top: 1686px;
+
+/* Cyan / 7 */
+
+background: #08979C;
+/* drop-shadow / button-primary */
+
+box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
+border-radius: 10px;
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 22px;
+/* identical to box height, or 137% */
+
+text-align: center;
+
+/* Página laboratorio médico/10 */
+
+color: #E6FFFB;
+
+
+/* Inside Auto Layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+margin: 0px 0px;
+
+}
+.botinfo5:hover {
+    background: #00474F;
+    color:#E6FFFB;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #5CDBD3,
+                0 0 25px #5CDBD3,
+                0 0 50px #5CDBD3,
+                0 0 100px #5CDBD3;
+  }
+#informacion{
+    
+    position: absolute;
+    width: 1920px;
+    height: 878px;
+    left: 0px;
+    top: 1768px;
+    
+
+}
+#footer{
+
+    position: absolute;
+    width: 1920px;
+    height: 281px;
+    left: 0px;
+    top: 2718px;
+
+}
