@@ -52,7 +52,7 @@ public class Singleton {
 
         try {
             connSQL = DriverManager.getConnection(urlBD, userBD, passBD);
-
+            
             if(connSQL != null){
                 System.out.println("Se ha logrado la conexión con la BD");
             }else{
@@ -103,6 +103,14 @@ public class Singleton {
         } catch (SQLException e) {
             //TODO: handle exception
             e.printStackTrace();
+        }
+    }
+
+    public static void cerrarConexion(){
+        try {
+            connSQL.close();
+        } catch (SQLException e) {
+            //TODO: handle exception
         }
     }
 }
