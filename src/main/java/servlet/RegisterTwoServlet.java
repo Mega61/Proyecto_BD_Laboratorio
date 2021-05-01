@@ -18,13 +18,13 @@ public class RegisterTwoServlet extends HttpServlet {
 
         RequestDispatcher rDispatcher = req.getRequestDispatcher("login.html");
 
-        if (req.getParameter("-") != null) {
+        if (req.getParameter("botregistertwo") != null) {
 
-            nombreCE = req.getParameter("-");
-            parentescoCE = req.getParameter("-");
-            correoCE = req.getParameter("-");
-            telefonoCE = req.getParameter("-");
-            edadCE = Integer.parseInt(req.getParameter("-"));
+            nombreCE = req.getParameter("nomCE");
+            parentescoCE = req.getParameter("parCE");
+            correoCE = req.getParameter("correoCE");
+            telefonoCE = req.getParameter("telCE");
+            edadCE = Integer.parseInt(req.getParameter("edadCE"));
 
             HttpSession session = req.getSession();
             nombre = session.getAttribute("nombreRegistro").toString();
