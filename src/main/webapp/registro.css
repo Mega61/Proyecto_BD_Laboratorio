@@ -218,7 +218,11 @@ line-height: 24px;
 
 
 } 
-
+select:focus {
+    border-color: #006D75;
+    box-shadow: 0 1px 1px #08979C inset, 0 0 8px #08979C;
+    outline: 0 none;
+}
 ::placeholder{
   /* Subheading 16 / regular */
   position: relative;    
