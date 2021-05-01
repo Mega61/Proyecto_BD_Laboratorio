@@ -20,7 +20,7 @@ public class AdminServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
 
-        String usuarioIngresado = (String) session.getAttribute("admin");
+        String usuarioIngresado = session.getAttribute("admin").toString();
         System.out.println("el usuario es: " + usuarioIngresado);
 
         // request.setAttribute("Usuario", usuarioIngresado);

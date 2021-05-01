@@ -26,7 +26,7 @@ public class ServletLogin extends HttpServlet {
         if (req.getParameter("botonRegister") != null) {
 
             System.out.println("Se ha oprimido Register");
-            rDispatcher = req.getRequestDispatcher("register.html");
+            rDispatcher = req.getRequestDispatcher("registro.html");
 
         }
 
@@ -41,15 +41,23 @@ public class ServletLogin extends HttpServlet {
 
             if (identificacion.equals("admin") && contrasegna.equals("1234")) {
                 System.out.println("Se ha iniciado sesión como un admin");
-
+                System.out.println(identificacion);
+                System.out.println(contrasegna);
                 HttpSession sessionAdmin = req.getSession();
                 sessionAdmin.setAttribute("admin", identificacion);
                 sessionAdmin.setMaxInactiveInterval(30 * 60);
                 // Cookie userName = new Cookie("admin", identificacion);
                 // userName.setMaxAge(30*60);
                 // resp.addCookie(userName);
-                resp.sendRedirect("prueba.html");
-                // rDispatcher = req.getRequestDispatcher("prueba.html");
+
+                /*FormContainer container = new FormContainer(identificacion);
+                System.out.println(container.getValor());*/
+
+                req.setAttribute("usuarioLogeado", identificacion);
+                
+
+                //resp.sendRedirect("prueba.jsp");
+                rDispatcher = req.getRequestDispatcher("prueba.jsp");
             } else if (Character.isDigit(prueba)) {
 
                 System.out.println("Se ha iniciado sesión como un paciente");
@@ -64,12 +72,12 @@ public class ServletLogin extends HttpServlet {
 
         }
 
-        // rDispatcher.forward(req, resp);
+        rDispatcher.forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("prueba.html");
+        
     }
 
 }
