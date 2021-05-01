@@ -18,8 +18,7 @@ public class ServletLogin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String identificacion = "";
-        String contrasegna = "";
+        String identificacion, contrasegna = "";
 
         RequestDispatcher rDispatcher = req.getRequestDispatcher("login.html");
 
