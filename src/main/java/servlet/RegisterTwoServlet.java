@@ -37,7 +37,7 @@ public class RegisterTwoServlet extends HttpServlet {
             documento = (Integer)(session.getAttribute("docuementoRegistro"));
 
             System.out.println("CONTACTO EMERGENCIA: "+nombreCE + " " + parentescoCE + " " + correoCE + " " + telefonoCE + " " + edadCE
-                                +"/n REGISTRO 1: "+nombre + " " + genero + " " + correo + " " + telefono + " " + sangre + " " + edad + " "
+                                +" \n REGISTRO 1: "+nombre + " " + genero + " " + correo + " " + telefono + " " + sangre + " " + edad + " "
                                 + documento);
 
             rDispatcher.forward(req, resp);
