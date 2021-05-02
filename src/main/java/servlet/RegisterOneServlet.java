@@ -46,8 +46,8 @@ public class RegisterOneServlet extends HttpServlet {
             session.setAttribute("contrasegna", contrasegna);
             
 
-            /*System.out.println(nombre + " " + genero + " " + correo + " " + telefono + " " + sangre + " " + edad + " "
-                    + documento);*/
+            System.out.println(nombre + " " + genero + " " + correo + " " + telefono + " " + sangre + " " + edad + " "
+                    + documento);
 
             rDispatcher.forward(req, resp);
         }

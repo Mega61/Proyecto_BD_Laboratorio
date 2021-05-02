@@ -66,15 +66,15 @@
             <input type="text" class="entrada" id="nombreP" placeholder="Nombre Completo*" name="nomP" required>
             <input type="text" class="entrada" id="documentoPR" placeholder="Documento*" name="docPR" required>
             <input type="number" id="edadP" placeholder="Edad*" name="edadP" required>
-            <select name="select" id="genP" required>
+            <select name="selectgenP" id="genP" required>
                 <option value="" disabled selected>Género</option>
                 <option value="hombre">Hombre</option>
                 <option value="mujer">Mujer</option>
                 
               </select>
             <input type="email" class="entrada" id="correoP" placeholder="Correo Eletrónico*" name="correoP" required>
-            <input type="tel" class="entrada" id="telefonoP" placeholder="Teléfono*" name="docP" required>
-            <select name="select" id="sangreP" required>
+            <input type="tel" class="entrada" id="telefonoP" placeholder="Teléfono*" name="telP" required>
+            <select name="selectSangre" id="sangreP" required>
                 <option value="" disabled selected>Tipo de Sangre</option>
                 <option value="o+">O+</option>
                 <option value="o-">O-</option>
@@ -89,7 +89,7 @@
 
             <input type="password" class="entrada" id="contraP" placeholder="Contraseña*" name="contraP" required>
             <input type="password" class="entrada" id="confirmP" placeholder="ConfirmarContraseña*" name="confirmP" required>
-            <button class="continuar" onclick="comprobarClave()">Continuar</button>
+            <button class="continuar" onclick="comprobarClave()" name="botregisterone">Continuar</button>
 
         </form>
 
