@@ -184,8 +184,10 @@ public class Singleton {
     public static void cerrarConexion() {
         try {
             connSQL.close();
+            System.out.println("Se ha cerrado al conexión con la BD");
         } catch (SQLException e) {
             // TODO: handle exception
+            e.printStackTrace();
         }
     }
 
@@ -196,8 +198,8 @@ public class Singleton {
     }
 
     public static void ingresarPacienteYcontactoEmergencia(int id_p, String correoP, String generoP, int edadP,
-            String nombreP, String telefonoP, String sangreP, String estadoP, String contrasegna, String parentesoCE, String telefonoCE,
-            int edadCE, String correoCE, String nombreCE) {
+            String nombreP, String telefonoP, String sangreP, String estadoP, String contrasegna, String parentesoCE,
+            String telefonoCE, int edadCE, String correoCE, String nombreCE) {
 
         connectarBD();
 
@@ -241,8 +243,6 @@ public class Singleton {
 
         cerrarConexion();
 
-        
-
     }
 
     public static String getPacientesMed() {
@@ -261,15 +261,12 @@ public class Singleton {
                 String nombre = rs.getString("nombre_paciente");
                 String estado = rs.getString("estado_paciente");
 
-                str += "<div class=\"pacienteM\">"+
-                        "<hr color=\"white\" size=\"1\">"+
-                        "<label class=\"nombreP\">"+nombre+"</label>"+
-                        "<label class=\"salida\">Estado del paciente</label>"+
-                        "<label class=\"estado\">"+estado+"</label>"+
-                        "<button class=\"generar\" name=\"botongenerar\">Generar Orden de laboratorio</button>"+
-                        "<button class=\"resultados\" name-=\"botonresultadosmed\">Resultados de Examen</button>"+
-                        "</div>"+
-                        "<br>";
+                str += "<div class=\"pacienteM\">" + "<hr color=\"white\" size=\"1\">" + "<label class=\"nombreP\">"
+                        + nombre + "</label>" + "<label class=\"salida\">Estado del paciente</label>"
+                        + "<label class=\"estado\">" + estado + "</label>"
+                        + "<button class=\"generar\" name=\"botongenerar\">Generar Orden de laboratorio</button>"
+                        + "<button class=\"resultados\" name-=\"botonresultadosmed\">Resultados de Examen</button>"
+                        + "</div>" + "<br>";
             }
 
         } catch (Exception e) {
@@ -281,4 +278,33 @@ public class Singleton {
 
     }
 
+    public static boolean loginPaciente(String username, String contrasegna) {
+
+        Boolean b = false;
+        int id = Integer.parseInt(username);
+        connectarBD();
+
+        String buscarPaciente = "SELECT id_paciente, contrasegna_paciente FROM paciente where id_paciente = " +id+" AND contrasegna_paciente = '"+contrasegna+"'";
+        try {
+            PreparedStatement statement = null;
+            statement = connSQL.prepareStatement(buscarPaciente);
+            ResultSet rs = statement.executeQuery();
+
+            /*if(rs.getInt("id_paciente") != 0){
+
+            }*/
+
+            System.out.println(rs.getInt("id_paciente"));
+            System.out.println(rs.getString("contrasegna_paciente"));
+            
+
+        } catch (Exception e) {
+            // TODO: handle exception
+
+        }
+
+        cerrarConexion();
+
+        return b;
+    }
 }

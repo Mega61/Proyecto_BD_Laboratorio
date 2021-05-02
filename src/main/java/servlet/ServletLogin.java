@@ -34,7 +34,6 @@ public class ServletLogin extends HttpServlet {
 
             identificacion = req.getParameter("docP");
             contrasegna = req.getParameter("conP");
-
             char prueba = identificacion.charAt(0);
 
             System.out.println("Se ha oprimido Iniciar Sesión");
@@ -50,23 +49,29 @@ public class ServletLogin extends HttpServlet {
                 // userName.setMaxAge(30*60);
                 // resp.addCookie(userName);
 
-                /*FormContainer container = new FormContainer(identificacion);
-                System.out.println(container.getValor());*/
+                /*
+                 * FormContainer container = new FormContainer(identificacion);
+                 * System.out.println(container.getValor());
+                 */
 
                 req.setAttribute("usuarioLogeado", identificacion);
-                
 
-                //resp.sendRedirect("prueba.jsp");
+                // resp.sendRedirect("prueba.jsp");
                 rDispatcher = req.getRequestDispatcher("admin.jsp");
             } else if (Character.isDigit(prueba)) {
 
                 System.out.println("Se ha iniciado sesión como un paciente");
-                HttpSession sessionAdmin = req.getSession();
-                sessionAdmin.setAttribute("paciente", identificacion);
-                req.setAttribute("usuarioLogeado", identificacion);
-                rDispatcher = req.getRequestDispatcher("paciente.jsp");
+                Boolean pruebaPac = Singleton.loginPaciente(identificacion, contrasegna);
 
-            } else if (!Character.isDigit(prueba)){
+                if (pruebaPac) {
+                    
+                    HttpSession sessionAdmin = req.getSession();
+                    sessionAdmin.setAttribute("paciente", identificacion);
+                    req.setAttribute("usuarioLogeado", identificacion);
+                    rDispatcher = req.getRequestDispatcher("paciente.jsp");
+                }
+
+            } else if (!Character.isDigit(prueba)) {
 
                 System.out.println("Se ha iniciado sesión como un médico");
                 HttpSession sessionAdmin = req.getSession();
@@ -79,7 +84,7 @@ public class ServletLogin extends HttpServlet {
 
                 System.out.println("Credenciales incorrectas");
                 rDispatcher = req.getRequestDispatcher("login.html");
-                
+
             }
 
         }
@@ -89,7 +94,7 @@ public class ServletLogin extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        
+
     }
 
 }
