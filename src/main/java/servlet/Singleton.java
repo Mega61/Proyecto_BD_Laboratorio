@@ -6,6 +6,74 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/*
+CREATE TABLE MEDICO (
+    id_medico VARCHAR(10) NOT NULL,
+    nombre_medico VARCHAR(50) NOT NULL,
+    consultorio_medico INT,
+    correo_medico VARCHAR(50),
+    telefono_medico VARCHAR(10));
+
+ALTER TABLE MEDICO ADD PRIMARY KEY(id_medico);
+
+SHOW CREATE TABLE MEDICO;
+
+
+CREATE TABLE CONTACTO_EMERGENCIA_PACIENTE 
+(id_contacto_emergencia INT NOT NULL AUTO_INCREMENT,
+parentesco VARCHAR(25) NOT NULL,
+telefono_contacto_emergencia VARCHAR(10) NOT NULL,
+edad_contacto_emergencia SMALLINT CHECK(edad_contacto_emergencia > 0),
+correo_contacto_emergencia VARCHAR(25),
+nombre_contacto_emergencia VARCHAR(25), PRIMARY KEY(id_contacto_emergencia));
+
+CREATE TABLE TIPO_EXAMEN (
+    id_tipo_examen INT NOT NULL AUTO_INCREMENT,
+    criterios_tipo_examen VARCHAR(25) NOT NULL,
+    costo_tipo_examen INT NOT NULL CHECK(costo_tipo_examen > 0),
+    muestra_tipo_examen VARCHAR(25) NOT NULL,
+    nombre_tipo_examen VARCHAR(25) NOT NULL,
+    PRIMARY KEY (id_tipo_examen)
+);
+
+CREATE TABLE PACIENTE (
+    id_paciente INT NOT NULL,
+    id_contacto_emergencia INT NOT NULL,
+    correo_paciente VARCHAR(25),
+    genero_paciente VARCHAR(10),
+    edad_paciente SMALLINT CHECK(edad_paciente > 0),
+    nombre_paciente VARCHAR(25) NOT NULL,
+    telefono_paciente VARCHAR(10) NOT NULL,
+    sangre_paciente VARCHAR(5) NOT NULL,
+    estado_paciente VARCHAR(25),
+    CONSTRAINT paciente_id_paciente_pk PRIMARY KEY (id_paciente),
+    CONSTRAINT paciente_id_contacto_emergencia_fk FOREIGN KEY (id_contacto_emergencia) REFERENCES contacto_emergencia_paciente (id_contacto_emergencia) ON DELETE CASCADE 
+);
+
+CREATE TABLE ESPECIALIDAD_MEDICO (
+    nombre_especialidad VARCHAR(25) NOT NULL,
+    id_medico VARCHAR(10) NOT NULL,
+    CONSTRAINT especialidad_nombre_especialidad_pk PRIMARY KEY(nombre_especialidad, id_medico),
+    CONSTRAINT especialidad_id_medico_fk FOREIGN KEY (id_medico) REFERENCES medico (id_medico)
+);
+
+CREATE TABLE EXAMEN(
+    id_examen INT NOT NULL AUTO_INCREMENT,
+    id_medico VARCHAR(10) NOT NULL,
+    id_paciente INT NOT NULL,
+    id_tipo_examen INT NOT NULL,
+    diagnostico VARCHAR(500) NOT NULL,
+    resultados VARCHAR(500),
+    fecha_remision DATE NOT NULL,
+    fecha_resultados DATE,
+    fecha_realizacion DATE,
+    CONSTRAINT examen_id_examen_pk PRIMARY KEY (id_examen),
+    CONSTRAINT examen_id_medico_fk FOREIGN KEY (id_medico) REFERENCES medico (id_medico),
+    CONSTRAINT examen_id_paciente_fk FOREIGN KEY (id_paciente) REFERENCES paciente (id_paciente),
+    CONSTRAINT examen_id_tipo_examen_fk FOREIGN KEY (id_tipo_examen) REFERENCES tipo_examen (id_tipo_examen)
+);
+*/
+
 public class Singleton {
 
     private static Singleton instancia;
