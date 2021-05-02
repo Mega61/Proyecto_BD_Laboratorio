@@ -65,7 +65,7 @@ public class ServletLogin extends HttpServlet {
                 sessionAdmin.setAttribute("paciente", identificacion);
                 rDispatcher = req.getRequestDispatcher("paciente.html");
 
-            } else {
+            } else if (!Character.isDigit(prueba)){
 
                 System.out.println("Se ha iniciado sesión como un médico");
                 HttpSession sessionAdmin = req.getSession();
@@ -74,6 +74,11 @@ public class ServletLogin extends HttpServlet {
                 req.setAttribute("listaPacMed", str);
                 rDispatcher = req.getRequestDispatcher("medico.html");
 
+            } else {
+
+                System.out.println("Credenciales incorrectas");
+                rDispatcher = req.getRequestDispatcher("login.html");
+                
             }
 
         }
