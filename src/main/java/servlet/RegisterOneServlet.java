@@ -41,11 +41,11 @@ public class RegisterOneServlet extends HttpServlet {
             session.setAttribute("telefonoRegistro", telefono);
             session.setAttribute("edadRegistro", edad);
             session.setAttribute("docuementoRegistro", documento);
-
+            session.setAttribute("sangreRegistro", sangre);
             
 
-            System.out.println(nombre + " " + genero + " " + correo + " " + telefono + " " + sangre + " " + edad + " "
-                    + documento);
+            /*System.out.println(nombre + " " + genero + " " + correo + " " + telefono + " " + sangre + " " + edad + " "
+                    + documento);*/
 
             rDispatcher.forward(req, resp);
         }

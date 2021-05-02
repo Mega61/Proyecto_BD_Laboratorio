@@ -260,7 +260,15 @@ public class Singleton {
                 String nombre = rs.getString("nombre_paciente");
                 String estado = rs.getString("estado_paciente");
 
-                str += nombre + ", " + estado;
+                str += "<div class=\"pacienteM\">"+
+                        "<hr color=\"white\" size=\"1\">"+
+                        "<label class=\"nombreP\">"+nombre+"</label>"+
+                        "<label class=\"salida\">Estado del paciente</label>"+
+                        "<label class=\"estado\">"+estado+"</label>"+
+                        "<button class=\"generar\" name=\"botongenerar\">Generar Orden de laboratorio</button>"+
+                        "<button class=\"resultados\" name-=\"botonresultadosmed\">Resultados de Examen</button>"+
+                        "</div>"+
+                        "<br>";
             }
 
         } catch (Exception e) {
