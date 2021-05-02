@@ -63,7 +63,8 @@ public class ServletLogin extends HttpServlet {
                 System.out.println("Se ha iniciado sesión como un paciente");
                 HttpSession sessionAdmin = req.getSession();
                 sessionAdmin.setAttribute("paciente", identificacion);
-                rDispatcher = req.getRequestDispatcher("paciente.html");
+                req.setAttribute("usuarioLogeado", identificacion);
+                rDispatcher = req.getRequestDispatcher("paciente.jsp");
 
             } else if (!Character.isDigit(prueba)){
 

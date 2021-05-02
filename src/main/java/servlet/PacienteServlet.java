@@ -20,39 +20,39 @@ public class PacienteServlet extends HttpServlet {
 
         HttpSession session = req.getSession();
         String usuarioIngresado = session.getAttribute("paciente").toString();
-        RequestDispatcher rDispatcher = req.getRequestDispatcher("login.html");
+        RequestDispatcher rDispatcher = req.getRequestDispatcher("paciente.jsp");
 
-        if (req.getParameter("-") != null) {
+        if (req.getParameter("botonagendar") != null) {
 
-            System.out.println("Se ha oprimido Register");
-            rDispatcher = req.getRequestDispatcher("registro.html");
+            System.out.println("Se ha oprimido agendar");
+            rDispatcher = req.getRequestDispatcher("paciente.jsp");
 
         }
         
-        if (req.getParameter("-") != null) {
+        if (req.getParameter("botonsolicitar") != null) {
 
-            System.out.println("Se ha oprimido Register");
-            rDispatcher = req.getRequestDispatcher("registro.html");
-
-        }
-
-        if (req.getParameter("-") != null) {
-
-            System.out.println("Se ha oprimido Register");
-            rDispatcher = req.getRequestDispatcher("registro.html");
+            System.out.println("Se ha oprimido solicitar");
+            rDispatcher = req.getRequestDispatcher("paciente.jsp");
 
         }
 
-        if (req.getParameter("-") != null) {
+        if (req.getParameter("botonresultados") != null) {
 
-            System.out.println("Se ha oprimido Register");
-            rDispatcher = req.getRequestDispatcher("registro.html");
+            System.out.println("Se ha oprimido resultados");
+            rDispatcher = req.getRequestDispatcher("paciente.jsp");
 
         }
 
-        if (req.getParameter("-") != null) {
+        if (req.getParameter("botonperfilpac") != null) {
 
-            System.out.println("Se ha oprimido Register");
+            System.out.println("Se ha oprimido perfil");
+            rDispatcher = req.getRequestDispatcher("paciente.jsp");
+
+        }
+
+        if (req.getParameter("botonlogoutpac") != null) {
+
+            System.out.println("Se ha oprimido logout");
             session = req.getSession();  
             session.invalidate(); 
             rDispatcher = req.getRequestDispatcher("login.html");
