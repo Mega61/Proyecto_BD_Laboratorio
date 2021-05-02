@@ -20,7 +20,7 @@ public class PacienteServlet extends HttpServlet {
 
         HttpSession session = req.getSession();
         String usuarioIngresado = session.getAttribute("paciente").toString();
-        RequestDispatcher rDispatcher = req.getRequestDispatcher("paciente.jsp");
+        RequestDispatcher rDispatcher = req.getRequestDispatcher("index.html");
 
         if (req.getParameter("botonagendar") != null) {
 
@@ -58,6 +58,8 @@ public class PacienteServlet extends HttpServlet {
             rDispatcher = req.getRequestDispatcher("login.html");
 
         }
+
+        rDispatcher.forward(req, resp);
 
     }
 

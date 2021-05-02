@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 
@@ -31,7 +31,7 @@
     </div>
     <label>${usuarioLogeado}</label>
     <div>
-        <img id="carPac" src="CarruselPac.svg">
+        <img id="carPac" src="svg/CarruselPac.svg">
     </div>
     <div>
         <form action="paciente" method="GET">
