@@ -30,33 +30,33 @@ public class AdminServlet extends HttpServlet {
 
         RequestDispatcher rDispatcher = req.getRequestDispatcher("admin.html");
 
-        if (req.getParameter("-") != null) {
+        if (req.getParameter("botonlistapac") != null) {
 
-            System.out.println("Se ha oprimido Register");
-            rDispatcher = req.getRequestDispatcher("registro.html");
+            System.out.println("Se ha oprimido lista pacientes");
+            rDispatcher = req.getRequestDispatcher("admin.jsp");
 
         }
         
-        if (req.getParameter("-") != null) {
+        if (req.getParameter("botonlistamed") != null) {
 
-            System.out.println("Se ha oprimido Register");
-            rDispatcher = req.getRequestDispatcher("registro.html");
-
-        }
-
-        if (req.getParameter("-") != null) {
-
-            System.out.println("Se ha oprimido Register");
-            rDispatcher = req.getRequestDispatcher("registro.html");
+            System.out.println("Se ha oprimido lista medicos");
+            rDispatcher = req.getRequestDispatcher("admin.jsp");
 
         }
 
-        if (req.getParameter("-") != null) {
+        if (req.getParameter("botonlistaexa") != null) {
 
-            System.out.println("Se ha oprimido Register");
+            System.out.println("Se ha oprimido lista examenes");
+            rDispatcher = req.getRequestDispatcher("admin.jsp");
+
+        }
+
+        if (req.getParameter("logoutAdmin") != null) {
+
+            System.out.println("Se ha oprimido logout");
             session = req.getSession();  
             session.invalidate(); 
-            rDispatcher = req.getRequestDispatcher("login.html");
+            rDispatcher = req.getRequestDispatcher("index.html");
 
         }
 
