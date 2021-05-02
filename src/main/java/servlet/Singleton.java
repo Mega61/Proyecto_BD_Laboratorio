@@ -27,6 +27,8 @@ public class Singleton {
 
     //mysql://be0469cbf4e9eb:cdb0227e@us-cdbr-east-03.cleardb.com/heroku_fdfec516ca01a53?reconnect=true
 
+    private static int medidini = 85632;
+
     static Singleton getSingleton(){
         if(instancia == null){
             synchronized(Singleton.class){
@@ -113,4 +115,18 @@ public class Singleton {
             //TODO: handle exception
         }
     }
+
+    public static String crearIdMedico(){
+        medidini++; 
+        String idm = "M"+medidini;
+        return idm;
+    }
+
+    public static String getPacientesMed(){
+
+        String str = "";
+        return str;
+
+    }
+
 }

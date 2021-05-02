@@ -19,6 +19,7 @@ public class ServletLogin extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String identificacion, contrasegna = "";
+        Singleton singleton = Singleton.getSingleton();
 
         RequestDispatcher rDispatcher = req.getRequestDispatcher("login.html");
 
@@ -60,11 +61,17 @@ public class ServletLogin extends HttpServlet {
             } else if (Character.isDigit(prueba)) {
 
                 System.out.println("Se ha iniciado sesión como un paciente");
+                HttpSession sessionAdmin = req.getSession();
+                sessionAdmin.setAttribute("paciente", identificacion);
                 rDispatcher = req.getRequestDispatcher("paciente.html");
 
             } else {
 
                 System.out.println("Se ha iniciado sesión como un médico");
+                HttpSession sessionAdmin = req.getSession();
+                sessionAdmin.setAttribute("medico", identificacion);
+                String str = singleton.getPacientesMed();
+                req.setAttribute("listaPacMed", str);
                 rDispatcher = req.getRequestDispatcher("medico.html");
 
             }
