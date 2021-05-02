@@ -1,0 +1,114 @@
+body {
+    background-size: cover;
+    text-align: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /* Página laboratorio médico/10 */
+    background: #E6FFFB;
+}
+
+#logoh {
+    position: absolute;
+    width: 195px;
+    height: 51px;
+    left: 61px;
+    top: 6px;
+}
+
+#bannerP {
+    position: absolute;
+    width: 111px;
+    height: 57px;
+    left: 1684px;
+    top: 3px;
+}
+
+.subhP {
+    position: absolute;
+    width: 1920px;
+    height: 48px;
+    left: 0px;
+    top: 67.05px;
+    background: #36CFC9;
+}
+
+#carPac {
+    position: absolute;
+    width: 1920px;
+    height: 347.73px;
+    left: 0px;
+    top: 100.63px;
+}
+
+#footerp {
+    position: absolute;
+    width: 1920px;
+    height: 197px;
+    left: 0px;
+    top: 883px;
+}
+
+.botagendar {
+    position: absolute;
+    width: 301.22px;
+    height: 341px;
+    left: 55px;
+    top: 482px;
+    background: #36CFC9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    border: transparent;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 38px;
+    line-height: 46px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #E6FFFB;
+}
+
+.botsolicitar {
+    position: absolute;
+    width: 301.22px;
+    height: 341px;
+    left: 401.68px;
+    top: 482px;
+    /* Página laboratorio médico/50 */
+    background: #36CFC9;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    border: transparent;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 38px;
+    line-height: 46px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #E6FFFB;
+}
+
+.botresultados {
+    position: absolute;
+    width: 301.22px;
+    height: 341px;
+    left: 748.36px;
+    top: 482px;
+    /* Página laboratorio médico/50 */
+    background: #36CFC9;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    border: transparent;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 38px;
+    line-height: 46px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #E6FFFB;
+}
