@@ -196,7 +196,7 @@ public class Singleton {
     }
 
     public static void ingresarPacienteYcontactoEmergencia(int id_p, String correoP, String generoP, int edadP,
-            String nombreP, String telefonoP, String sangreP, String estadoP, String parentesoCE, String telefonoCE,
+            String nombreP, String telefonoP, String sangreP, String estadoP, String contrasegna, String parentesoCE, String telefonoCE,
             int edadCE, String correoCE, String nombreCE) {
 
         connectarBD();
@@ -205,7 +205,7 @@ public class Singleton {
 
         try {
             String queryInsertarContactoEmergencia = "INSERT INTO contacto_emergencia_paciente VALUES (?,?,?,?,?,?)";
-            String queryInsertarPaciente = "INSERT INTO paciente VALUES (?,?,?,?,?,?,?,?,?)";
+            String queryInsertarPaciente = "INSERT INTO paciente VALUES (?,?,?,?,?,?,?,?,?,?)";
 
             PreparedStatement statement = null;
 
@@ -229,6 +229,7 @@ public class Singleton {
             statement.setString(7, telefonoP);
             statement.setString(8, sangreP);
             statement.setString(9, estadoP);
+            statement.setString(10, contrasegna);
 
             statement.executeUpdate();
 

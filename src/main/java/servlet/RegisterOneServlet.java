@@ -18,7 +18,7 @@ public class RegisterOneServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String nombre, genero, correo, telefono, sangre = "";
+        String nombre, genero, correo, telefono, sangre, contrasegna = "";
         int edad, documento = 0;
 
         RequestDispatcher rDispatcher = req.getRequestDispatcher("registroc.html");
@@ -34,6 +34,7 @@ public class RegisterOneServlet extends HttpServlet {
             sangre = req.getParameter("selectSangre");
             edad = Integer.parseInt(req.getParameter("edadP"));
             documento = Integer.parseInt(req.getParameter("docPR"));
+            contrasegna = req.getParameter("contraP");
 
             session.setAttribute("nombreRegistro", nombre);
             session.setAttribute("generoRegistro", genero);
@@ -42,6 +43,7 @@ public class RegisterOneServlet extends HttpServlet {
             session.setAttribute("edadRegistro", edad);
             session.setAttribute("docuementoRegistro", documento);
             session.setAttribute("sangreRegistro", sangre);
+            session.setAttribute("contrasegna", contrasegna);
             
 
             /*System.out.println(nombre + " " + genero + " " + correo + " " + telefono + " " + sangre + " " + edad + " "

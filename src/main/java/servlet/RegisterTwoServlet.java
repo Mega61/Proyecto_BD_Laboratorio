@@ -15,7 +15,7 @@ public class RegisterTwoServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String nombreCE, parentescoCE, correoCE, telefonoCE, nombre, genero, correo, telefono, sangre, estado = "";
+        String nombreCE, parentescoCE, correoCE, telefonoCE, nombre, genero, correo, telefono, sangre, estado, contrasegna = "";
         int edadCE, edad, documento = 0;
 
         RequestDispatcher rDispatcher = req.getRequestDispatcher("login.html");
@@ -36,9 +36,10 @@ public class RegisterTwoServlet extends HttpServlet {
             edad = (Integer)(session.getAttribute("edadRegistro"));
             documento = (Integer)(session.getAttribute("docuementoRegistro"));
             sangre = session.getAttribute("sangreRegistro").toString();
+            contrasegna = session.getAttribute("contrasegna").toString();
             estado = "DEFAULT";
             
-            Singleton.ingresarPacienteYcontactoEmergencia(documento, correo, genero, edad, nombre, telefono, sangre, estado, parentescoCE, telefonoCE, edadCE, correoCE, nombreCE);
+            Singleton.ingresarPacienteYcontactoEmergencia(documento, correo, genero, edad, nombre, telefono, sangre, estado, contrasegna, parentescoCE, telefonoCE, edadCE, correoCE, nombreCE);
 
             System.out.println("CONTACTO EMERGENCIA: "+nombreCE + " " + parentescoCE + " " + correoCE + " " + telefonoCE + " " + edadCE
                                 +" \n REGISTRO 1: "+nombre + " " + genero + " " + correo + " " + telefono + " " + sangre + " " + edad + " "
