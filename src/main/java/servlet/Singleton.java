@@ -195,14 +195,50 @@ public class Singleton {
         return idm;
     }
 
-    public static int crearIdContactoEmer() {
-        pacceidini++;
-        return pacceidini;
-    }
-
-    public static void ingresarPaciente(int id_p, String correoP, String generoP, int edadP, String nombreP,
-            String telefonoP, String sangreP, String estadoP, int idCE, String parentesoCE, String telefonoCE,
+    public static void ingresarPacienteYcontactoEmergencia(int id_p, String correoP, String generoP, int edadP,
+            String nombreP, String telefonoP, String sangreP, String estadoP, String parentesoCE, String telefonoCE,
             int edadCE, String correoCE, String nombreCE) {
+
+        connectarBD();
+
+        int idCe = pacceidini++;
+
+        try {
+            String queryInsertarContactoEmergencia = "INSERT INTO contacto_emergencia_paciente VALUES (?,?,?,?,?,?)";
+            String queryInsertarPaciente = "INSERT INTO paciente VALUES (?,?,?,?,?,?,?,?,?)";
+
+            PreparedStatement statement = null;
+
+            statement = connSQL.prepareStatement(queryInsertarContactoEmergencia);
+            statement.setInt(1, idCe);
+            statement.setString(2, parentesoCE);
+            statement.setString(3, telefonoCE);
+            statement.setInt(4, edadCE);
+            statement.setString(5, correoCE);
+            statement.setString(6, nombreCE);
+
+            statement.executeUpdate();
+
+            statement = connSQL.prepareStatement(queryInsertarPaciente);
+            statement.setInt(1, id_p);
+            statement.setInt(2, idCe);
+            statement.setString(3, correoP);
+            statement.setString(4, generoP);
+            statement.setInt(5, edadP);
+            statement.setString(6, nombreP);
+            statement.setString(7, telefonoP);
+            statement.setString(8, sangreP);
+            statement.setString(9, estadoP);
+
+            statement.executeUpdate();
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            System.out.println("No se ha podido ingresar paciente");
+        }
+
+        cerrarConexion();
 
         
 
