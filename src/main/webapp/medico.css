@@ -51,7 +51,7 @@ body {
     width: 167px;
     height: 40px;
     left: 461px;
-    top: 121px;
+    top: 32px;
     /* Cyan / 7 */
     background: #08979C;
     /* Cyan / 6 */
@@ -81,7 +81,7 @@ body {
     width: 167px;
     height: 40px;
     left: 655px;
-    top: 121px;
+    top: 32px;
     /* Cyan / 7 */
     background: #08979C;
     /* Cyan / 6 */
@@ -106,7 +106,7 @@ body {
     width: 124px;
     height: 22px;
     left: 319px;
-    top: 103px;
+    top: 14px;
     /* Typography Laboratorio/Medium/Body Medium Mark */
     font-family: Roboto;
     font-style: normal;
@@ -135,4 +135,32 @@ body {
     align-items: center;
     /* Página laboratorio médico/10 */
     color: #E6FFFB;
+}
+
+.nombreP {
+    position: absolute;
+    width: 180px;
+    height: 32px;
+    left: 125px;
+    top: 36px;
+    /* Typography Laboratorio/Headers/H3 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 32px;
+    /* identical to box height, or 133% */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
+}
+
+.pacienteM {
+    position: relative;
+    width: 836px;
+    height: 105px;
+    top: 37px;
+    left: 0px;
 }
