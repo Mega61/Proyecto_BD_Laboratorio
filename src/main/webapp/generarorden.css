@@ -1,0 +1,265 @@
+body {
+    background-size: cover;
+    text-align: center;
+    overflow-x: hidden;
+    /* Página laboratorio médico/10 */
+    background: #E6FFFB;
+}
+
+#logoh {
+    position: absolute;
+    width: 195px;
+    height: 51px;
+    left: 61px;
+    top: 6px;
+}
+
+#bannerM {
+    position: absolute;
+    width: 111px;
+    height: 57px;
+    left: 1684px;
+    top: 3px;
+}
+
+.subhM {
+    position: absolute;
+    width: 1920px;
+    height: 48px;
+    left: 0px;
+    top: 67.05px;
+    background: #36CFC9;
+}
+
+.contenedor {
+    position: absolute;
+    width: 836px;
+    height: 832px;
+    left: 543px;
+    top: 141px;
+    background: #36CFC9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.headerGe {
+    position: relative;
+    width: 836px;
+    height: 78px;
+    left: 0px;
+    top: 0px;
+    /* Página laboratorio médico/70 */
+    background: #08979C;
+}
+
+.h3 {
+    position: relative;
+    top: 13px;
+    left: 24px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 38px;
+    /* or 127% */
+    display: flex;
+    align-items: center;
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
+}
+
+.pacienteM {
+    position: relative;
+    width: 836px;
+    height: 105px;
+    top: 37px;
+    left: 0px;
+}
+
+#logopac {
+    position: relative;
+    width: 395px;
+    height: 43px;
+    top: 16px;
+    left: -200px;
+}
+
+.nombrepac {
+    position: absolute;
+    top: 16px;
+    left: 500px;
+    /* Typography Laboratorio/Headers/H1 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 38px;
+    line-height: 46px;
+    /* or 121% */
+    display: flex;
+    align-items: center;
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
+}
+
+#diagnostico {
+    position: relative;
+    width: 672px;
+    height: 229px;
+    top: 5px;
+    resize: none;
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+textarea:focus {
+    border-color: #006D75;
+    box-shadow: 0 1px 1px #08979C inset, 0 0 8px #08979C;
+    outline: 0 none;
+}
+
+::placeholder {
+    /* Subheading 16 / regular */
+    position: relative;
+    width: 466px;
+    height: 24px;
+    left: 12px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.h4 {
+    position: relative;
+    top: 0px;
+    left: 82px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    /* or 140% */
+    display: flex;
+    align-items: center;
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
+}
+
+.h5 {
+    position: relative;
+    top: 243px;
+    left: 82px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    /* or 140% */
+    display: flex;
+    align-items: center;
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
+}
+
+#tipos {
+    position: relative;
+    width: 671px;
+    height: 40px;
+    left: 0px;
+    top: 297px;
+    /* Neutral / 1 */
+    background: #FFFFFF;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+
+#linea3 {
+    position: relative;
+    top: 250px;
+}
+
+.agregarexamenes {
+    position: absolute;
+    background: transparent;
+    border: transparent;
+    width: 58px;
+    height: 58px;
+    left: 388px;
+    top: 683px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 72px;
+    line-height: 24px;
+    color: #E6FFFB;
+}
+
+.agregarexamenes:hover {
+    background: transparent;
+    color: #00474F;
+    border-radius: 10px;
+    transform: scale(1.1);
+}
+
+#tipos1 {
+    position: relative;
+    width: 671px;
+    height: 40px;
+    left: 0px;
+    top: 312px;
+    /* Neutral / 1 */
+    background: #FFFFFF;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+
+#tipos2 {
+    position: relative;
+    width: 671px;
+    height: 40px;
+    left: 0px;
+    top: 328px;
+    /* Neutral / 1 */
+    background: #FFFFFF;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+
+#tipos3 {
+    position: relative;
+    width: 671px;
+    height: 40px;
+    left: 0px;
+    top: 343px;
+    /* Neutral / 1 */
+    background: #FFFFFF;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+
+#tipos4 {
+    position: relative;
+    width: 671px;
+    height: 40px;
+    left: 0px;
+    top: 358px;
+    /* Neutral / 1 */
+    background: #FFFFFF;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
