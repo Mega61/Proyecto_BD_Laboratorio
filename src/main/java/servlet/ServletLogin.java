@@ -64,11 +64,11 @@ public class ServletLogin extends HttpServlet {
                 Boolean pruebaPac = Singleton.loginPaciente(identificacion, contrasegna);
 
                 if (pruebaPac) {
-
                     HttpSession sessionAdmin = req.getSession();
                     sessionAdmin.setAttribute("paciente", identificacion);
                     String nombreP = Singleton.getNombrePaciente(identificacion);
                     req.setAttribute("usuarioLogeado", nombreP);
+                    sessionAdmin.setAttribute("pacienteNombre", nombreP);
                     rDispatcher = req.getRequestDispatcher("paciente.jsp");
                 }else{
                     System.out.println("pruebapac es falso");

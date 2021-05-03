@@ -20,12 +20,16 @@ public class PacienteServlet extends HttpServlet {
 
         HttpSession session = req.getSession();
         String usuarioIngresado = session.getAttribute("paciente").toString();
+        String nombreUsuario = session.getAttribute("pacienteNombre").toString();
         RequestDispatcher rDispatcher = req.getRequestDispatcher("index.html");
 
         if (req.getParameter("botonagendar") != null) {
 
+            Singleton.cambiarEstadoP(usuarioIngresado, "ESPERANDO CITA");
+            req.setAttribute("usuarioLogeado", nombreUsuario);
             System.out.println("Se ha oprimido agendar");
             rDispatcher = req.getRequestDispatcher("paciente.jsp");
+            
 
         }
         

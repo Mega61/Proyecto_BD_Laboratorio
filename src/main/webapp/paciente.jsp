@@ -27,10 +27,9 @@
         <form action="paciente" method="GET">
             <button class="botperfil" name="botonperfilpac">Perfil</button>
             <button class="botlogout" name="botonlogoutpac">LogOut</button>
-		<label class="nomperfil">Un nombre</label>
+		<label class="nomperfil">${usuarioLogeado}</label>
         </form>
     </div>
-    <label>${usuarioLogeado}</label>
     <div>
         <img id="carPac" src="svg/CarruselPac.svg">
     </div>

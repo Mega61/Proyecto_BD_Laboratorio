@@ -202,8 +202,8 @@ public class Singleton {
             String telefonoCE, int edadCE, String correoCE, String nombreCE) {
 
         connectarBD();
-
-        int idCe = pacceidini++;
+        pacceidini++;
+        int idCe = pacceidini;
 
         try {
             String queryInsertarContactoEmergencia = "INSERT INTO contacto_emergencia_paciente VALUES (?,?,?,?,?,?)";
@@ -339,6 +339,25 @@ public class Singleton {
         }
 
         return str;
+
+    }
+
+    public static void cambiarEstadoP(String username, String nuevoEstado) {
+
+        int id = Integer.parseInt(username);
+        connectarBD();
+        String cambiarEstadoPac = "UPDATE paciente SET estado_paciente = '"+nuevoEstado+"' WHERE id_paciente = "+id;
+
+        try {
+            PreparedStatement statement = null;
+            statement = connSQL.prepareStatement(cambiarEstadoPac);
+            statement.executeUpdate(cambiarEstadoPac);
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        
 
     }
 
