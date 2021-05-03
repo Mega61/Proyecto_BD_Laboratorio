@@ -284,27 +284,62 @@ public class Singleton {
         int id = Integer.parseInt(username);
         connectarBD();
 
-        String buscarPaciente = "SELECT id_paciente, contrasegna_paciente FROM paciente where id_paciente = " +id+" AND contrasegna_paciente = '"+contrasegna+"'";
+        String buscarPaciente = "SELECT id_paciente, contrasegna_paciente FROM paciente where id_paciente = " + id
+                + " AND contrasegna_paciente = '" + contrasegna + "'";
         try {
             PreparedStatement statement = null;
             statement = connSQL.prepareStatement(buscarPaciente);
             ResultSet rs = statement.executeQuery();
 
-            /*if(rs.getInt("id_paciente") != 0){
-
-            }*/
-
-            System.out.println(rs.getInt("id_paciente"));
-            System.out.println(rs.getString("contrasegna_paciente"));
-            
+            /*
+             * if(rs.getInt("id_paciente") != 0){
+             * 
+             * }
+             */
+            if (rs.next()) {
+                System.out.println(rs.getInt("id_paciente"));
+                System.out.println(rs.getString("contrasegna_paciente"));
+                b = true;
+            } else {
+                System.out.println("Resultset vacio");
+            }
 
         } catch (Exception e) {
             // TODO: handle exception
-
+            e.printStackTrace();
         }
 
         cerrarConexion();
 
         return b;
     }
+
+    public static String getNombrePaciente(String username) {
+
+        String str = "";
+        int id = Integer.parseInt(username);
+        connectarBD();
+        String buscarPacienteNombre = "SELECT nombre_paciente FROM paciente WHERE id_paciente = " + id;
+
+        try {
+
+            PreparedStatement statement = null;
+            statement = connSQL.prepareStatement(buscarPacienteNombre);
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                str = rs.getString("nombre_paciente");
+            } else {
+                str = "Usuario invalido";
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        return str;
+
+    }
+
 }

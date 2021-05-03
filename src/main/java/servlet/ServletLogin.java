@@ -64,11 +64,14 @@ public class ServletLogin extends HttpServlet {
                 Boolean pruebaPac = Singleton.loginPaciente(identificacion, contrasegna);
 
                 if (pruebaPac) {
-                    
+
                     HttpSession sessionAdmin = req.getSession();
                     sessionAdmin.setAttribute("paciente", identificacion);
-                    req.setAttribute("usuarioLogeado", identificacion);
+                    String nombreP = Singleton.getNombrePaciente(identificacion);
+                    req.setAttribute("usuarioLogeado", nombreP);
                     rDispatcher = req.getRequestDispatcher("paciente.jsp");
+                }else{
+                    System.out.println("pruebapac es falso");
                 }
 
             } else if (!Character.isDigit(prueba)) {
@@ -76,7 +79,7 @@ public class ServletLogin extends HttpServlet {
                 System.out.println("Se ha iniciado sesión como un médico");
                 HttpSession sessionAdmin = req.getSession();
                 sessionAdmin.setAttribute("medico", identificacion);
-                String str = singleton.getPacientesMed();
+                String str = Singleton.getPacientesMed();
                 req.setAttribute("listaPacMed", str);
                 rDispatcher = req.getRequestDispatcher("medico.html");
 
