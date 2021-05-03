@@ -80,8 +80,9 @@ public class ServletLogin extends HttpServlet {
                 HttpSession sessionAdmin = req.getSession();
                 sessionAdmin.setAttribute("medico", identificacion);
                 String str = Singleton.getPacientesMed();
+                System.out.println(str);
                 req.setAttribute("listaPacMed", str);
-                rDispatcher = req.getRequestDispatcher("medico.html");
+                rDispatcher = req.getRequestDispatcher("medico.jsp");
 
             } else {
 

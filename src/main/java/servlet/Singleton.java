@@ -250,24 +250,36 @@ public class Singleton {
         String str = "";
 
         try {
-            String queryPacienteEstado = "";
+            String queryPacienteEstado = "SELECT nombre_paciente, estado_paciente, id_paciente FROM paciente WHERE estado_paciente = 'ESPERANDO CITA' OR estado_paciente = 'ESPERANDO RESULTADOS';";
             PreparedStatement statement = null;
+
+            connectarBD();
 
             statement = connSQL.prepareStatement(queryPacienteEstado);
 
             ResultSet rs = statement.executeQuery();
+            
+            int identificadorBotones = 0;
+            
 
             while (rs.next()) {
                 String nombre = rs.getString("nombre_paciente");
                 String estado = rs.getString("estado_paciente");
+                int id = rs.getInt("id_paciente");
+                
+                
 
-                str += "<div class=\"pacienteM\">" + "<hr color=\"white\" size=\"1\">" + "<label class=\"nombreP\">"
+                str += "<div class=\"pacienteM\">" + "<hr color=\"white\" size=\"1\">" + "<label class=\"nombreP\" name =\"nombre"+identificadorBotones+"\" value = \""+id+"\">"
                         + nombre + "</label>" + "<label class=\"salida\">Estado del paciente</label>"
                         + "<label class=\"estado\">" + estado + "</label>"
-                        + "<button class=\"generar\" name=\"botongenerar\">Generar Orden de laboratorio</button>"
-                        + "<button class=\"resultados\" name-=\"botonresultadosmed\">Resultados de Examen</button>"
+                        + "<button class=\"generar\" name=\"botongenerar"+identificadorBotones+"\">Generar Orden de laboratorio</button>"
+                        + "<button class=\"resultados\" name-=\"botonresultadosmed"+identificadorBotones+"\">Resultados de Examen</button>"
                         + "</div>" + "<br>";
+                        
+                        identificadorBotones++;
             }
+
+            cerrarConexion();
 
         } catch (Exception e) {
             // TODO: handle exception

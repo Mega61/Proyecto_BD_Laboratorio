@@ -59,6 +59,19 @@ public class MedicoServlet extends HttpServlet {
 
         }
 
+        for (int i = 0; i< 10; i++){
+            
+            String boton = "botongenerar" +i;
+
+            if (req.getParameter(boton) != null) {
+                
+                System.out.println("Se ha oprimido el botón "+i);
+                //rDispatcher = req.getRequestDispatcher("registro.html");
+    
+            } 
+
+        }
+
     }
 
     @Override
