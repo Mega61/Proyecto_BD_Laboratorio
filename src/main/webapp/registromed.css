@@ -1,0 +1,265 @@
+body {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    overflow-x: hidden;
+    background: #E6FFFB;
+}
+
+.logologin {
+    position: absolute;
+    width: 92px;
+    height: 116px;
+    left: 712px;
+    top: 8px;
+}
+
+.layer {
+    position: absolute;
+    width: 486px;
+    height: 123px;
+    top: -3px;
+    left: 760px;
+}
+
+.container {
+    position: relative;
+    width: 564px;
+    height: 583px;
+    left: 678px;
+    top: 142px;
+    /* Página laboratorio médico/70 */
+    background: #08979C;
+    border-radius: 47px;
+}
+
+#h1 {
+    position: relative;
+    width: 564px;
+    height: 35px;
+    left: 0px;
+    top: 10px;
+    /* Typography Laboratorio/Headers/H1 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 38px;
+    line-height: 46px;
+    /* or 121% */
+    text-align: center;
+    /* Página laboratorio médico/20 */
+    color: #B5F5EC;
+}
+
+.fondo {
+    position: absolute;
+    width: 564px;
+    height: 870px;
+    left: 678px;
+    top: 207px;
+    /* Página laboratorio médico/20 */
+    background: #B5F5EC;
+    /* Página laboratorio médico/70 */
+    border: 2px solid #08979C;
+    box-sizing: border-box;
+    border-radius: 0px 0px 47px 47px;
+}
+
+.entrada {
+    width: 510px;
+    height: 40px;
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+}
+
+#nombreMed {
+    position: absolute;
+    width: 510px;
+    height: 40px;
+    left: 27px;
+    top: 32px;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+}
+
+input:focus {
+    border-color: #006D75;
+    box-shadow: 0 1px 1px #08979C inset, 0 0 8px #08979C;
+    outline: 0 none;
+}
+
+#documentoMed {
+    position: absolute;
+    width: 510px;
+    height: 40px;
+    left: 27px;
+    top: 101px;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+}
+
+#edadMed {
+    position: absolute;
+    width: 242px;
+    height: 40px;
+    left: 27px;
+    top: 170px;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+}
+
+#genMed {
+    position: absolute;
+    width: 242px;
+    height: 40px;
+    right: 27px;
+    top: 170px;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+#correoMed {
+    position: absolute;
+    width: 510px;
+    height: 40px;
+    left: 27px;
+    top: 239px;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+}
+
+#telefonoMed {
+    position: absolute;
+    width: 510px;
+    height: 40px;
+    left: 27px;
+    top: 318px;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+}
+
+#consultorio {
+    position: absolute;
+    width: 242px;
+    height: 40px;
+    left: 27px;
+    top: 377px;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+select:focus {
+    border-color: #006D75;
+    box-shadow: 0 1px 1px #08979C inset, 0 0 8px #08979C;
+    outline: 0 none;
+}
+
+::placeholder {
+    /* Subheading 16 / regular */
+    position: relative;
+    width: 466px;
+    height: 24px;
+    left: 12px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.continuar {
+    position: relative;
+    width: 510px;
+    height: 40px;
+    left: 27px;
+    top: 791px;
+    /* Cyan / 7 */
+    background: #08979C;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+    /* drop-shadow / button-primary */
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
+    border-radius: 10px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    text-align: center;
+    /* Character / Primary(inverse) */
+    color: #FFFFFF;
+}
+
+#especialidad1 {
+    position: absolute;
+    width: 510px;
+    height: 40px;
+    left: 27px;
+    top: 446px;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+}
+
+#especialidad2 {
+    position: absolute;
+    width: 510px;
+    height: 40px;
+    left: 27px;
+    top: 515px;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+}
+
+#especialidad3 {
+    position: absolute;
+    width: 510px;
+    height: 40px;
+    left: 27px;
+    top: 584px;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+}
+
+#contraMed {
+    position: absolute;
+    width: 510px;
+    height: 40px;
+    left: 27px;
+    top: 653px;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+}
+
+#confirmMed {
+    position: absolute;
+    width: 510px;
+    height: 40px;
+    left: 27px;
+    top: 722px;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+}

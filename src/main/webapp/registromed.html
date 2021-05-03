@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Laboratorio Genesis</title>
+    <link href="registromed.css" rel="stylesheet">
+    <link>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script>
+        function comprobarClave() {
+
+            var p1 = document.getElementById("contraMed").value;
+            var p2 = document.getElementById("confirmMed").value;
+            var espacios = false;
+            var cont = 0;
+
+            // Este bucle recorre la cadena para comprobar
+            // que no todo son espacios
+            while (!espacios && (cont < p1.length)) {
+                if (p1.charAt(cont) == " ")
+                    espacios = true;
+                cont++;
+            }
+
+            if (espacios) {
+                alert("La contraseña no puede contener espacios en blanco");
+                return false;
+            }
+
+            if (p1.length == 0 || p2.length == 0) {
+                alert("Los campos de contraseña no deben estar vacios");
+                return false;
+            }
+
+            if (p1 != p2) {
+                alert("Las Contraseñas deben de coincidir");
+                return false;
+            } else {
+                alert("Registro exitoso!");
+                return true;
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <div>
+        <img class="logologin" src="Logo grande.svg">
+        <img class="layer" src="Layer 2.svg">
+    </div>
+
+    <div class="container">
+        <h1 id="h1">Registro Médico</h1>
+    </div>
+    <div class="fondo">
+
+        <form action="" method="GET">
+
+            <input type="text" class="entrada" id="nombreMed" placeholder="Nombre Completo*" name="nomMed" required>
+            <input type="text" class="entrada" id="documentoMed" placeholder="Documento*" name="docMed" required>
+            <input type="number" id="edadMed" placeholder="Edad*" name="edadMed" required>
+            <select name="select" id="genMed" required>
+                <option value="" disabled selected>Género*</option>
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</option>
+                
+              </select>
+            <input type="email" class="entrada" id="correoMed" placeholder="Correo Institucional*" name="correoMed" required>
+            <input type="tel" class="entrada" id="telefonoMed" placeholder="Teléfono*" name="telMed" required>
+            <select name="select" id="consultorio" required>
+                <option value="" disabled selected>Consultorio*</option>
+                <option value="201">201</option>
+                <option value="202">202</option>
+                <option value="203">203</option>
+                <option value="204">204</option>
+                <option value="205">205</option>
+                <option value="301">301</option>
+                <option value="302">302</option>
+                <option value="303">303</option>
+                <option value="304">304</option>
+                <option value="305">305</option>
+                <option value="401">401</option>
+                <option value="402">402</option>
+                <option value="403">403</option>
+                <option value="404">404</option>
+                <option value="405">405</option>
+                <option value="501">501</option>
+                <option value="502">502</option>
+                <option value="503">503</option>
+                <option value="504">504</option>
+                <option value="505">505</option>
+                
+              </select>
+            <input type="text" class="entrada" id="especialidad1" placeholder="Ingrese la especialidad*" name="espMed" required>
+            <input type="text" class="entrada" id="especialidad2" placeholder="Ingrese la especialidad" name="espMed">
+            <input type="text" class="entrada" id="especialidad3" placeholder="Ingrese la especialidad" name="espMed">
+
+
+            <input type="password" class="entrada" id="contraMed" placeholder="Contraseña*" name="contraP" required>
+            <input type="password" class="entrada" id="confirmMed" placeholder="ConfirmarContraseña*" name="confirmP" required>
+            <button class="continuar" onclick="comprobarClave()">Continuar</button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>
