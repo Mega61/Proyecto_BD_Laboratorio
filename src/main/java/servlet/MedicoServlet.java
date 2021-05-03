@@ -59,18 +59,50 @@ public class MedicoServlet extends HttpServlet {
 
         }
 
-        for (int i = 0; i< 10; i++){
-            
-            String boton = "botongenerar" +i;
+        int cantidad = Singleton.getCantidadPacientesParaMedico();
+        System.out.println(cantidad);
 
-            if (req.getParameter(boton) != null) {
-                
-                System.out.println("Se ha oprimido el botón "+i);
-                //rDispatcher = req.getRequestDispatcher("registro.html");
-    
-            } 
+        for (int i = 0; i < cantidad; i++) {
+
+            String botonGenerar = "botongenerar" + i;
+            String botonResultados = "botonresultadosmed" + i;
+            String nameid = "nombre" + i;
+
+            if (req.getParameter(botonGenerar) != null) {
+
+                String id = req.getParameter(nameid);
+                System.out.println("Se ha oprimido el botón generar " + i + " con ID: " + id);
+                String estado = Singleton.getEstadoP(id);
+                System.out.println(estado);
+                if (estado.equals("ESPERANDO CITA")) {
+
+                    System.out.println("si puede presionar este botón: generar orden de laboratorio");
+                    //rDispatcher = req.getRequestDispatcher("generarOrden.html");
+
+                } else {
+                    System.out.println("El paciente no tiene el estado ESPERANDO CITA");
+                }
+
+            }
+
+            if (req.getParameter(botonResultados) != null) {
+
+                String id = req.getParameter(nameid);
+                System.out.println("Se ha oprimido el botón resultados " + i + " con ID: " + id);
+                String estado = Singleton.getEstadoP(id);
+                if (estado.equals("ESPERANDO RESULTADOS")) {
+
+                    System.out.println("si puede presionar este botón: Generar Resultados");
+                    // rDispatcher = req.getRequestDispatcher("resultadosPaciente.html");
+
+                } else {
+                    System.out.println("El paciente no tiene el estado ESPERANDO RESULTADOS");
+                }
+            }
 
         }
+
+        //rDispatcher.forward(req, resp);
 
     }
 

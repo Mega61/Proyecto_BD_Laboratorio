@@ -269,11 +269,12 @@ public class Singleton {
                 
                 
 
-                str += "<div class=\"pacienteM\">" + "<hr color=\"white\" size=\"1\">" + "<label class=\"nombreP\" name =\"nombre"+identificadorBotones+"\" value = \""+id+"\">"
+                str += "<div class=\"pacienteM\">" + "<hr color=\"white\" size=\"1\">" + "<label class=\"nombreP\">"+
+                        "<input type = \"hidden\" name =\"nombre"+identificadorBotones+"\" value = \""+id+"\">"
                         + nombre + "</label>" + "<label class=\"salida\">Estado del paciente</label>"
                         + "<label class=\"estado\">" + estado + "</label>"
                         + "<button class=\"generar\" name=\"botongenerar"+identificadorBotones+"\">Generar Orden de laboratorio</button>"
-                        + "<button class=\"resultados\" name-=\"botonresultadosmed"+identificadorBotones+"\">Resultados de Examen</button>"
+                        + "<button class=\"resultados\" name=\"botonresultadosmed"+identificadorBotones+"\">Resultados de Examen</button>"
                         + "</div>" + "<br>";
                         
                         identificadorBotones++;
@@ -371,6 +372,57 @@ public class Singleton {
 
         
 
+    }
+
+    public static int getCantidadPacientesParaMedico(){
+        connectarBD();
+        
+        String query = "SELECT count(*) FROM paciente WHERE estado_paciente = 'ESPERANDO CITA' OR estado_paciente = 'ESPERANDO RESULTADOS';";
+        int cantidadPacientes = 0;
+
+        try {
+            PreparedStatement statement = null;
+            statement = connSQL.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                cantidadPacientes = rs.getInt("count(*)");
+            }else{
+                System.out.println("No se han encontrado pacientes");
+            }
+        } catch (Exception e) {
+            //TODO: handle exception
+            e.printStackTrace();
+        }
+
+        return cantidadPacientes;
+    }
+
+    public static String getEstadoP(String username){
+
+        String str = "";
+        int id = Integer.parseInt(username);
+        connectarBD();
+        String buscarPacienteEstado = "SELECT estado_paciente FROM paciente WHERE id_paciente = " + id;
+
+        try {
+
+            PreparedStatement statement = null;
+            statement = connSQL.prepareStatement(buscarPacienteEstado);
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                str = rs.getString("estado_paciente");
+            } else {
+                str = "Usuario invalido";
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        return str;
+        
     }
 
 }
