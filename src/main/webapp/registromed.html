@@ -52,8 +52,8 @@
 
 <body>
     <div>
-        <img class="logologin" src="Logo grande.svg">
-        <img class="layer" src="Layer 2.svg">
+        <img class="logologin" src="svg/Logo grande.svg">
+        <img class="layer" src="svg/Layer 2.svg">
     </div>
 
     <div class="container">
@@ -61,12 +61,12 @@
     </div>
     <div class="fondo">
 
-        <form action="" method="GET">
+        <form action="registromed" method="GET">
 
             <input type="text" class="entrada" id="nombreMed" placeholder="Nombre Completo*" name="nomMed" required>
             <input type="text" class="entrada" id="documentoMed" placeholder="Documento*" name="docMed" required>
             <input type="number" id="edadMed" placeholder="Edad*" name="edadMed" required>
-            <select name="select" id="genMed" required>
+            <select name="genMed" id="genMed" required>
                 <option value="" disabled selected>Género*</option>
                 <option value="hombre">Hombre</option>
                 <option value="mujer">Mujer</option>
@@ -74,7 +74,7 @@
               </select>
             <input type="email" class="entrada" id="correoMed" placeholder="Correo Institucional*" name="correoMed" required>
             <input type="tel" class="entrada" id="telefonoMed" placeholder="Teléfono*" name="telMed" required>
-            <select name="select" id="consultorio" required>
+            <select name="conMed" id="consultorio" required>
                 <option value="" disabled selected>Consultorio*</option>
                 <option value="201">201</option>
                 <option value="202">202</option>
@@ -98,14 +98,14 @@
                 <option value="505">505</option>
                 
               </select>
-            <input type="text" class="entrada" id="especialidad1" placeholder="Ingrese la especialidad*" name="espMed" required>
-            <input type="text" class="entrada" id="especialidad2" placeholder="Ingrese la especialidad" name="espMed">
-            <input type="text" class="entrada" id="especialidad3" placeholder="Ingrese la especialidad" name="espMed">
+            <input type="text" class="entrada" id="especialidad1" placeholder="Ingrese la especialidad*" name="esp1Med" required>
+            <input type="text" class="entrada" id="especialidad2" placeholder="Ingrese la especialidad" name="esp2Med">
+            <input type="text" class="entrada" id="especialidad3" placeholder="Ingrese la especialidad" name="esp3Med">
 
 
             <input type="password" class="entrada" id="contraMed" placeholder="Contraseña*" name="contraP" required>
             <input type="password" class="entrada" id="confirmMed" placeholder="ConfirmarContraseña*" name="confirmP" required>
-            <button class="continuar" onclick="comprobarClave()">Continuar</button>
+            <button class="continuar" name="botregistermedad" onclick="comprobarClave()">Continuar</button>
 
         </form>
 

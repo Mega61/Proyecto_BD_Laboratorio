@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javassist.compiler.ast.StringL;
 
@@ -245,6 +246,43 @@ public class Singleton {
 
     }
 
+    public static void ingresarMedico(String nombreM, int consultorioM, String correoM, String telefonoM,
+            String generoM, int edadM, String contrasegnaM, ArrayList<String> especialidades) {
+
+        connectarBD();
+        String idMedico = crearIdMedico();
+
+        try {
+            String queryInsertarMedico = "INSERT INTO medico VALUES (?,?,?,?,?,?,?,?)";
+
+            PreparedStatement statement = null;
+            statement = connSQL.prepareStatement(queryInsertarMedico);
+            statement.setString(1, idMedico);
+            statement.setString(2, nombreM);
+            statement.setInt(3, consultorioM);
+            statement.setString(4, correoM);
+            statement.setString(5, telefonoM);
+            statement.setString(6, generoM);
+            statement.setInt(7, edadM);
+            statement.setString(8, contrasegnaM);
+
+            for (int i = 0; i < especialidades.size(); i++) {
+                if (especialidades.get(i) != null) {
+                    String queryInsertarEspecialidad = "INSERT INTO especialidad_medico VALUES (?,?)";
+                    statement = connSQL.prepareStatement(queryInsertarEspecialidad);
+                    statement.setString(1, especialidades.get(i));
+                    statement.setString(2, idMedico);
+                }
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
+        cerrarConexion();
+
+    }
+
     public static String getPacientesMed() {
 
         String str = "";
@@ -258,26 +296,24 @@ public class Singleton {
             statement = connSQL.prepareStatement(queryPacienteEstado);
 
             ResultSet rs = statement.executeQuery();
-            
+
             int identificadorBotones = 0;
-            
 
             while (rs.next()) {
                 String nombre = rs.getString("nombre_paciente");
                 String estado = rs.getString("estado_paciente");
                 int id = rs.getInt("id_paciente");
-                
-                
 
-                str += "<div class=\"pacienteM\">" + "<hr color=\"white\" size=\"1\">" + "<label class=\"nombreP\">"+
-                        "<input type = \"hidden\" name =\"nombre"+identificadorBotones+"\" value = \""+id+"\">"
-                        + nombre + "</label>" + "<label class=\"salida\">Estado del paciente</label>"
+                str += "<div class=\"pacienteM\">" + "<hr color=\"white\" size=\"1\">" + "<label class=\"nombreP\">"
+                        + "<input type = \"hidden\" name =\"nombre" + identificadorBotones + "\" value = \"" + id
+                        + "\">" + nombre + "</label>" + "<label class=\"salida\">Estado del paciente</label>"
                         + "<label class=\"estado\">" + estado + "</label>"
-                        + "<button class=\"generar\" name=\"botongenerar"+identificadorBotones+"\">Generar Orden de laboratorio</button>"
-                        + "<button class=\"resultados\" name=\"botonresultadosmed"+identificadorBotones+"\">Resultados de Examen</button>"
-                        + "</div>" + "<br>";
-                        
-                        identificadorBotones++;
+                        + "<button class=\"generar\" name=\"botongenerar" + identificadorBotones
+                        + "\">Generar Orden de laboratorio</button>"
+                        + "<button class=\"resultados\" name=\"botonresultadosmed" + identificadorBotones
+                        + "\">Resultados de Examen</button>" + "</div>" + "<br>";
+
+                identificadorBotones++;
             }
 
             cerrarConexion();
@@ -359,7 +395,8 @@ public class Singleton {
 
         int id = Integer.parseInt(username);
         connectarBD();
-        String cambiarEstadoPac = "UPDATE paciente SET estado_paciente = '"+nuevoEstado+"' WHERE id_paciente = "+id;
+        String cambiarEstadoPac = "UPDATE paciente SET estado_paciente = '" + nuevoEstado + "' WHERE id_paciente = "
+                + id;
 
         try {
             PreparedStatement statement = null;
@@ -370,13 +407,11 @@ public class Singleton {
             e.printStackTrace();
         }
 
-        
-
     }
 
-    public static int getCantidadPacientesParaMedico(){
+    public static int getCantidadPacientesParaMedico() {
         connectarBD();
-        
+
         String query = "SELECT count(*) FROM paciente WHERE estado_paciente = 'ESPERANDO CITA' OR estado_paciente = 'ESPERANDO RESULTADOS';";
         int cantidadPacientes = 0;
 
@@ -384,20 +419,20 @@ public class Singleton {
             PreparedStatement statement = null;
             statement = connSQL.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 cantidadPacientes = rs.getInt("count(*)");
-            }else{
+            } else {
                 System.out.println("No se han encontrado pacientes");
             }
         } catch (Exception e) {
-            //TODO: handle exception
+            // TODO: handle exception
             e.printStackTrace();
         }
 
         return cantidadPacientes;
     }
 
-    public static String getEstadoP(String username){
+    public static String getEstadoP(String username) {
 
         String str = "";
         int id = Integer.parseInt(username);
@@ -422,7 +457,7 @@ public class Singleton {
         }
 
         return str;
-        
+
     }
 
 }
