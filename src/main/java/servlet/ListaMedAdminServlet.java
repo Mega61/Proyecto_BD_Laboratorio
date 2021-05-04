@@ -24,7 +24,7 @@ public class ListaMedAdminServlet extends HttpServlet {
 
         RequestDispatcher rDispatcher = req.getRequestDispatcher("admin.html");
 
-        if(req.getParameter("botRegMed") != null){
+        if(req.getParameter("botonagregarmed") != null){
 
             rDispatcher = req.getRequestDispatcher("registromed.html");
             

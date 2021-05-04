@@ -40,7 +40,7 @@ public class AdminServlet extends HttpServlet {
         if (req.getParameter("botonlistamed") != null) {
 
             System.out.println("Se ha oprimido lista medicos");
-            rDispatcher = req.getRequestDispatcher("admin.jsp");
+            rDispatcher = req.getRequestDispatcher("listamed.html");
 
         }
 

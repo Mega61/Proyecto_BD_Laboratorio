@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "RegistroMedServlet", urlPatterns = { "/regsitromed" })
+@WebServlet(name = "RegistroMedServlet", urlPatterns = { "/registromed" })
 
 public class RegistroMedServlet extends HttpServlet {
 
@@ -21,9 +21,9 @@ public class RegistroMedServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = req.getSession();
-        String usuarioIngresado = session.getAttribute("admin").toString();
+        //String usuarioIngresado = session.getAttribute("admin").toString();
 
-        RequestDispatcher rDispatcher = req.getRequestDispatcher("admin.html");
+        RequestDispatcher rDispatcher = req.getRequestDispatcher("admin.jsp");
 
         String nombre, genero, correo, telefono, especialidad1, especialidad2, especialidad3, contrasegna ="";
         int edad, documento, consultorio = 0;
@@ -48,6 +48,7 @@ public class RegistroMedServlet extends HttpServlet {
             especialidades.add(especialidad3);
 
             Singleton.ingresarMedico(nombre, consultorio, correo, telefono, genero, edad, contrasegna, especialidades);
+            System.out.println(nombre + " " +consultorio +" "+ correo +" "+ telefono +" "+ genero +" "+ edad +" "+ contrasegna +" "+ especialidades);
 
         }
        

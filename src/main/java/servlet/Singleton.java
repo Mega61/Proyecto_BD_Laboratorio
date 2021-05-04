@@ -265,18 +265,23 @@ public class Singleton {
             statement.setString(6, generoM);
             statement.setInt(7, edadM);
             statement.setString(8, contrasegnaM);
+            statement.executeUpdate();
+            System.out.println("se metieron los 8 strings");
 
             for (int i = 0; i < especialidades.size(); i++) {
-                if (especialidades.get(i) != null) {
+                if (!especialidades.get(i).equals("")) {
                     String queryInsertarEspecialidad = "INSERT INTO especialidad_medico VALUES (?,?)";
                     statement = connSQL.prepareStatement(queryInsertarEspecialidad);
                     statement.setString(1, especialidades.get(i));
                     statement.setString(2, idMedico);
+                    statement.executeUpdate();
+                    System.out.println("se ha entrado al if");
                 }
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             // TODO: handle exception
+            e.printStackTrace();
         }
 
         cerrarConexion();
@@ -447,6 +452,70 @@ public class Singleton {
 
             if (rs.next()) {
                 str = rs.getString("estado_paciente");
+            } else {
+                str = "Usuario invalido";
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        return str;
+
+    }
+
+    public static boolean loginMedico(String username, String contrasegna) {
+
+        Boolean b = false;
+        int id = Integer.parseInt(username);
+        connectarBD();
+
+        String buscarMedico = "SELECT id_medico, contrasegna_medico FROM paciente where id_medico = " + id
+                + " AND contrasegna_medico = '" + contrasegna + "'";
+        try {
+            PreparedStatement statement = null;
+            statement = connSQL.prepareStatement(buscarMedico);
+            ResultSet rs = statement.executeQuery();
+
+            /*
+             * if(rs.getInt("id_paciente") != 0){
+             * 
+             * }
+             */
+            if (rs.next()) {
+                System.out.println(rs.getInt("id_medico"));
+                System.out.println(rs.getString("contrasegna_medico"));
+                b = true;
+            } else {
+                System.out.println("Resultset vacio medico");
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        cerrarConexion();
+
+        return b;
+    }
+
+    public static String getNombreMedico(String username) {
+
+        String str = "";
+        String idMedico = username;
+        connectarBD();
+        String buscarMedicoNombre = "SELECT nombre_medico FROM medico WHERE id_medico = '" + idMedico + "'";
+
+        try {
+
+            PreparedStatement statement = null;
+            statement = connSQL.prepareStatement(buscarMedicoNombre);
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                str = rs.getString("nombre_medico");
             } else {
                 str = "Usuario invalido";
             }

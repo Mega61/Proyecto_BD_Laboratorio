@@ -70,18 +70,26 @@ public class ServletLogin extends HttpServlet {
                     req.setAttribute("usuarioLogeado", nombreP);
                     sessionAdmin.setAttribute("pacienteNombre", nombreP);
                     rDispatcher = req.getRequestDispatcher("paciente.jsp");
-                }else{
+                } else {
                     System.out.println("pruebapac es falso");
                 }
 
             } else if (!Character.isDigit(prueba)) {
 
                 System.out.println("Se ha iniciado sesión como un médico");
-                HttpSession sessionAdmin = req.getSession();
-                sessionAdmin.setAttribute("medico", identificacion);
-                String str = Singleton.getPacientesMed();
-                req.setAttribute("listaPacMed", str);
-                rDispatcher = req.getRequestDispatcher("medico.jsp");
+                Boolean pruebaMed = Singleton.loginMedico(identificacion, contrasegna);
+
+                if (pruebaMed) {
+                    HttpSession sessionAdmin = req.getSession();
+                    sessionAdmin.setAttribute("medico", identificacion);
+                    String str = Singleton.getPacientesMed();
+                    String nombreMed = Singleton.getNombreMedico(identificacion);
+                    req.setAttribute("name", nombreMed);
+                    req.setAttribute("listaPacMed", str);
+                    rDispatcher = req.getRequestDispatcher("medico.jsp");
+                } else {
+                    System.out.println("pruebaMed es falso");
+                }
 
             } else {
 
