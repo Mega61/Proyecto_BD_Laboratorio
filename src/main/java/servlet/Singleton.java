@@ -468,11 +468,11 @@ public class Singleton {
     public static boolean loginMedico(String username, String contrasegna) {
 
         Boolean b = false;
-        int id = Integer.parseInt(username);
+        String id = username;
         connectarBD();
 
-        String buscarMedico = "SELECT id_medico, contrasegna_medico FROM paciente where id_medico = " + id
-                + " AND contrasegna_medico = '" + contrasegna + "'";
+        String buscarMedico = "SELECT id_medico, contrasegna_medico FROM medico where id_medico = '" + id
+                + "' AND contrasegna_medico = '" + contrasegna + "'";
         try {
             PreparedStatement statement = null;
             statement = connSQL.prepareStatement(buscarMedico);
@@ -484,7 +484,7 @@ public class Singleton {
              * }
              */
             if (rs.next()) {
-                System.out.println(rs.getInt("id_medico"));
+                System.out.println(rs.getString("id_medico"));
                 System.out.println(rs.getString("contrasegna_medico"));
                 b = true;
             } else {
