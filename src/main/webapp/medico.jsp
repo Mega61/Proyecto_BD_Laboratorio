@@ -23,7 +23,7 @@
     <div class="subhM">
         <form>
             <button class="botlogout" name="botonlogout">LogOut</button>
-            <label class="nommedico">Un medico</label>
+            <label class="nommedico" >${nameM}</label>
         </form>
     </div>
 
