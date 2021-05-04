@@ -183,3 +183,19 @@ body {
     /* Página laboratorio médico/10 */
     color: #E6FFFB;
 }
+.nommedico {
+    position: relative;
+    top: -20px;
+    left: 1700px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    /* identical to box height, or 140% */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
+}
