@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -27,6 +28,8 @@ public class ServletLogin extends HttpServlet {
 
             System.out.println("Se ha oprimido Register");
             rDispatcher = req.getRequestDispatcher("registro.html");
+
+            Singleton.generarPdf("pruebapdf");
 
         }
 

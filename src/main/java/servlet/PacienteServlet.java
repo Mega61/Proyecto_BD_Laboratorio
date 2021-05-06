@@ -49,8 +49,14 @@ public class PacienteServlet extends HttpServlet {
 
         if (req.getParameter("botonperfilpac") != null) {
 
+            session = req.getSession();
+            session.setAttribute("pacienteNombre", nombreUsuario);
+            session.setAttribute("paciente", usuarioIngresado);
+            req.setAttribute("usuarioLogeado", nombreUsuario);
             System.out.println("Se ha oprimido perfil");
-            rDispatcher = req.getRequestDispatcher("paciente.jsp");
+            String info = Singleton.getInfoPacientes(usuarioIngresado);
+            req.setAttribute("infopac", info);
+            rDispatcher = req.getRequestDispatcher("perfilp.jsp");
 
         }
 
@@ -62,6 +68,8 @@ public class PacienteServlet extends HttpServlet {
             rDispatcher = req.getRequestDispatcher("login.html");
 
         }
+
+
 
         rDispatcher.forward(req, resp);
 

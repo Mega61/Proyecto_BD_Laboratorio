@@ -1,5 +1,6 @@
 package servlet;
 
+import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,6 +9,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javassist.compiler.ast.StringL;
+import com.itextpdf.*;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 
 /*
 CREATE TABLE MEDICO (
@@ -526,6 +531,87 @@ public class Singleton {
         }
 
         return str;
+
+    }
+
+    public static String getInfoPacientes(String username) {
+
+        String infop = "";
+        int id = Integer.parseInt(username);
+        connectarBD();
+        String buscarPacienteNombre = "SELECT * FROM paciente p INNER JOIN contacto_emergencia_paciente c WHERE p.id_contacto_emergencia = c.id_contacto_emergencia AND p.id_paciente = "
+                + id;
+
+        try {
+
+            PreparedStatement statement = null;
+            statement = connSQL.prepareStatement(buscarPacienteNombre);
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                int idp = rs.getInt("id_paciente");
+                String correop = rs.getString("correo_paciente");
+                String generop = rs.getString("genero_paciente");
+                int edadp = rs.getInt("edad_paciente");
+                String nombrep = rs.getString("nombre_paciente");
+                String telefonop = rs.getString("telefono_paciente");
+                String sangrep = rs.getString("sangre_paciente");
+                String estadop = rs.getString("estado_paciente");
+                String contrasegnap = rs.getString("contrasegna_paciente");
+                String nombrecep = rs.getString("nombre_contacto_emergencia");
+                String parentescocep = rs.getString("parentesco");
+                String telefonocep = rs.getString("telefono_contacto_emergencia");
+                String edadcep = rs.getString("edad_contacto_emergencia");
+                String correocep = rs.getString("correo_contacto_emergencia");
+
+                infop += "<div >" + "<label> Documento" + idp + "</label>" + "<br>"
+                        + "<label> Contacto de Emergencia: </label>" + "<br>" + "<label> Nombre: " + nombrecep
+                        + "</label>" + "<br>" + "<label> Edad: " + edadcep + "</label>" + "<br>"
+                        + "<label> Parentesco: " + parentescocep + "</label>" + "<br>" + "<label> Correo: </label>"
+                        + "<input type=\"text\" name=\"cambiarCorreoCep\" placeholder=\"" + correocep + "\">" + "<br>"
+                        + "<label> Telefono: </label>"
+                        + "<input type=\"text\" name=\"cambiarTelefonoCep\" placeholder=\"" + telefonocep + "\">"
+                        + "<br>" + "<label> Correo: </label>"
+                        + "<input type=\"text\" name=\"cambiarCorreoP\" placeholder=\"" + correop + "\">" + "<br>"
+                        + "<label> Genero: " + generop + "</label>" + "<br>" + "<label> Edad: " + edadp + "</label>"
+                        + "<br>" + "<label> Nombre: " + nombrep + "</label>" + "<br>" + "<label> Telefono: </label>"
+                        + "<input type=\"text\" name=\"cambiarTelefonoP\" placeholder=\"" + telefonop + "\">" + "<br>"
+                        + "<label> Sangre: " + sangrep + "</label>" + "<br>" + "<label> Estado: " + estadop + "</label>"
+                        + "<br>" + "<label> Contraseña: </label>"
+                        + "<input type=\"text\" name=\"cambiarContrasegnaP\" placeholder=\"" + contrasegnap + "\">"
+                        + "<br>" + "<button name = \"botcambpac\"> Aplicar Cambios </button>";
+
+            } else {
+
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        return infop;
+
+    }
+
+    public static void generarPdf(String nombrePdf) {
+
+        Document documento = new Document();
+
+        try {
+            PdfWriter.getInstance(documento, new FileOutputStream("/webapp/" + nombrePdf + ".pdf"));
+            documento.open();
+
+            PdfPTable tabla = new PdfPTable(2);
+            tabla.addCell("pelicula");
+            tabla.addCell("cachucha");
+
+            documento.close();
+            System.out.println("Pdf creado");
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
 
     }
 
