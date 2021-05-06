@@ -75,6 +75,12 @@ public class PacientePerfilServlet extends HttpServlet {
             rDispatcher =  req.getRequestDispatcher("perfilp.jsp");
             
         }
+
+        if (req.getParameter("botcambpacep") != null){
+
+            
+
+        }
     
         rDispatcher.forward(req, resp);
         
