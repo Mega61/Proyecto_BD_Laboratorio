@@ -30,7 +30,6 @@ public class PacienteServlet extends HttpServlet {
             System.out.println("Se ha oprimido agendar");
             rDispatcher = req.getRequestDispatcher("paciente.jsp");
             
-
         }
         
         if (req.getParameter("botonsolicitar") != null) {

@@ -39,7 +39,7 @@
                 <label class="salida">Estado del paciente</label>
                 <label class="estado">------</label>
                 <button class="generar" name="botongenerar">Generar Orden de laboratorio</button>
-                <button class="resultados" name-="botonresultadosmed">Resultados de Examen</button>
+                <button class="resultados" name="botonresultadosmed">Resultados de Examen</button>
                 </div>
                 <br>
                 <label>${listaPacMed}</label>

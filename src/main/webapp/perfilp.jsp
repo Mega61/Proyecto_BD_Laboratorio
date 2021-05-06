@@ -27,14 +27,15 @@
         <form>
             <button class="botlogout" name="botonlogout">LogOut</button>
             <label class="nomperfil">${usuarioLogeado}</label>
+        </form>
             <div class="contenedor1">
                 <div class="hizq">
                     <img id="logo1" src="Letras logo.svg">
                     <label class="info">Información</label>
                 </div>
                   <div>
-                <form>
-                    ${infopac}
+                <form action="perfilPaciente" method = "GET">
+                    <label>${infopac}</label>
                 </form>
             </div>
             </div>

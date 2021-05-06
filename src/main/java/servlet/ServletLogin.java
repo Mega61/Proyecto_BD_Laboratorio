@@ -27,13 +27,16 @@ public class ServletLogin extends HttpServlet {
         if (req.getParameter("botonRegister") != null) {
 
             System.out.println("Se ha oprimido Register");
+            
             rDispatcher = req.getRequestDispatcher("registro.html");
-
-            Singleton.generarPdf("pruebapdf");
+            
 
         }
 
         if (req.getParameter("botoniniciars") != null) {
+            
+            String url = req.getSession().getServletContext().getRealPath("webapp/pdf/");
+            Singleton.generarPdf("pruebapdf", url);
 
             identificacion = req.getParameter("docP");
             contrasegna = req.getParameter("conP");

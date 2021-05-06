@@ -550,6 +550,7 @@ public class Singleton {
 
             if (rs.next()) {
                 int idp = rs.getInt("id_paciente");
+                int idcep = rs.getInt("id_contacto_emergencia");
                 String correop = rs.getString("correo_paciente");
                 String generop = rs.getString("genero_paciente");
                 int edadp = rs.getInt("edad_paciente");
@@ -564,7 +565,7 @@ public class Singleton {
                 String edadcep = rs.getString("edad_contacto_emergencia");
                 String correocep = rs.getString("correo_contacto_emergencia");
 
-                infop += "<div >" + "<label> Documento" + idp + "</label>" + "<br>"
+                infop += "<div>" + "<label> Documento" + idp + "</label>" + "<br>"
                         + "<label> Contacto de Emergencia: </label>" + "<br>" + "<label> Nombre: " + nombrecep
                         + "</label>" + "<br>" + "<label> Edad: " + edadcep + "</label>" + "<br>"
                         + "<label> Parentesco: " + parentescocep + "</label>" + "<br>" + "<label> Correo: </label>"
@@ -579,7 +580,8 @@ public class Singleton {
                         + "<label> Sangre: " + sangrep + "</label>" + "<br>" + "<label> Estado: " + estadop + "</label>"
                         + "<br>" + "<label> Contraseña: </label>"
                         + "<input type=\"text\" name=\"cambiarContrasegnaP\" placeholder=\"" + contrasegnap + "\">"
-                        + "<br>" + "<button name = \"botcambpac\"> Aplicar Cambios </button>";
+                        + "<br>" + "<button name = \"botcambpac\"> Aplicar Cambios </button>"
+                        + "<input type = \"hidden\" name =\"idcepp\" value = \"" + idcep + "\">" + "</div>";
 
             } else {
 
@@ -594,23 +596,50 @@ public class Singleton {
 
     }
 
-    public static void generarPdf(String nombrePdf) {
+    public static void cambiarColumna(String nameTabla, String set, String newSet, String idpce, String username) {
 
-        Document documento = new Document();
+        int id = Integer.parseInt(username);
+        // connectarBD();
+        String cambiarEstadoPac = "UPDATE " + nameTabla + " SET " + set + " = '" + newSet + "' WHERE " + idpce + " = "
+                + id;
 
         try {
-            PdfWriter.getInstance(documento, new FileOutputStream("/webapp/" + nombrePdf + ".pdf"));
+            PreparedStatement statement = null;
+            statement = connSQL.prepareStatement(cambiarEstadoPac);
+            statement.executeUpdate(cambiarEstadoPac);
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        // cerrarConexion();
+
+    }
+
+    public static void generarPdf(String nombrePdf, String url) {
+
+        Document documento = new Document();
+        String nombreArchivo = nombrePdf + ".pdf";
+        String ruta = System.getProperty("user.home") + "/Desktop/prueba.pdf";
+        System.out.println(url + nombreArchivo);
+        System.out.println(ruta + nombreArchivo);
+        
+
+        try {
+            PdfWriter.getInstance(documento, new FileOutputStream(url + nombreArchivo));
             documento.open();
 
             PdfPTable tabla = new PdfPTable(2);
             tabla.addCell("pelicula");
             tabla.addCell("cachucha");
+            documento.add(tabla);
 
             documento.close();
             System.out.println("Pdf creado");
 
         } catch (Exception e) {
             // TODO: handle exception
+            e.printStackTrace();
         }
 
     }
