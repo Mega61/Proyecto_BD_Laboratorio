@@ -25,18 +25,18 @@ public class PacientePerfilServlet extends HttpServlet {
         String nombreUsuario = session.getAttribute("pacienteNombre").toString();
         RequestDispatcher rDispatcher = req.getRequestDispatcher("perfilp.jsp");
 
+        session = req.getSession();
+        session.setAttribute("pacienteNombre", nombreUsuario);
+        session.setAttribute("paciente", usuarioIngresado);
+        correop = req.getParameter("cambiarCorreoP");
+        telefonop = req.getParameter("cambiarTelefonoP");
+        contrasegnap = req.getParameter("cambiarContrasegnaP");
+        correocep = req.getParameter("cambiarCorreoCep");
+        telefonocep = req.getParameter("cambiarTelefonoCep");
+        idcep = req.getParameter("idcepp");
+
         if (req.getParameter("botcambpac") != null) {
             
-            session = req.getSession();
-            session.setAttribute("pacienteNombre", nombreUsuario);
-            session.setAttribute("paciente", usuarioIngresado);
-            correop = req.getParameter("cambiarCorreoP");
-            telefonop = req.getParameter("cambiarTelefonoP");
-            contrasegnap = req.getParameter("cambiarContrasegnaP");
-            correocep = req.getParameter("cambiarCorreoCep");
-            telefonocep = req.getParameter("cambiarTelefonoCep");
-            idcep = req.getParameter("idcepp");
-
             Singleton.connectarBD();
 
             if (!correop.equals("")){
@@ -57,6 +57,16 @@ public class PacientePerfilServlet extends HttpServlet {
 
             }
 
+            String info = Singleton.getInfoPacientes(usuarioIngresado);
+            req.setAttribute("infopac", info);
+            Singleton.cerrarConexion();
+            rDispatcher =  req.getRequestDispatcher("perfilp.jsp");
+            
+        }
+
+        if (req.getParameter("botcambpacep") != null){
+
+            Singleton.connectarBD();
             if (!correocep.equals("")){
 
                 Singleton.cambiarColumna("contacto_emergencia_paciente", "correo_contacto_emergencia", correocep, "id_contacto_emergencia",idcep);
@@ -73,12 +83,6 @@ public class PacientePerfilServlet extends HttpServlet {
             req.setAttribute("infopac", info);
             Singleton.cerrarConexion();
             rDispatcher =  req.getRequestDispatcher("perfilp.jsp");
-            
-        }
-
-        if (req.getParameter("botcambpacep") != null){
-
-            
 
         }
     

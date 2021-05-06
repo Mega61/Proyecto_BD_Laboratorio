@@ -565,67 +565,69 @@ public class Singleton {
                 String edadcep = rs.getString("edad_contacto_emergencia");
                 String correocep = rs.getString("correo_contacto_emergencia");
 
-                infop ="<form action = \"perfilPaciente\" method=\"GET\">\r\n" +    
-    "                <img class=\"fotop\" src=\"Group 63.svg\"> >\r\n" + 
-    "                <label class=\"entrada\" id=\"nomp\">"+nombrep+"</label>\r\n" + 
-    "                <label id=\"docp\">Documento:</label>\r\n" + 
-    "                <label id=\"numdoc\">"+idp+"</label>\r\n" + 
-    "                <hr id=\"divisor1\">\r\n" + 
-    "                <img class=\"puntoedad\" src=\"svg/Ellipse 2.svg\">\r\n" + 
-    "                <label id=\"edadp\">Edad:</label>\r\n" + 
-    "                <label id=\"vedad\">"+edadp+"</label>\r\n" + 
-    "                <img class=\"puntogen\" src=\"svg/Ellipse 2.svg\">\r\n" + 
-    "                <label id=\"genp\">Genero:</label>\r\n" + 
-    "                <label id=\"vgen\">"+generop+"</label>\r\n" + 
-    "                <img class=\"puntosan\" src=\"svg/Ellipse 2.svg\">\r\n" + 
-    "                <label id=\"sanp\">Sangre:</label>\r\n" + 
-    "                <label id=\"vsan\">"+sangrep+"</label>\r\n" + 
-    "                <img class=\"puntoest\" src=\"svg/Ellipse 2.svg\">\r\n" + 
-    "                <label id=\"estp\">Estado:</label>\r\n" + 
-    "                <label id=\"vest\">"+estadop+"</label>\r\n" + 
-    "                <img class=\"puntotoolc\" src=\"svg/Ellipse 2.svg\">\r\n" + 
-    "                <img class=\"toolcorreo\" src=\"svg/tool.svg\">\r\n" + 
-    "                <label id=\"correop\">Correo</label>\r\n" + 
-    "                <input type=\"email\" id=\"editcp\" name=\"cambiarCorreoP\" placeholder=\"" + correop + "\">\r\n" + 
-    "                <img class=\"puntotoolt\" src=\"svg/Ellipse 2.svg\">\r\n" + 
-    "                <img class=\"tooltel\" src=\"svg/tool.svg\">\r\n" + 
-    "                <label id=\"telp\">Telefono</label>\r\n" + 
-    "                <input type=\"text\" id=\"edittp\" name=\"cambiarTelefonoP\" placeholder=\"" + telefonop + "\">\r\n" + 
-    "                <img class=\"puntotoolcontra\" src=\"svg/Ellipse 2.svg\">\r\n" + 
-    "                <img class=\"toolcontra\" src=\"svg/tool.svg\">\r\n" + 
-    "                <label id=\"contrap\">Contraseña</label>\r\n" + 
-    "                <input type=\"text\" id=\"editcontrap\">\r\n" + 
-    "                <img class=\"puntotoolconfirm\" src=\"svg/Ellipse 2.svg\">\r\n" + 
-    "                <img class=\"toolconfirm\" src=\"svg/tool.svg\">\r\n" + 
-    "                <label id=\"confirmp\">Confirmar Contraseña</label>\r\n" + 
-    "                <input type=\"password\" id=\"editconfirmp\" name=\"cambiarContrasegnaP\" placeholder=\"" + contrasegnap + "\">\r\n" + 
-    "                <button class=\"confirmar\" name = \"botcambpac\">Confirmar Cambios</button>\r\n" +
-    "                <input type = \"hidden\" name =\"idcepp\" value = \"" + idcep + "\">\r\n" + 
-    "            </form>\r\n" + 
-    "            <div class=\"divisor2\">\r\n" + 
-    "                <img id=\"logoce\" src=\"svg/Group 66.svg\">\r\n" + 
-    "            </div>\r\n" + 
-    "            <form action = \"perfilPaciente\" method=\"GET\">\r\n" + 
-    "                <img class=\"puntonomce\" src=\"svg/Ellipse 2.svg\">\r\n" + 
-    "                <label id=\"nomce\">Nombre:</label>\r\n" + 
-    "                <label id=\"vnomce\">"+nombrecep+"</label>\r\n" + 
-    "                <img class=\"puntoedadce\" src=\"svg/Ellipse 2.svg\">\r\n" + 
-    "                <label id=\"edadce\">Edad:</label>\r\n" + 
-    "                <label id=\"vedadce\">"+edadcep+"</label>\r\n" + 
-    "                <img class=\"puntoparce\" src=\"svg/Ellipse 2.svg\">\r\n" + 
-    "                <label id=\"parce\">Parentesco:</label>\r\n" + 
-    "                <label id=\"vparce\">"+parentescocep+"</label>\r\n" + 
-    "                <img class=\"puntotoolcorreoce\" src=\"svg/Ellipse 2.svg\">\r\n" + 
-    "                <img class=\"toolcorreoce\" src=\"svg/tool.svg\">\r\n" + 
-    "                <label id=\"correoce\">Correo</label>\r\n" + 
-    "                <input type=\"text\" id=\"editcorreoce\" name=\"cambiarCorreoCep\" placeholder=\"" + correocep + "\">\r\n" + 
-    "                <img class=\"puntotooltelce\" src=\"svg/Ellipse 2.svg\">\r\n" + 
-    "                <img class=\"tooltelce\" src=\"svg/tool.svg\">\r\n" + 
-    "                <label id=\"telce\">Telefono</label>\r\n" + 
-    "                <input type=\"text\" id=\"edittelce\" name=\"cambiarTelefonoCep\" placeholder=\"" + telefonocep+ "\">\r\n" + 
-    "                <button class=\"confirmarce\" name = \"botcambpacep\">Confirmar Cambios</button>\r\n" + 
-    "                <br>\r\n" + 
-    "                <br>\r\n </form>";
+                infop = "<form action = \"perfilPaciente\" method=\"GET\">\r\n"
+                        + "                <img class=\"fotop\" src=\"svg/Group 63.svg\"> >\r\n"
+                        + "                <label class=\"entrada\" id=\"nomp\">" + nombrep + "</label>\r\n"
+                        + "                <label id=\"docp\">Documento:</label>\r\n"
+                        + "                <label id=\"numdoc\">" + idp + "</label>\r\n"
+                        + "                <hr id=\"divisor1\">\r\n"
+                        + "                <img class=\"puntoedad\" src=\"svg/Ellipse 2.svg\">\r\n"
+                        + "                <label id=\"edadp\">Edad:</label>\r\n"
+                        + "                <label id=\"vedad\">" + edadp + "</label>\r\n"
+                        + "                <img class=\"puntogen\" src=\"svg/Ellipse 2.svg\">\r\n"
+                        + "                <label id=\"genp\">Genero:</label>\r\n"
+                        + "                <label id=\"vgen\">" + generop + "</label>\r\n"
+                        + "                <img class=\"puntosan\" src=\"svg/Ellipse 2.svg\">\r\n"
+                        + "                <label id=\"sanp\">Sangre:</label>\r\n"
+                        + "                <label id=\"vsan\">" + sangrep + "</label>\r\n"
+                        + "                <img class=\"puntoest\" src=\"svg/Ellipse 2.svg\">\r\n"
+                        + "                <label id=\"estp\">Estado:</label>\r\n"
+                        + "                <label id=\"vest\">" + estadop + "</label>\r\n"
+                        + "                <img class=\"puntotoolc\" src=\"svg/Ellipse 2.svg\">\r\n"
+                        + "                <img class=\"toolcorreo\" src=\"svg/tool.svg\">\r\n"
+                        + "                <label id=\"correop\">Correo</label>\r\n"
+                        + "                <input type=\"email\" id=\"editcp\" name=\"cambiarCorreoP\" placeholder=\""
+                        + correop + "\">\r\n"
+                        + "                <img class=\"puntotoolt\" src=\"svg/Ellipse 2.svg\">\r\n"
+                        + "                <img class=\"tooltel\" src=\"svg/tool.svg\">\r\n"
+                        + "                <label id=\"telp\">Telefono</label>\r\n"
+                        + "                <input type=\"text\" id=\"edittp\" name=\"cambiarTelefonoP\" placeholder=\""
+                        + telefonop + "\">\r\n"
+                        + "                <img class=\"puntotoolcontra\" src=\"svg/Ellipse 2.svg\">\r\n"
+                        + "                <img class=\"toolcontra\" src=\"svg/tool.svg\">\r\n"
+                        + "                <label id=\"contrap\">Contraseña</label>\r\n"
+                        + "                <input type=\"text\" id=\"editcontrap\">\r\n"
+                        + "                <img class=\"puntotoolconfirm\" src=\"svg/Ellipse 2.svg\">\r\n"
+                        + "                <img class=\"toolconfirm\" src=\"svg/tool.svg\">\r\n"
+                        + "                <label id=\"confirmp\">Confirmar Contraseña</label>\r\n"
+                        + "                <input type=\"password\" id=\"editconfirmp\" name=\"cambiarContrasegnaP\" placeholder=\""
+                        + contrasegnap + "\">\r\n"
+                        + "                <button class=\"confirmar\" name = \"botcambpac\">Confirmar Cambios</button>\r\n"
+                        + "            </form>\r\n" + "            <div class=\"divisor2\">\r\n"
+                        + "                <img id=\"logoce\" src=\"svg/Group 66.svg\">\r\n" + "            </div>\r\n"
+                        + "            <form action = \"perfilPaciente\" method=\"GET\">\r\n"
+                        + "                <img class=\"puntonomce\" src=\"svg/Ellipse 2.svg\">\r\n"
+                        + "                <label id=\"nomce\">Nombre:</label>\r\n"
+                        + "                <label id=\"vnomce\">" + nombrecep + "</label>\r\n"
+                        + "                <img class=\"puntoedadce\" src=\"svg/Ellipse 2.svg\">\r\n"
+                        + "                <label id=\"edadce\">Edad:</label>\r\n"
+                        + "                <label id=\"vedadce\">" + edadcep + "</label>\r\n"
+                        + "                <img class=\"puntoparce\" src=\"svg/Ellipse 2.svg\">\r\n"
+                        + "                <label id=\"parce\">Parentesco:</label>\r\n"
+                        + "                <label id=\"vparce\">" + parentescocep + "</label>\r\n"
+                        + "                <img class=\"puntotoolcorreoce\" src=\"svg/Ellipse 2.svg\">\r\n"
+                        + "                <img class=\"toolcorreoce\" src=\"svg/tool.svg\">\r\n"
+                        + "                <label id=\"correoce\">Correo</label>\r\n"
+                        + "                <input type=\"text\" id=\"editcorreoce\" name=\"cambiarCorreoCep\" placeholder=\""
+                        + correocep + "\">\r\n"
+                        + "                <img class=\"puntotooltelce\" src=\"svg/Ellipse 2.svg\">\r\n"
+                        + "                <img class=\"tooltelce\" src=\"svg/tool.svg\">\r\n"
+                        + "                <label id=\"telce\">Telefono</label>\r\n"
+                        + "                <input type=\"text\" id=\"edittelce\" name=\"cambiarTelefonoCep\" placeholder=\""
+                        + telefonocep + "\">\r\n"
+                        + "                <input type = \"hidden\" name =\"idcepp\" value = \"" + idcep + "\">\r\n"
+                        + "                <button class=\"confirmarce\" name = \"botcambpacep\">Confirmar Cambios</button>\r\n"
+                        + "                <br>\r\n" + "                <br>\r\n </form>";
 
             } else {
 
@@ -664,10 +666,10 @@ public class Singleton {
 
         Document documento = new Document();
         String nombreArchivo = nombrePdf + ".pdf";
-        String ruta = System.getProperty("user.home") + "/Desktop/Laboratorio Genesis Proyecto BD/Proyecto_BD_Laboratorio/src/main/webapp/pdf/";
+        String ruta = System.getProperty("user.home")
+                + "/Desktop/Laboratorio Genesis Proyecto BD/Proyecto_BD_Laboratorio/src/main/webapp/pdf/";
         System.out.println(url + nombreArchivo);
         System.out.println(ruta + nombreArchivo);
-        
 
         try {
             PdfWriter.getInstance(documento, new FileOutputStream(url + nombreArchivo));
