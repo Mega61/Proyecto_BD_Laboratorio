@@ -19,6 +19,7 @@ public class RegisterTwoServlet extends HttpServlet {
         int edadCE, edad, documento = 0;
 
         RequestDispatcher rDispatcher = req.getRequestDispatcher("login.html");
+        Singleton singleton = Singleton.getSingleton();
 
         if (req.getParameter("botregistertwo") != null) {
 
@@ -39,7 +40,7 @@ public class RegisterTwoServlet extends HttpServlet {
             contrasegna = session.getAttribute("contrasegna").toString();
             estado = "DEFAULT";
             
-            Singleton.ingresarPacienteYcontactoEmergencia(documento, correo, genero, edad, nombre, telefono, sangre, estado, contrasegna, parentescoCE, telefonoCE, edadCE, correoCE, nombreCE);
+            singleton.ingresarPacienteYcontactoEmergencia(documento, correo, genero, edad, nombre, telefono, sangre, estado, contrasegna, parentescoCE, telefonoCE, edadCE, correoCE, nombreCE);
 
             System.out.println("CONTACTO EMERGENCIA: "+nombreCE + " " + parentescoCE + " " + correoCE + " " + telefonoCE + " " + edadCE
                                 +" \n REGISTRO 1: "+nombre + " " + genero + " " + correo + " " + telefono + " " + sangre + " " + edad + " "

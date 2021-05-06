@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "PacientePerfilServlet", urlPatterns = { "/perfilPaciente" })
+@WebServlet(name = "MedicoPerfilServlet", urlPatterns = { "/perfilMedico" })
 
-public class PacientePerfilServlet extends HttpServlet {
+public class MedicoPerfilServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,15 +28,13 @@ public class PacientePerfilServlet extends HttpServlet {
         session = req.getSession();
         session.setAttribute("pacienteNombre", nombreUsuario);
         session.setAttribute("paciente", usuarioIngresado);
-        correop = req.getParameter("cambiarCorreoP");
-        telefonop = req.getParameter("cambiarTelefonoP");
-        contrasegnap = req.getParameter("cambiarContrasegnaP");
-        correocep = req.getParameter("cambiarCorreoCep");
-        telefonocep = req.getParameter("cambiarTelefonoCep");
-        idcep = req.getParameter("idcepp");
+        
 
         if (req.getParameter("botcambpac") != null) {
             
+            correop = req.getParameter("cambiarCorreoP");
+            telefonop = req.getParameter("cambiarTelefonoP");
+            contrasegnap = req.getParameter("cambiarContrasegnaP");
             Singleton.connectarBD();
 
             if (!correop.equals("")){
@@ -65,6 +63,11 @@ public class PacientePerfilServlet extends HttpServlet {
         }
 
         if (req.getParameter("botcambpacep") != null){
+
+            telefonocep = req.getParameter("cambiarTelefonoCep");
+            correocep = req.getParameter("cambiarCorreoCep");
+            idcep = req.getParameter("idcepp");
+
 
             Singleton.connectarBD();
             if (!correocep.equals("")){

@@ -23,8 +23,9 @@
         <img id="bannerP" src="svg/Banner indicativoP.svg">
     </div>
     <div class="subhP">
-        <form>
+        <form action="perfilPaciente" method = "GET">
             <button class="botlogout" name="botonlogout">LogOut</button>
+            <button class="botlogout" name="botonvolver">Volver</button>
             <label class="nomperfil">${usuarioLogeado}</label>
         </form>
     </div>
@@ -51,7 +52,7 @@
                 <button class="verres">Ver Resultados</button>
             </form>
 
-        </div>
+        </div>eba
     </div>
 
 

@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,10 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javassist.compiler.ast.StringL;
-import com.itextpdf.*;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
+import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
+import com.openhtmltopdf.svgsupport.BatikSVGDrawer;
 
 /*
 CREATE TABLE MEDICO (
@@ -102,8 +101,8 @@ public class Singleton {
 
     // mysql://be0469cbf4e9eb:cdb0227e@us-cdbr-east-03.cleardb.com/heroku_fdfec516ca01a53?reconnect=true
 
-    private static int medidini = 85632;
-    private static int pacceidini = 4120;
+    private int medidini = 85634;
+    private int pacceidini = 4120;
 
     static Singleton getSingleton() {
         if (instancia == null) {
@@ -197,19 +196,24 @@ public class Singleton {
         }
     }
 
-    public static String crearIdMedico() {
+    public String crearIdMedico() {
         medidini++;
         String idm = "M" + medidini;
         return idm;
     }
 
-    public static void ingresarPacienteYcontactoEmergencia(int id_p, String correoP, String generoP, int edadP,
+    public int crearIdContactoE(){
+        pacceidini++;
+        int idm = pacceidini;
+        return idm;
+    }
+
+    public void ingresarPacienteYcontactoEmergencia(int id_p, String correoP, String generoP, int edadP,
             String nombreP, String telefonoP, String sangreP, String estadoP, String contrasegna, String parentesoCE,
             String telefonoCE, int edadCE, String correoCE, String nombreCE) {
 
         connectarBD();
-        pacceidini++;
-        int idCe = pacceidini;
+        int idCe = crearIdContactoE();
 
         try {
             String queryInsertarContactoEmergencia = "INSERT INTO contacto_emergencia_paciente VALUES (?,?,?,?,?,?)";
@@ -251,7 +255,7 @@ public class Singleton {
 
     }
 
-    public static void ingresarMedico(String nombreM, int consultorioM, String correoM, String telefonoM,
+    public void ingresarMedico(String nombreM, int consultorioM, String correoM, String telefonoM,
             String generoM, int edadM, String contrasegnaM, ArrayList<String> especialidades) {
 
         connectarBD();
@@ -642,6 +646,48 @@ public class Singleton {
 
     }
 
+    public static String getInfoMedico(String username){
+
+        String infom = "";
+        connectarBD();
+        String buscar = "SELECT * FROM medico m INNER JOIN especialidad_medico e WHERE m.id_medico = e.id_medico and m.id_medico = '"+username+"'";
+
+        try {
+
+            PreparedStatement statement = null;
+            statement = connSQL.prepareStatement(buscar);
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()){
+
+                String id = rs.getString("id_medico");
+                String nombre = rs.getString("nombre_medico");
+                int consultorio = rs.getInt("consultorio_medico");
+                String correo = rs.getString("correo_medico");
+                String telefono = rs.getString("telefono_medico");
+                String genero = rs.getString("genero_medico");
+                int edad = rs.getInt("edad_medico");
+                String contrasegna = rs.getString("contrasegna_medico");
+
+            }
+
+            String especialidad = "";
+            while(rs.next()){
+               especialidad += rs.getString("");
+               
+            }
+
+            infom = "";
+
+          } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        return infom;
+
+    }
+
     public static void cambiarColumna(String nameTabla, String set, String newSet, String idpce, String username) {
 
         int id = Integer.parseInt(username);
@@ -662,9 +708,108 @@ public class Singleton {
 
     }
 
+    public static String getListaPacientes(){
+
+        String str = "";
+
+        try {
+            String queryPacienteEstado = "SELECT nombre_paciente, estado_paciente, id_paciente FROM paciente";
+            PreparedStatement statement = null;
+
+            connectarBD();
+
+            statement = connSQL.prepareStatement(queryPacienteEstado);
+
+            ResultSet rs = statement.executeQuery();
+
+            int identificadorBotones = 0;
+
+            while (rs.next()) {
+                String nombre = rs.getString("nombre_paciente");
+                String estado = rs.getString("estado_paciente");
+                int id = rs.getInt("id_paciente");
+
+                str += "<div class=\"pacienteM\">" + "<hr color=\"white\" size=\"1\">" + "<label class=\"nombreP\">"
+                        + "<input type = \"hidden\" name =\"nombre" + identificadorBotones + "\" value = \"" + id
+                        + "\">" + nombre + "</label>" + "<label class=\"salida\">Estado del paciente</label>"
+                        + "<label class=\"estado\">" + estado + "</label>"
+                        + "<button class=\"generar\" name=\"botongenerar" + identificadorBotones
+                        + "\">Generar Orden de laboratorio</button>"
+                        + "<button class=\"resultados\" name=\"botonresultadosmed" + identificadorBotones
+                        + "\">Resultados de Examen</button>" + "</div>" + "<br>";
+
+                identificadorBotones++;
+            }
+
+            cerrarConexion();
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        
+        return str;
+
+    }
+
+    public static String getListaMedicos(){
+
+        String str = "";
+        int numerobot = 0;
+
+
+        try {
+            String listamed = "SELECT id_medico, nombre_medico, consultorio_medico FROM medico";
+            PreparedStatement statement = null;
+            connectarBD();
+            statement = connSQL.prepareStatement(listamed);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                String id = rs.getString("id_medico");
+                String nombre = rs.getString("nombre_medico");
+                int consultorio = rs.getInt("consultorio_medico");
+
+                str += "<br>\r\n" + 
+"                <label class=\"nombreMed\">"+nombre+"</label>\r\n" + 
+"                <label class=\"docmed\">"+id+"</label>\r\n" + 
+"                <label class=\"consul\">"+consultorio+"</label>\r\n" + 
+"                <button class=\"editarmed\" name=\"botoneditarmed"+numerobot+"\">Editar</button>\r\n" + 
+"                <button class=\"eliminarmed\" name-=\"botoneliminarmed"+numerobot+"\">Eliminar</button>";
+
+                numerobot++;
+            }
+
+            cerrarConexion();
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        
+        return str;
+
+    }
+
     public static void generarPdf(String nombrePdf, String url) {
 
-        Document documento = new Document();
+        String nombreArchivo = nombrePdf + ".pdf";
+        String rutaHtml = url + "plantilla.html";
+
+        try (OutputStream out = new FileOutputStream(url + nombreArchivo)){
+            PdfRendererBuilder builder = new PdfRendererBuilder();
+            builder.useSVGDrawer(new BatikSVGDrawer());
+            builder.useFastMode();
+            builder.withUri(rutaHtml);
+            builder.toStream(out);
+            builder.run();
+        } catch (Exception e) {
+            //TODO: handle exception
+            e.printStackTrace();
+        }
+
+        /*Document documento = new Document();
+        Html
         String nombreArchivo = nombrePdf + ".pdf";
         String ruta = System.getProperty("user.home")
                 + "/Desktop/Laboratorio Genesis Proyecto BD/Proyecto_BD_Laboratorio/src/main/webapp/pdf/";
@@ -686,7 +831,7 @@ public class Singleton {
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
-        }
+        }*/
 
     }
 

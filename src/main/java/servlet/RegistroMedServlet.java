@@ -24,6 +24,7 @@ public class RegistroMedServlet extends HttpServlet {
         //String usuarioIngresado = session.getAttribute("admin").toString();
 
         RequestDispatcher rDispatcher = req.getRequestDispatcher("admin.jsp");
+        Singleton singleton = Singleton.getSingleton();
 
         String nombre, genero, correo, telefono, especialidad1, especialidad2, especialidad3, contrasegna ="";
         int edad, documento, consultorio = 0;
@@ -47,7 +48,7 @@ public class RegistroMedServlet extends HttpServlet {
             especialidades.add(especialidad2);
             especialidades.add(especialidad3);
 
-            Singleton.ingresarMedico(nombre, consultorio, correo, telefono, genero, edad, contrasegna, especialidades);
+            singleton.ingresarMedico(nombre, consultorio, correo, telefono, genero, edad, contrasegna, especialidades);
             System.out.println(nombre + " " +consultorio +" "+ correo +" "+ telefono +" "+ genero +" "+ edad +" "+ contrasegna +" "+ especialidades);
 
         }
