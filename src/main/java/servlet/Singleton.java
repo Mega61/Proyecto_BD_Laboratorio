@@ -111,9 +111,6 @@ public class Singleton {
 
     // mysql://be0469cbf4e9eb:cdb0227e@us-cdbr-east-03.cleardb.com/heroku_fdfec516ca01a53?reconnect=true
 
-    private int medidini = 85634;
-    private int pacceidini = 4120;
-
     static Singleton getSingleton() {
         if (instancia == null) {
             synchronized (Singleton.class) {
@@ -213,9 +210,27 @@ public class Singleton {
     }
 
     public int crearIdContactoE() {
-        pacceidini++;
-        int idm = pacceidini;
-        return idm;
+        
+        try {
+            String buscarViCe = "SELECT valor_contacto_emergencia FROM valores_iniciales";
+            PreparedStatement statement = null;
+            statement = connSQL.prepareStatement(buscarViCe);
+            ResultSet rs = statement.executeQuery();
+            int ValorInicial = 0;
+
+            if (rs.next()){
+
+                ValorInicial = rs.getString("valor_contacto_emergencia");
+
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }    
+
+            String updateViCe = "UPDATE valores_iniciales SET valor_medico` = '85637'";
+
     }
 
     public void ingresarPacienteYcontactoEmergencia(int id_p, String correoP, String generoP, int edadP, String nombreP,
@@ -807,23 +822,20 @@ public class Singleton {
 
             ResultSet rs = statement.executeQuery();
 
-            int identificadorBotones = 0;
+            int contb = 0;
 
             while (rs.next()) {
                 String nombre = rs.getString("nombre_paciente");
                 String estado = rs.getString("estado_paciente");
                 int id = rs.getInt("id_paciente");
 
-                str += "<div class=\"pacienteM\">" + "<hr color=\"white\" size=\"1\">" + "<label class=\"nombreP\">"
-                        + "<input type = \"hidden\" name =\"nombre" + identificadorBotones + "\" value = \"" + id
-                        + "\">" + nombre + "</label>" + "<label class=\"salida\">Estado del paciente</label>"
-                        + "<label class=\"estado\">" + estado + "</label>"
-                        + "<button class=\"generar\" name=\"botongenerar" + identificadorBotones
-                        + "\">Generar Orden de laboratorio</button>"
-                        + "<button class=\"resultados\" name=\"botonresultadosmed" + identificadorBotones
-                        + "\">Resultados de Examen</button>" + "</div>" + "<br>";
+                str += "<br> <label class=\"nombrePac\">"+nombre+"</label>\r\n" + 
+"                <label class=\"docpac\">"+id+"</label>\r\n" + 
+"                <label class=\"estado\">"+estado+"</label>\r\n" + 
+"                <button class=\"editarpac\" name=\"botoneditarpac"+contb+"\">Editar</button>\r\n" + 
+"                <button class=\"eliminarpac\" name-=\"botoneliminarpac"+contb+"\">Eliminar</button>";
 
-                identificadorBotones++;
+                contb++;
             }
 
             cerrarConexion();
@@ -854,13 +866,13 @@ public class Singleton {
                 String nombre = rs.getString("nombre_medico");
                 int consultorio = rs.getInt("consultorio_medico");
 
-                str += "<br>\r\n" + "                <label class=\"nombreMed\">" + nombre + "</label>\r\n"
+                str += "<br><div> <label class=\"nombreMed\">" + nombre + "</label>\r\n"
                         + "                <label class=\"docmed\">" + id + "</label>\r\n"
                         + "                <label class=\"consul\">" + consultorio + "</label>\r\n"
                         + "                <button class=\"editarmed\" name=\"botoneditarmed" + numerobot
                         + "\">Editar</button>\r\n"
                         + "                <button class=\"eliminarmed\" name-=\"botoneliminarmed" + numerobot
-                        + "\">Eliminar</button>";
+                        + "\">Eliminar</button></div>";
 
                 numerobot++;
             }

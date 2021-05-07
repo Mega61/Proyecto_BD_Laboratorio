@@ -33,14 +33,18 @@ public class AdminServlet extends HttpServlet {
         if (req.getParameter("botonlistapac") != null) {
 
             System.out.println("Se ha oprimido lista pacientes");
-            rDispatcher = req.getRequestDispatcher("admin.jsp");
+            String lista = Singleton.getListaPacientes();
+            req.setAttribute("listapac", lista);
+            rDispatcher = req.getRequestDispatcher("listapac.jsp");
 
         }
         
         if (req.getParameter("botonlistamed") != null) {
 
             System.out.println("Se ha oprimido lista medicos");
-            rDispatcher = req.getRequestDispatcher("listamed.html");
+            String lista = Singleton.getListaMedicos();
+            req.setAttribute("listamed", lista);
+            rDispatcher = req.getRequestDispatcher("listamed.jsp");
 
         }
 
