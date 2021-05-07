@@ -35,7 +35,6 @@
             </form>
         </div>
 
-       
         <div class="contenedor">
             <div class="headerGe">
                 <img id="logopac" src="Letras logo.svg">
@@ -51,10 +50,11 @@
                 </form>
 
             </div>
-            <label class="h5">Escoger los examenes que se debe realizar el paciente</label>
-            <button class="agregarexamenes" id="botagregar" onclick="mostrarbots()">+</button>
-            <hr id="linea3" color="white" width="672" size="1">
-            <select name="tiposexamenes" id="tipos" required>
+            <form>
+                <label class="h5">Escoger los examenes que se debe realizar el paciente</label>
+                <button class="agregarexamenes" id="botagregar" onclick="mostrarbots()">+</button>
+                <hr id="linea3" color="white" width="672" size="1">
+                <select name="tiposexamenes" id="tipos" required>
             <option value="" disabled selected>Tipo de examen correspondiente</option>
             <option value="ex1">ex1</option>
             <option value="ex2">ex2</option>
@@ -66,7 +66,7 @@
             <option value="ex8">ex8</option>
             
           </select>
-            <select name="tiposexamenes" id="tipos1" hidden="true">
+                <select name="tiposexamenes" id="tipos1" hidden="true">
             <option value="" disabled selected>Tipo de examen correspondiente</option>
             <option value="ex1">ex1</option>
             <option value="ex2">ex2</option>
@@ -78,7 +78,7 @@
             <option value="ex8">ex8</option>
             
           </select>
-            <select name="tiposexamenes" id="tipos2" hidden="true">
+                <select name="tiposexamenes" id="tipos2" hidden="true">
             <option value="" disabled selected>Tipo de examen correspondiente</option>
             <option value="ex1">ex1</option>
             <option value="ex2">ex2</option>
@@ -90,7 +90,7 @@
             <option value="ex8">ex8</option>
             
           </select>
-            <select name="tiposexamenes" id="tipos3" hidden="true">
+                <select name="tiposexamenes" id="tipos3" hidden="true">
             <option value="" disabled selected>Tipo de examen correspondiente</option>
             <option value="ex1">ex1</option>
             <option value="ex2">ex2</option>
@@ -102,7 +102,7 @@
             <option value="ex8">ex8</option>
             
           </select>
-            <select name="tiposexamenes" id="tipos4" hidden="true">
+                <select name="tiposexamenes" id="tipos4" hidden="true">
             <option value="" disabled selected>Tipo de examen correspondiente</option>
             <option value="ex1">ex1</option>
             <option value="ex2">ex2</option>
@@ -114,7 +114,8 @@
             <option value="ex8">ex8</option>
             
           </select>
-            <button class="genorden">Generar Orden</button>
+                <button class="genorden">Generar Orden</button>
+            </form>
             <div class="footer">
 
             </div>
