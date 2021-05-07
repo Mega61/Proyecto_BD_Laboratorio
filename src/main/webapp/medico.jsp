@@ -36,14 +36,14 @@
         <hr color="white" size="1">
         
             <form action="medico" method="GET">
-                <div class="pacienteM">
+                <%-- <div class="pacienteM">
                 <hr color="white" size="1">
                 <label class="nombreP">Alvaro Tovar</label>
                 <label class="salida">Estado del paciente</label>
                 <label class="estado">------</label>
                 <button class="generar" name="botongenerar">Generar Orden de laboratorio</button>
                 <button class="resultados" name="botonresultadosmed">Resultados de Examen</button>
-                </div>
+                </div> --%>
                 <br>
                 <label>${listaPacMed}</label>
             </form>

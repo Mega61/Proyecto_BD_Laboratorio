@@ -71,20 +71,27 @@ public class MedicoServlet extends HttpServlet {
 
         for (int i = 0; i < cantidad; i++) {
 
-            String botonGenerar = "botongenerar" + i;
+            String botonOrden = "botongenerar" + i;
             String botonResultados = "botonresultadosmed" + i;
             String nameid = "nombre" + i;
 
-            if (req.getParameter(botonGenerar) != null) {
+            if (req.getParameter(botonOrden) != null) {
 
                 String id = req.getParameter(nameid);
                 System.out.println("Se ha oprimido el botón generar " + i + " con ID: " + id);
                 String estado = Singleton.getEstadoP(id);
+                String nombrePaciente = Singleton.getNombrePaciente(id);
                 System.out.println(estado);
+
                 if (estado.equals("ESPERANDO CITA")) {
 
                     System.out.println("si puede presionar este botón: generar orden de laboratorio");
-                    rDispatcher = req.getRequestDispatcher("generarOrden.html");
+                    session = req.getSession();
+                    session.setAttribute("idPaciente", id);
+                    session.setAttribute("idMedico", usuarioIngresado);
+                    req.setAttribute("nomMed", nombreUsuario);
+                    req.setAttribute("nomPaciente", nombrePaciente);
+                    rDispatcher = req.getRequestDispatcher("generarorden.html");
 
                 } else {
                     System.out.println("El paciente no tiene el estado ESPERANDO CITA");

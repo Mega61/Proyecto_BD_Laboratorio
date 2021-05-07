@@ -23,8 +23,10 @@
         <img id="bannerP" src="Banner indicativo.svg">
     </div>
     <div class="subhP">
-        <form>
+        <form action="admin" method = "GET">
             <button class="botvolver" name="botonvolver">Volver</button>
+            <button class="botlogout" name="logoutAdmin">Logout</button>
+            <label> ${admin} </label>
         </form>
     </div>
 
@@ -43,7 +45,6 @@
             </form>
 
         </div>
-
 
     </div>
 </body>
