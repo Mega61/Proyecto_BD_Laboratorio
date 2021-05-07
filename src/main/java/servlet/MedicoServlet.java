@@ -20,6 +20,7 @@ public class MedicoServlet extends HttpServlet {
 
         HttpSession session = req.getSession();
         String usuarioIngresado = session.getAttribute("medico").toString();
+        String nombreUsuario = session.getAttribute("medicoNombre").toString();
         RequestDispatcher rDispatcher = req.getRequestDispatcher("login.html");
 
         if (req.getParameter("-") != null) {
@@ -43,16 +44,22 @@ public class MedicoServlet extends HttpServlet {
 
         }
 
-        if (req.getParameter("-") != null) {
+        if (req.getParameter("botonperfilm") != null) {
 
-            System.out.println("Se ha oprimido Register");
-            rDispatcher = req.getRequestDispatcher("registro.html");
+            session = req.getSession();
+            session.setAttribute("medico", usuarioIngresado);
+            session.setAttribute("medicoNombre", nombreUsuario);
+            req.setAttribute("nameM", nombreUsuario);
+            String info = Singleton.getInfoMedico(usuarioIngresado);
+            req.setAttribute("infomed", info);
+            System.out.println("Se ha oprimido perfil");
+            rDispatcher = req.getRequestDispatcher("perfilm.jsp");
 
         }
 
-        if (req.getParameter("-") != null) {
+        if (req.getParameter("botonlogout") != null) {
 
-            System.out.println("Se ha oprimido Register");
+            System.out.println("Se ha oprimido logout");
             session = req.getSession();
             session.invalidate();
             rDispatcher = req.getRequestDispatcher("login.html");
@@ -77,7 +84,7 @@ public class MedicoServlet extends HttpServlet {
                 if (estado.equals("ESPERANDO CITA")) {
 
                     System.out.println("si puede presionar este botón: generar orden de laboratorio");
-                    //rDispatcher = req.getRequestDispatcher("generarOrden.html");
+                    rDispatcher = req.getRequestDispatcher("generarOrden.html");
 
                 } else {
                     System.out.println("El paciente no tiene el estado ESPERANDO CITA");
@@ -93,7 +100,7 @@ public class MedicoServlet extends HttpServlet {
                 if (estado.equals("ESPERANDO RESULTADOS")) {
 
                     System.out.println("si puede presionar este botón: Generar Resultados");
-                    // rDispatcher = req.getRequestDispatcher("resultadosPaciente.html");
+                    rDispatcher = req.getRequestDispatcher("resultadosPaciente.html");
 
                 } else {
                     System.out.println("El paciente no tiene el estado ESPERANDO RESULTADOS");
@@ -102,7 +109,7 @@ public class MedicoServlet extends HttpServlet {
 
         }
 
-        //rDispatcher.forward(req, resp);
+        rDispatcher.forward(req, resp);
 
     }
 

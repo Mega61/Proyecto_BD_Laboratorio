@@ -23,9 +23,10 @@
         <img id="bannerM" src="svg/Banner indicativoM.svg">
     </div>
     <div class="subhM">
-        <form>
+        <form action = "medico" method = "GET">
             <button class="botlogout" name="botonlogout">LogOut</button>
-            <label class="nommedico" >${nameM}</label>
+            <button class="botperfil" name="botonperfilm">Perfil</button>
+            <label class="nommedico">${nameM}</label>
         </form>
     </div>
 

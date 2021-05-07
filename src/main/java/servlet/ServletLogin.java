@@ -89,6 +89,7 @@ public class ServletLogin extends HttpServlet {
                     sessionAdmin.setAttribute("medico", identificacion);
                     String str = Singleton.getPacientesMed();
                     String nombreMed = Singleton.getNombreMedico(identificacion);
+                    sessionAdmin.setAttribute("medicoNombre", nombreMed);
                     req.setAttribute("nameM", nombreMed);
                     req.setAttribute("listaPacMed", str);
                     rDispatcher = req.getRequestDispatcher("medico.jsp");

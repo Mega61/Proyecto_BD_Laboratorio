@@ -1,7 +1,11 @@
 package servlet;
 
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,9 +13,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.text.Document;
+
 import javassist.compiler.ast.StringL;
 import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
 import com.openhtmltopdf.svgsupport.BatikSVGDrawer;
+
+import org.apache.tomcat.jni.OS;
+import org.jsoup.Jsoup;
+import org.jsoup.helper.W3CDom;
 
 /*
 CREATE TABLE MEDICO (
@@ -202,15 +212,15 @@ public class Singleton {
         return idm;
     }
 
-    public int crearIdContactoE(){
+    public int crearIdContactoE() {
         pacceidini++;
         int idm = pacceidini;
         return idm;
     }
 
-    public void ingresarPacienteYcontactoEmergencia(int id_p, String correoP, String generoP, int edadP,
-            String nombreP, String telefonoP, String sangreP, String estadoP, String contrasegna, String parentesoCE,
-            String telefonoCE, int edadCE, String correoCE, String nombreCE) {
+    public void ingresarPacienteYcontactoEmergencia(int id_p, String correoP, String generoP, int edadP, String nombreP,
+            String telefonoP, String sangreP, String estadoP, String contrasegna, String parentesoCE, String telefonoCE,
+            int edadCE, String correoCE, String nombreCE) {
 
         connectarBD();
         int idCe = crearIdContactoE();
@@ -255,8 +265,8 @@ public class Singleton {
 
     }
 
-    public void ingresarMedico(String nombreM, int consultorioM, String correoM, String telefonoM,
-            String generoM, int edadM, String contrasegnaM, ArrayList<String> especialidades) {
+    public void ingresarMedico(String nombreM, int consultorioM, String correoM, String telefonoM, String generoM,
+            int edadM, String contrasegnaM, ArrayList<String> especialidades) {
 
         connectarBD();
         String idMedico = crearIdMedico();
@@ -562,7 +572,6 @@ public class Singleton {
                 String telefonop = rs.getString("telefono_paciente");
                 String sangrep = rs.getString("sangre_paciente");
                 String estadop = rs.getString("estado_paciente");
-                String contrasegnap = rs.getString("contrasegna_paciente");
                 String nombrecep = rs.getString("nombre_contacto_emergencia");
                 String parentescocep = rs.getString("parentesco");
                 String telefonocep = rs.getString("telefono_contacto_emergencia");
@@ -604,8 +613,7 @@ public class Singleton {
                         + "                <img class=\"puntotoolconfirm\" src=\"svg/Ellipse 2.svg\">\r\n"
                         + "                <img class=\"toolconfirm\" src=\"svg/tool.svg\">\r\n"
                         + "                <label id=\"confirmp\">Confirmar Contraseña</label>\r\n"
-                        + "                <input type=\"password\" id=\"editconfirmp\" name=\"cambiarContrasegnaP\" placeholder=\""
-                        + contrasegnap + "\">\r\n"
+                        + "                <input type=\"password\" id=\"editconfirmp\" name=\"cambiarContrasegnaP\">\r\n"
                         + "                <button class=\"confirmar\" name = \"botcambpac\">Confirmar Cambios</button>\r\n"
                         + "            </form>\r\n" + "            <div class=\"divisor2\">\r\n"
                         + "                <img id=\"logoce\" src=\"svg/Group 66.svg\">\r\n" + "            </div>\r\n"
@@ -646,40 +654,98 @@ public class Singleton {
 
     }
 
-    public static String getInfoMedico(String username){
+    public static String getInfoMedico(String username) {
 
         String infom = "";
+        String nombre = "";
+        String id = "";
+        String correo = "";
+        String genero = "";
+        String telefono = "";
+        int consultorio = 0;
+        int edad = 0;
         connectarBD();
-        String buscar = "SELECT * FROM medico m INNER JOIN especialidad_medico e WHERE m.id_medico = e.id_medico and m.id_medico = '"+username+"'";
+        String buscar = "SELECT * FROM medico m INNER JOIN especialidad_medico e WHERE m.id_medico = e.id_medico and m.id_medico = '"
+                + username + "'";
 
         try {
 
             PreparedStatement statement = null;
             statement = connSQL.prepareStatement(buscar);
             ResultSet rs = statement.executeQuery();
-
-            if (rs.next()){
-
-                String id = rs.getString("id_medico");
-                String nombre = rs.getString("nombre_medico");
-                int consultorio = rs.getInt("consultorio_medico");
-                String correo = rs.getString("correo_medico");
-                String telefono = rs.getString("telefono_medico");
-                String genero = rs.getString("genero_medico");
-                int edad = rs.getInt("edad_medico");
-                String contrasegna = rs.getString("contrasegna_medico");
-
-            }
-
             String especialidad = "";
-            while(rs.next()){
-               especialidad += rs.getString("");
-               
+            int clase = 1;
+            while (rs.next()) {
+                
+                id = rs.getString("id_medico");
+                nombre = rs.getString("nombre_medico");
+                consultorio = rs.getInt("consultorio_medico");
+                correo = rs.getString("correo_medico");
+                telefono = rs.getString("telefono_medico");
+                genero = rs.getString("genero_medico");
+                edad = rs.getInt("edad_medico");
+                
+                especialidad += "<label id=\"vesp"+clase+"\">" + rs.getString("nombre_especialidad") + "</label>";
+                clase++;
+
             }
 
-            infom = "";
+            infom = "<img class=\"fotop\" src=\"svg/Group 63.svg\"> >\r\n"
+                    + "                <label class=\"entrada\" id=\"nomM\">" + nombre + "</label>\r\n"
+                    + "                <label id=\"docM\">ID:</label>\r\n" + "                <label id=\"numidM\">"
+                    + id + "</label>\r\n" + "                <hr id=\"divisor1\">\r\n"
+                    + "                <img class=\"puntoedadm\" src=\"svg/Ellipse 2.svg\">\r\n"
+                    + "                <label id=\"edadm\">Edad:</label>\r\n" + "                <label id=\"vedadm\">"
+                    + edad + "</label>\r\n" + "                <img class=\"puntogenm\" src=\"svg/Ellipse 2.svg\">\r\n"
+                    + "                <label id=\"genm\">Genero:</label>\r\n" + "                <label id=\"vgenm\">"
+                    + genero + "</label>\r\n" + "\r\n"
+                    + "                <label id=\"esp1\">Especialidad(es):</label>\r\n" + "                <label>"
+                    + especialidad + "</label>" + "                <img class=\"puntoesp1\" src=\"svg/Ellipse 2.svg\">\r\n"
+                    + "\r\n" + "                <img class=\"puntocorreom\" src=\"svg/Ellipse 2.svg\">\r\n"
+                    + "                <label id=\"correom\">Correo:</label>\r\n"
+                    + "                <label id=\"vcorreom\">" + correo + "</label>\r\n" + "\r\n"
+                    + "                <img class=\"puntotoolc\" src=\"svg/Ellipse 2.svg\">\r\n"
+                    + "                <img class=\"toolconsul\" src=\"svg/tool.svg\">\r\n"
+                    + "                <label id=\"consul\">Consultorio: "+consultorio+"</label>\r\n"
+              //      + "                <label id=\"consul\">"+consultorio+"</label>\r\n"
+                    + "                <select name=\"select\" id=\"consultorio\">\r\n" + "\r\n"
+                    + "                    <option value=\""+consultorio+"\" selected>"+consultorio+"</option>"
+                    + "                    <option value=\"201\">201</option>\r\n"
+                    + "                    <option value=\"202\">202</option>\r\n"
+                    + "                    <option value=\"203\">203</option>\r\n"
+                    + "                    <option value=\"204\">204</option>\r\n"
+                    + "                    <option value=\"205\">205</option>\r\n"
+                    + "                    <option value=\"301\">301</option>\r\n"
+                    + "                    <option value=\"302\">302</option>\r\n"
+                    + "                    <option value=\"303\">303</option>\r\n"
+                    + "                    <option value=\"304\">304</option>\r\n"
+                    + "                    <option value=\"305\">305</option>\r\n"
+                    + "                    <option value=\"401\">401</option>\r\n"
+                    + "                    <option value=\"402\">402</option>\r\n"
+                    + "                    <option value=\"403\">403</option>\r\n"
+                    + "                    <option value=\"404\">404</option>\r\n"
+                    + "                    <option value=\"405\">405</option>\r\n"
+                    + "                    <option value=\"501\">501</option>\r\n"
+                    + "                    <option value=\"502\">502</option>\r\n"
+                    + "                    <option value=\"503\">503</option>\r\n"
+                    + "                    <option value=\"504\">504</option>\r\n"
+                    + "                    <option value=\"505\">505</option>\r\n" + "\r\n"
+                    + "                </select>\r\n"
+                    + "                <img class=\"puntotooltm\" src=\"svg/Ellipse 2.svg\">\r\n"
+                    + "                <img class=\"tooltelm\" src=\"svg/tool.svg\">\r\n"
+                    + "                <label id=\"telm\">Telefono:</label>\r\n"
+                    + "                <input type=\"text\" id=\"edittm\" placeholder = \"" + telefono + "\">\r\n"
+                    + "                <img class=\"puntotoolcontram\" src=\"svg/Ellipse 2.svg\">\r\n"
+                    + "                <img class=\"toolcontram\" src=\"svg/tool.svg\">\r\n"
+                    + "                <label id=\"contram\">Contraseña:</label>\r\n"
+                    + "                <input type=\"text\" id=\"editcontram\">\r\n"
+                    + "                <img class=\"puntotoolconfirmm\" src=\"svg/Ellipse 2.svg\">\r\n"
+                    + "                <img class=\"toolconfirmm\" src=\"svg/tool.svg\">\r\n"
+                    + "                <label id=\"confirmm\">Confirmar Contraseña:</label>\r\n"
+                    + "                <input type=\"password\" id=\"editconfirmm\">\r\n"
+                    + "                <button class=\"confirmar\" name=\"botcammed\">Confirmar Cambios</button>";
 
-          } catch (Exception e) {
+        } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
         }
@@ -708,7 +774,7 @@ public class Singleton {
 
     }
 
-    public static String getListaPacientes(){
+    public static String getListaPacientes() {
 
         String str = "";
 
@@ -747,16 +813,15 @@ public class Singleton {
             // TODO: handle exception
             e.printStackTrace();
         }
-        
+
         return str;
 
     }
 
-    public static String getListaMedicos(){
+    public static String getListaMedicos() {
 
         String str = "";
         int numerobot = 0;
-
 
         try {
             String listamed = "SELECT id_medico, nombre_medico, consultorio_medico FROM medico";
@@ -770,12 +835,13 @@ public class Singleton {
                 String nombre = rs.getString("nombre_medico");
                 int consultorio = rs.getInt("consultorio_medico");
 
-                str += "<br>\r\n" + 
-"                <label class=\"nombreMed\">"+nombre+"</label>\r\n" + 
-"                <label class=\"docmed\">"+id+"</label>\r\n" + 
-"                <label class=\"consul\">"+consultorio+"</label>\r\n" + 
-"                <button class=\"editarmed\" name=\"botoneditarmed"+numerobot+"\">Editar</button>\r\n" + 
-"                <button class=\"eliminarmed\" name-=\"botoneliminarmed"+numerobot+"\">Eliminar</button>";
+                str += "<br>\r\n" + "                <label class=\"nombreMed\">" + nombre + "</label>\r\n"
+                        + "                <label class=\"docmed\">" + id + "</label>\r\n"
+                        + "                <label class=\"consul\">" + consultorio + "</label>\r\n"
+                        + "                <button class=\"editarmed\" name=\"botoneditarmed" + numerobot
+                        + "\">Editar</button>\r\n"
+                        + "                <button class=\"eliminarmed\" name-=\"botoneliminarmed" + numerobot
+                        + "\">Eliminar</button>";
 
                 numerobot++;
             }
@@ -786,53 +852,62 @@ public class Singleton {
             // TODO: handle exception
             e.printStackTrace();
         }
-        
+
         return str;
 
     }
 
     public static void generarPdf(String nombrePdf, String url) {
 
-        String nombreArchivo = nombrePdf + ".pdf";
+        String rutaPdf = url + nombrePdf + ".pdf";
         String rutaHtml = url + "plantilla.html";
-
-        try (OutputStream out = new FileOutputStream(url + nombreArchivo)){
-            PdfRendererBuilder builder = new PdfRendererBuilder();
-            builder.useSVGDrawer(new BatikSVGDrawer());
-            builder.useFastMode();
-            builder.withUri(rutaHtml);
-            builder.toStream(out);
-            builder.run();
-        } catch (Exception e) {
-            //TODO: handle exception
-            e.printStackTrace();
-        }
-
-        /*Document documento = new Document();
-        Html
-        String nombreArchivo = nombrePdf + ".pdf";
-        String ruta = System.getProperty("user.home")
-                + "/Desktop/Laboratorio Genesis Proyecto BD/Proyecto_BD_Laboratorio/src/main/webapp/pdf/";
-        System.out.println(url + nombreArchivo);
-        System.out.println(ruta + nombreArchivo);
-
         try {
-            PdfWriter.getInstance(documento, new FileOutputStream(url + nombreArchivo));
-            documento.open();
-
-            PdfPTable tabla = new PdfPTable(2);
-            tabla.addCell("pelicula");
-            tabla.addCell("cachucha");
-            documento.add(tabla);
-
-            documento.close();
-            System.out.println("Pdf creado");
-
+            htmlToPdf(rutaHtml, rutaPdf, url);
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
-        }*/
+        }
+        /*
+         * Document documento = new Document(); Html String nombreArchivo = nombrePdf +
+         * ".pdf"; String ruta = System.getProperty("user.home") +
+         * "/Desktop/Laboratorio Genesis Proyecto BD/Proyecto_BD_Laboratorio/src/main/webapp/pdf/"
+         * ; System.out.println(url + nombreArchivo); System.out.println(ruta +
+         * nombreArchivo);
+         * 
+         * try { PdfWriter.getInstance(documento, new FileOutputStream(url +
+         * nombreArchivo)); documento.open();
+         * 
+         * PdfPTable tabla = new PdfPTable(2); tabla.addCell("pelicula");
+         * tabla.addCell("cachucha"); documento.add(tabla);
+         * 
+         * documento.close(); System.out.println("Pdf creado");
+         * 
+         * } catch (Exception e) { // TODO: handle exception e.printStackTrace(); }
+         */
 
+    }
+
+    private static org.w3c.dom.Document html5ParseDocument(String inputHtml) throws IOException {
+
+        org.jsoup.nodes.Document doc;
+        System.out.println("Conviertiendo HTML.....");
+        doc = Jsoup.parse(new File(inputHtml), "UTF-8");
+        System.out.println("Conversión lista....");
+        return new W3CDom().fromJsoup(doc);
+    }
+
+    private static void htmlToPdf(String inputHTML, String outputPDF, String uri) throws IOException {
+        org.w3c.dom.Document doc = html5ParseDocument(inputHTML);
+        String baseURI = uri;
+
+        OutputStream out = new FileOutputStream(outputPDF);
+        PdfRendererBuilder builder = new PdfRendererBuilder();
+        builder.useSVGDrawer(new BatikSVGDrawer());
+        builder.withUri(outputPDF);
+        builder.toStream(out);
+        builder.withW3cDocument(doc, baseURI);
+        builder.run();
+        out.close();
     }
 
 }

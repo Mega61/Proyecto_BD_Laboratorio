@@ -21,16 +21,15 @@ public class MedicoPerfilServlet extends HttpServlet {
         String correop, telefonop, contrasegnap, correocep, telefonocep, idcep = "";
 
         HttpSession session = req.getSession();
-        String usuarioIngresado = session.getAttribute("paciente").toString();
-        String nombreUsuario = session.getAttribute("pacienteNombre").toString();
-        RequestDispatcher rDispatcher = req.getRequestDispatcher("perfilp.jsp");
+        String usuarioIngresado = session.getAttribute("medico").toString();
+        String nombreUsuario = session.getAttribute("medicoNombre").toString();
+        RequestDispatcher rDispatcher = req.getRequestDispatcher("perfilm.jsp");
 
         session = req.getSession();
-        session.setAttribute("pacienteNombre", nombreUsuario);
-        session.setAttribute("paciente", usuarioIngresado);
-        
+        session.setAttribute("medicoNombre", nombreUsuario);
+        session.setAttribute("medico", usuarioIngresado);
 
-        if (req.getParameter("botcambpac") != null) {
+        if (req.getParameter("botcammed") != null) {
             
             correop = req.getParameter("cambiarCorreoP");
             telefonop = req.getParameter("cambiarTelefonoP");
@@ -58,35 +57,8 @@ public class MedicoPerfilServlet extends HttpServlet {
             String info = Singleton.getInfoPacientes(usuarioIngresado);
             req.setAttribute("infopac", info);
             Singleton.cerrarConexion();
-            rDispatcher =  req.getRequestDispatcher("perfilp.jsp");
+            rDispatcher =  req.getRequestDispatcher("perfilm.jsp");
             
-        }
-
-        if (req.getParameter("botcambpacep") != null){
-
-            telefonocep = req.getParameter("cambiarTelefonoCep");
-            correocep = req.getParameter("cambiarCorreoCep");
-            idcep = req.getParameter("idcepp");
-
-
-            Singleton.connectarBD();
-            if (!correocep.equals("")){
-
-                Singleton.cambiarColumna("contacto_emergencia_paciente", "correo_contacto_emergencia", correocep, "id_contacto_emergencia",idcep);
-
-            }
-
-            if (!telefonocep.equals("")){
-
-                Singleton.cambiarColumna("contacto_emergencia_paciente", "telefono_contacto_emergencia", telefonocep, "id_contacto_emergencia",idcep);
-
-            }
-
-            String info = Singleton.getInfoPacientes(usuarioIngresado);
-            req.setAttribute("infopac", info);
-            Singleton.cerrarConexion();
-            rDispatcher =  req.getRequestDispatcher("perfilp.jsp");
-
         }
 
         if (req.getParameter("botonlogout") != null) {
