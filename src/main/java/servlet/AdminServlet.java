@@ -35,6 +35,7 @@ public class AdminServlet extends HttpServlet {
             System.out.println("Se ha oprimido lista pacientes");
             String lista = Singleton.getListaPacientes();
             req.setAttribute("listapac", lista);
+            req.setAttribute("admin", usuarioIngresado);
             rDispatcher = req.getRequestDispatcher("listapac.jsp");
 
         }
@@ -44,6 +45,7 @@ public class AdminServlet extends HttpServlet {
             System.out.println("Se ha oprimido lista medicos");
             String lista = Singleton.getListaMedicos();
             req.setAttribute("listamed", lista);
+            req.setAttribute("admin", usuarioIngresado);
             rDispatcher = req.getRequestDispatcher("listamed.jsp");
 
         }
@@ -51,6 +53,15 @@ public class AdminServlet extends HttpServlet {
         if (req.getParameter("botonlistaexa") != null) {
 
             System.out.println("Se ha oprimido lista examenes");
+            rDispatcher = req.getRequestDispatcher("admin.jsp");
+
+        }
+
+        if (req.getParameter("botonvolver")  != null){
+
+            session = req.getSession();
+            session.setAttribute("admin", usuarioIngresado);
+            req.setAttribute("admin", usuarioIngresado);
             rDispatcher = req.getRequestDispatcher("admin.jsp");
 
         }

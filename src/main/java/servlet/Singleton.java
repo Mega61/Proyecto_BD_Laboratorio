@@ -894,7 +894,7 @@ public class Singleton {
                 String nombre = rs.getString("nombre_medico");
                 int consultorio = rs.getInt("consultorio_medico");
 
-                str += "<br><div class=\"pacienteM\"> <label class=\"nombreMed\">" + nombre + "</label>\r\n"
+                str += "<br><div class=\"pacienteM\"><hr color=\"white\" size=\"1\" class=\"linea\"> <label class=\"nombreMed\">" + nombre + "</label>\r\n"
                         + "                <label class=\"docmed\">" + id + "</label>\r\n"
                         + "                <label class=\"consul\">" + consultorio + "</label>\r\n"
                         + "                <button class=\"editarmed\" name=\"botoneditarmed" + numerobot
