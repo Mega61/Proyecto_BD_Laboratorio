@@ -30,21 +30,28 @@
         </form>
     </div>
 
-    <div class="contenedor">
+<div class="contenedor">
         <label class="h3">Lista de Pacientes</label>
-
         <br>
         <hr color="white" size="1">
-        <div class="pacienteM">
+        <form>
+            <input type="search" id="busquedapac" name="buspac" placeholder="Escriba el Documento del Paciente...">
+        </form>
+        <label class="nombre">Nombre-Paciente</label>
+        <label class="doc">Documento</label>
+        <label class="est">Estado</label>
+        <div class="listapacientes">
             <form>
-                <input type="search" id="busquedapac" name="buspac" placeholder="Escriba el Documento del Paciente..."> </form>
-            <hr color="white" size="1" class="linea">
-            <form>
-                <br>
-                <label>${listapac}</label>
+                <hr color="white" size="1" class="linea">
+                <label class="nombrePac">Fabio Camilo Cachucha</label>
+                <label class="docpac">1010202020</label>
+                <label class="estado">Esperando Resultados</label>
+                <button class="editarpac" name="botoneditarpac">Editar</button>
+                <button class="eliminarpac" name-="botoneliminarpac">Eliminar</button>
             </form>
 
         </div>
+
 
     </div>
 </body>
