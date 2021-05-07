@@ -676,7 +676,7 @@ public class Singleton {
             String especialidad = "";
             int clase = 1;
             while (rs.next()) {
-                
+
                 id = rs.getString("id_medico");
                 nombre = rs.getString("nombre_medico");
                 consultorio = rs.getInt("consultorio_medico");
@@ -684,8 +684,8 @@ public class Singleton {
                 telefono = rs.getString("telefono_medico");
                 genero = rs.getString("genero_medico");
                 edad = rs.getInt("edad_medico");
-                
-                especialidad += "<label id=\"vesp"+clase+"\">" + rs.getString("nombre_especialidad") + "</label>";
+
+                especialidad += "<label id=\"vesp" + clase + "\">" + rs.getString("nombre_especialidad") + "</label>";
                 clase++;
 
             }
@@ -700,16 +700,17 @@ public class Singleton {
                     + "                <label id=\"genm\">Genero:</label>\r\n" + "                <label id=\"vgenm\">"
                     + genero + "</label>\r\n" + "\r\n"
                     + "                <label id=\"esp1\">Especialidad(es):</label>\r\n" + "                <label>"
-                    + especialidad + "</label>" + "                <img class=\"puntoesp1\" src=\"svg/Ellipse 2.svg\">\r\n"
-                    + "\r\n" + "                <img class=\"puntocorreom\" src=\"svg/Ellipse 2.svg\">\r\n"
+                    + especialidad + "</label>"
+                    + "                <img class=\"puntoesp1\" src=\"svg/Ellipse 2.svg\">\r\n" + "\r\n"
+                    + "                <img class=\"puntocorreom\" src=\"svg/Ellipse 2.svg\">\r\n"
                     + "                <label id=\"correom\">Correo:</label>\r\n"
                     + "                <label id=\"vcorreom\">" + correo + "</label>\r\n" + "\r\n"
                     + "                <img class=\"puntotoolc\" src=\"svg/Ellipse 2.svg\">\r\n"
                     + "                <img class=\"toolconsul\" src=\"svg/tool.svg\">\r\n"
-                    + "                <label id=\"consul\">Consultorio: "+consultorio+"</label>\r\n"
-              //      + "                <label id=\"consul\">"+consultorio+"</label>\r\n"
-                    + "                <select name=\"select\" id=\"consultorio\">\r\n" + "\r\n"
-                    + "                    <option value=\""+consultorio+"\" selected>"+consultorio+"</option>"
+                    + "                <label id=\"consul\">Consultorio: " + consultorio + "</label>\r\n"
+                    // + " <label id=\"consul\">"+consultorio+"</label>\r\n"
+                    + "                <select name=\"selectconsmed\" id=\"consultorio\">\r\n" + "\r\n"
+                    + "                    <option value=\"" + consultorio + "\" selected>" + consultorio + "</option>"
                     + "                    <option value=\"201\">201</option>\r\n"
                     + "                    <option value=\"202\">202</option>\r\n"
                     + "                    <option value=\"203\">203</option>\r\n"
@@ -734,7 +735,8 @@ public class Singleton {
                     + "                <img class=\"puntotooltm\" src=\"svg/Ellipse 2.svg\">\r\n"
                     + "                <img class=\"tooltelm\" src=\"svg/tool.svg\">\r\n"
                     + "                <label id=\"telm\">Telefono:</label>\r\n"
-                    + "                <input type=\"text\" id=\"edittm\" placeholder = \"" + telefono + "\">\r\n"
+                    + "                <input type=\"text\" id=\"edittm\" name = \"cambiarTelefonoM\" placeholder = \""
+                    + telefono + "\">\r\n"
                     + "                <img class=\"puntotoolcontram\" src=\"svg/Ellipse 2.svg\">\r\n"
                     + "                <img class=\"toolcontram\" src=\"svg/tool.svg\">\r\n"
                     + "                <label id=\"contram\">Contraseña:</label>\r\n"
@@ -742,7 +744,8 @@ public class Singleton {
                     + "                <img class=\"puntotoolconfirmm\" src=\"svg/Ellipse 2.svg\">\r\n"
                     + "                <img class=\"toolconfirmm\" src=\"svg/tool.svg\">\r\n"
                     + "                <label id=\"confirmm\">Confirmar Contraseña:</label>\r\n"
-                    + "                <input type=\"password\" id=\"editconfirmm\">\r\n"
+                    + "                <input type=\"password\" id=\"editconfirmm\" name = \"cambiarContrasegnaM\">\r\n"
+                    + "                <input type = \"hidden\" name =\"consumed\" value = \"" + consultorio + "\">\r\n"
                     + "                <button class=\"confirmar\" name=\"botcammed\">Confirmar Cambios</button>";
 
         } catch (Exception e) {
@@ -756,21 +759,37 @@ public class Singleton {
 
     public static void cambiarColumna(String nameTabla, String set, String newSet, String idpce, String username) {
 
-        int id = Integer.parseInt(username);
-        // connectarBD();
-        String cambiarEstadoPac = "UPDATE " + nameTabla + " SET " + set + " = '" + newSet + "' WHERE " + idpce + " = "
-                + id;
+        char s = username.charAt(0);
+        if (Character.isDigit(s)) {
 
-        try {
-            PreparedStatement statement = null;
-            statement = connSQL.prepareStatement(cambiarEstadoPac);
-            statement.executeUpdate(cambiarEstadoPac);
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
+            String cambiarEstadoPac = "UPDATE " + nameTabla + " SET " + set + " = '" + newSet + "' WHERE " + idpce
+                    + " = " + username;
+
+            try {
+                PreparedStatement statement = null;
+                statement = connSQL.prepareStatement(cambiarEstadoPac);
+                statement.executeUpdate(cambiarEstadoPac);
+            } catch (Exception e) {
+                // TODO: handle exception
+                e.printStackTrace();
+            }
+
+        } else {
+            // connectarBD();
+            String cambiarEstadoPac = "UPDATE " + nameTabla + " SET " + set + " = '" + newSet + "' WHERE " + idpce
+                    + " = '" + username + "'";
+
+            try {
+                PreparedStatement statement = null;
+                statement = connSQL.prepareStatement(cambiarEstadoPac);
+                statement.executeUpdate(cambiarEstadoPac);
+            } catch (Exception e) {
+                // TODO: handle exception
+                e.printStackTrace();
+            }
+
+            // cerrarConexion();
         }
-
-        // cerrarConexion();
 
     }
 

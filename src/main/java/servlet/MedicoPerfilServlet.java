@@ -18,7 +18,7 @@ public class MedicoPerfilServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String correop, telefonop, contrasegnap, correocep, telefonocep, idcep = "";
+        String  telefonom, contrasegna, consultorioac, consultorionu  = "";
 
         HttpSession session = req.getSession();
         String usuarioIngresado = session.getAttribute("medico").toString();
@@ -28,34 +28,37 @@ public class MedicoPerfilServlet extends HttpServlet {
         session = req.getSession();
         session.setAttribute("medicoNombre", nombreUsuario);
         session.setAttribute("medico", usuarioIngresado);
+        
+        consultorionu = req.getParameter("selectconsmed");
+        telefonom = req.getParameter("cambiarTelefonoM");
+        contrasegna = req.getParameter("cambiarContrasegnaM");
+        consultorioac = req.getParameter("consumed");
 
         if (req.getParameter("botcammed") != null) {
             
-            correop = req.getParameter("cambiarCorreoP");
-            telefonop = req.getParameter("cambiarTelefonoP");
-            contrasegnap = req.getParameter("cambiarContrasegnaP");
+
             Singleton.connectarBD();
 
-            if (!correop.equals("")){
+            if (!consultorionu.equals(consultorioac)){
 
-                Singleton.cambiarColumna("paciente", "correo_paciente", correop, "id_paciente",usuarioIngresado);
-
-            }
-
-            if (!telefonop.equals("")){
-
-                Singleton.cambiarColumna("paciente", "telefono_paciente", telefonop, "id_paciente",usuarioIngresado);
+                Singleton.cambiarColumna("medico", "consultorio_medico", consultorionu, "id_medico", usuarioIngresado);
 
             }
 
-            if (!contrasegnap.equals("")){
+            if (!telefonom.equals("")){
 
-                Singleton.cambiarColumna("paciente", "contrasegna_paciente", contrasegnap, "id_paciente",usuarioIngresado);
+                Singleton.cambiarColumna("medico", "telefono_medico", telefonom, "id_medico", usuarioIngresado);
 
             }
 
-            String info = Singleton.getInfoPacientes(usuarioIngresado);
-            req.setAttribute("infopac", info);
+            if (!contrasegna.equals("")){
+
+                Singleton.cambiarColumna("medico", "contrasegna_medico", contrasegna, "id_medico",usuarioIngresado);
+
+            }
+
+            String info = Singleton.getInfoMedico(usuarioIngresado);
+            req.setAttribute("infomed", info);
             Singleton.cerrarConexion();
             rDispatcher =  req.getRequestDispatcher("perfilm.jsp");
             
@@ -73,10 +76,10 @@ public class MedicoPerfilServlet extends HttpServlet {
         if(req.getParameter("botonvolver") != null){
 
             session = req.getSession();
-            session.setAttribute("pacienteNombre", nombreUsuario);
-            session.setAttribute("paciente", usuarioIngresado);
-            req.setAttribute("usuarioLogeado", nombreUsuario);
-            rDispatcher = req.getRequestDispatcher("paciente.jsp");
+            session.setAttribute("medicoNombre", nombreUsuario);
+            session.setAttribute("medico", usuarioIngresado);
+            req.setAttribute("nameM", nombreUsuario);
+            rDispatcher = req.getRequestDispatcher("medico.jsp");
 
         }
     

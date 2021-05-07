@@ -21,7 +21,7 @@ public class MedicoServlet extends HttpServlet {
         HttpSession session = req.getSession();
         String usuarioIngresado = session.getAttribute("medico").toString();
         String nombreUsuario = session.getAttribute("medicoNombre").toString();
-        RequestDispatcher rDispatcher = req.getRequestDispatcher("login.html");
+        RequestDispatcher rDispatcher = req.getRequestDispatcher("medico.jsp");
 
         if (req.getParameter("-") != null) {
 
@@ -104,6 +104,7 @@ public class MedicoServlet extends HttpServlet {
 
                 } else {
                     System.out.println("El paciente no tiene el estado ESPERANDO RESULTADOS");
+                    rDispatcher = req.getRequestDispatcher("medico.jsp");
                 }
             }
 
