@@ -204,33 +204,59 @@ public class Singleton {
     }
 
     public String crearIdMedico() {
-        medidini++;
-        String idm = "M" + medidini;
-        return idm;
+
+        String ValorInicial = "M";
+        int ValorInicialInt = 0;
+
+        try {
+            String buscarViM = "SELECT valor_medico FROM valores_iniciales;";
+            PreparedStatement statement = null;
+            statement = connSQL.prepareStatement(buscarViM);
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                ValorInicialInt = rs.getInt("valor_medico");
+                ValorInicialInt++;
+                ValorInicial += ValorInicialInt;
+            }
+
+            String updateViM = "UPDATE valores_iniciales SET valor_medico = " + ValorInicialInt + ";";
+            connSQL.prepareStatement(updateViM);
+            statement.executeUpdate(updateViM);
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        return ValorInicial;
     }
 
     public int crearIdContactoE() {
-        
+
+        int ValorInicial = 0;
+        String updateViCe = "";
+
         try {
             String buscarViCe = "SELECT valor_contacto_emergencia FROM valores_iniciales";
             PreparedStatement statement = null;
             statement = connSQL.prepareStatement(buscarViCe);
             ResultSet rs = statement.executeQuery();
-            int ValorInicial = 0;
 
-            if (rs.next()){
-
-                ValorInicial = rs.getString("valor_contacto_emergencia");
-
+            if (rs.next()) {
+                ValorInicial = rs.getInt("valor_contacto_emergencia");
             }
+
+            ValorInicial++;
+            updateViCe = "UPDATE valores_iniciales SET valor_contacto_emergencia = " + ValorInicial + ";";
+            statement = connSQL.prepareStatement(updateViCe);
+            statement.executeUpdate(updateViCe);
 
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
-        }    
-
-            String updateViCe = "UPDATE valores_iniciales SET valor_medico` = '85637'";
-
+        }
+        return ValorInicial;
     }
 
     public void ingresarPacienteYcontactoEmergencia(int id_p, String correoP, String generoP, int edadP, String nombreP,
@@ -829,11 +855,13 @@ public class Singleton {
                 String estado = rs.getString("estado_paciente");
                 int id = rs.getInt("id_paciente");
 
-                str += "<br> <label class=\"nombrePac\">"+nombre+"</label>\r\n" + 
-"                <label class=\"docpac\">"+id+"</label>\r\n" + 
-"                <label class=\"estado\">"+estado+"</label>\r\n" + 
-"                <button class=\"editarpac\" name=\"botoneditarpac"+contb+"\">Editar</button>\r\n" + 
-"                <button class=\"eliminarpac\" name-=\"botoneliminarpac"+contb+"\">Eliminar</button>";
+                str += "<br> <div class=\"pacienteM\"><label class=\"nombrePac\">" + nombre + "</label>\r\n"
+                        + "                <label class=\"docpac\">" + id + "</label>\r\n"
+                        + "                <label class=\"estado\">" + estado + "</label>\r\n"
+                        + "                <button class=\"editarpac\" name=\"botoneditarpac" + contb
+                        + "\">Editar</button>\r\n"
+                        + "                <button class=\"eliminarpac\" name-=\"botoneliminarpac" + contb
+                        + "\">Eliminar</button></div>";
 
                 contb++;
             }
@@ -866,7 +894,7 @@ public class Singleton {
                 String nombre = rs.getString("nombre_medico");
                 int consultorio = rs.getInt("consultorio_medico");
 
-                str += "<br><div> <label class=\"nombreMed\">" + nombre + "</label>\r\n"
+                str += "<br><div class=\"pacienteM\"> <label class=\"nombreMed\">" + nombre + "</label>\r\n"
                         + "                <label class=\"docmed\">" + id + "</label>\r\n"
                         + "                <label class=\"consul\">" + consultorio + "</label>\r\n"
                         + "                <button class=\"editarmed\" name=\"botoneditarmed" + numerobot
