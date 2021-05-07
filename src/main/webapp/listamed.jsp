@@ -30,18 +30,24 @@
 
     <div class="contenedor">
         <label class="h3">Lista de Médicos</label>
-        <form action="listamedicosadmin" method="GET">
         <button class="agregarmed" name="botonagregarmed">Agregar Medicos</button>
-        </form>
         <br>
         <hr color="white" size="1">
+        <form>
+            <input type="search" id="busquedamed" name="busmed" placeholder="Escriba el ID del Médico...">
+        </form>
+        <label class="nombre">Nombre-Medico</label>
+        <label class="doc">Documento</label>
+        <label class="con">Consultorio</label>
         <div class="pacienteM">
             <form>
-                <input type="search" id="busquedamed" name="busmed" placeholder="Escriba el ID del Médico..."> </form>
-            <hr color="white" size="1" class="linea">
-            <form>
-                <br>
-                <label>${listamed}</label>
+                <hr color="white" size="1" class="linea">
+                <label class="nombreMed">Ana Maria Perez Briceño</label>
+                <label class="docmed">1010101010</label>
+                <label class="consul">###</label>
+                <button class="editarmed" name="botoneditarmed">Editar</button>
+                <button class="eliminarmed" name-="botoneliminarmed">Eliminar</button>
+
             </form>
 
         </div>
