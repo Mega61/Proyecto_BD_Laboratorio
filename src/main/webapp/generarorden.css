@@ -34,11 +34,13 @@ body {
 .contenedor {
     position: absolute;
     width: 836px;
-    height: 832px;
+    height: 760px;
     left: 543px;
     top: 141px;
     background: #36CFC9;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .headerGe {
@@ -187,18 +189,15 @@ textarea:focus {
 
 .agregarexamenes {
     position: absolute;
-    background: transparent;
-    border: transparent;
-    width: 58px;
-    height: 58px;
-    left: 388px;
-    top: 683px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 72px;
-    line-height: 24px;
+    width: 22px;
+    height: 22px;
+    left: 612px;
+    top: 490px;
+    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
     color: #E6FFFB;
+    background-color: transparent;
+    border: transparent;
+    font-size: 38px;
 }
 
 .agregarexamenes:hover {
@@ -262,4 +261,29 @@ textarea:focus {
     border: 1px solid #13C2C2;
     box-sizing: border-box;
     border-radius: 2px;
+}
+
+.footer {
+    position: relative;
+    width: 836px;
+    height: 5px;
+    left: 0px;
+    top: 500px;
+    background-color: #36CFC9;
+}
+
+.genorden {
+    position: absolute;
+    width: 463px;
+    height: 40px;
+    left: 185px;
+    top: 890px;
+    /* Cyan / 7 */
+    background: #08979C;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+    /* drop-shadow / button-primary */
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
+    border-radius: 10px;
 }
