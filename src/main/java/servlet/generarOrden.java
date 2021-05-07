@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,8 +17,12 @@ public class generarOrden extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
         HttpSession session = req.getSession();
-        String 
+        String idPaciente = session.getAttribute("idPaciente").toString();
+        String idMedico = session.getAttribute("idMedico").toString();
 
+        RequestDispatcher rDispatcher = req.getRequestDispatcher("generarorden.jsp");
+
+        
     }
 
     @Override
