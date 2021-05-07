@@ -12,7 +12,14 @@
     <link>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-
+    <script>
+        function mostrarbots() {
+            document.getElementById("tipos1").hidden = false;
+            document.getElementById("tipos2").hidden = false;
+            document.getElementById("tipos3").hidden = false;
+            document.getElementById("tipos4").hidden = false;
+        }
+    </script>
 </head>
 
 
@@ -28,6 +35,7 @@
             </form>
         </div>
 
+       
         <div class="contenedor">
             <div class="headerGe">
                 <img id="logopac" src="Letras logo.svg">
@@ -44,6 +52,7 @@
 
             </div>
             <label class="h5">Escoger los examenes que se debe realizar el paciente</label>
+            <button class="agregarexamenes" id="botagregar" onclick="mostrarbots()">+</button>
             <hr id="linea3" color="white" width="672" size="1">
             <select name="tiposexamenes" id="tipos" required>
             <option value="" disabled selected>Tipo de examen correspondiente</option>
@@ -105,7 +114,10 @@
             <option value="ex8">ex8</option>
             
           </select>
-            <button class="agregarexamenes">+</button>
+            <button class="genorden">Generar Orden</button>
+            <div class="footer">
+
+            </div>
         </div>
     </div>
 </body>
