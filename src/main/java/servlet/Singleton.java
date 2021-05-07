@@ -19,6 +19,7 @@ import javassist.compiler.ast.StringL;
 import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
 import com.openhtmltopdf.svgsupport.BatikSVGDrawer;
 
+import org.apache.regexp.recompile;
 import org.apache.tomcat.jni.OS;
 import org.jsoup.Jsoup;
 import org.jsoup.helper.W3CDom;
@@ -894,8 +895,8 @@ public class Singleton {
                 String nombre = rs.getString("nombre_medico");
                 int consultorio = rs.getInt("consultorio_medico");
 
-                str += "<br><div class=\"pacienteM\"><hr color=\"white\" size=\"1\" class=\"linea\"> <label class=\"nombreMed\">" + nombre + "</label>\r\n"
-                        + "                <label class=\"docmed\">" + id + "</label>\r\n"
+                str += "<br><div class=\"pacienteM\"><hr color=\"white\" size=\"1\" class=\"linea\"> <label class=\"nombreMed\">"
+                        + nombre + "</label>\r\n" + "                <label class=\"docmed\">" + id + "</label>\r\n"
                         + "                <label class=\"consul\">" + consultorio + "</label>\r\n"
                         + "                <button class=\"editarmed\" name=\"botoneditarmed" + numerobot
                         + "\">Editar</button>\r\n"
@@ -914,6 +915,30 @@ public class Singleton {
 
         return str;
 
+    }
+
+    public static String getListaTipos(){
+
+        String str = "";
+        String getTipos = "SELECT nombre_tipo_prueba FROM tipo_prueba;";
+
+        connectarBD();
+        try {
+
+            PreparedStatement statement = null;
+            statement = connSQL.prepareStatement(getTipos);
+            ResultSet rs = statement.executeQuery();
+            
+            while(rs.next()){
+                str += "<option value=\""+rs.getString("nombre_tipo_prueba")+"\">"+rs.getString("nombre_tipo_prueba")+"</option>";
+            }            
+
+        } catch (Exception e) {
+            //TODO: handle exception3
+            e.printStackTrace();
+        }
+        cerrarConexion();
+        return str;
     }
 
     public static void generarPdf(String nombrePdf, String url) {

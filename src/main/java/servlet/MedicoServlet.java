@@ -23,27 +23,6 @@ public class MedicoServlet extends HttpServlet {
         String nombreUsuario = session.getAttribute("medicoNombre").toString();
         RequestDispatcher rDispatcher = req.getRequestDispatcher("medico.jsp");
 
-        if (req.getParameter("-") != null) {
-
-            System.out.println("Se ha oprimido Register");
-            rDispatcher = req.getRequestDispatcher("registro.html");
-
-        }
-
-        if (req.getParameter("-") != null) {
-
-            System.out.println("Se ha oprimido Register");
-            rDispatcher = req.getRequestDispatcher("registro.html");
-
-        }
-
-        if (req.getParameter("-") != null) {
-
-            System.out.println("Se ha oprimido Register");
-            rDispatcher = req.getRequestDispatcher("registro.html");
-
-        }
-
         if (req.getParameter("botonperfilm") != null) {
 
             session = req.getSession();
@@ -91,7 +70,9 @@ public class MedicoServlet extends HttpServlet {
                     session.setAttribute("idMedico", usuarioIngresado);
                     req.setAttribute("nomMed", nombreUsuario);
                     req.setAttribute("nomPaciente", nombrePaciente);
-                    rDispatcher = req.getRequestDispatcher("generarorden.html");
+                    String listaTipos = Singleton.getListaTipos();
+                    req.setAttribute("listaTipos", listaTipos);
+                    rDispatcher = req.getRequestDispatcher("generarorden.jsp");
 
                 } else {
                     System.out.println("El paciente no tiene el estado ESPERANDO CITA");
