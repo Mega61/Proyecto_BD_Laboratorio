@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <html>
@@ -26,96 +28,65 @@
 <body>
     <div>
         <div>
-            <img id="logoh" src="Logo completo.svg ">
-            <img id="bannerM" src="Banner indicativoM.svg">
+            <img id="logoh" src="svg/Logo completo.svg ">
+            <img id="bannerM" src="svg/Banner indicativoM.svg">
         </div>
         <div class="subhM">
-            <form>
+            <form action = "generarOrden" method = "GET">
                 <button class="botlogout" name="botonlogout">LogOut</button>
+                <button class="botvolver" name="botonvolver">Volver</button>
+            <label> ${nomMed} </label>
             </form>
         </div>
 
         <div class="contenedor">
             <div class="headerGe">
-                <img id="logopac" src="Letras logo.svg">
-                <label class="nombrepac">Alvaro</label></div>
+                <img id="logopac" src="svg/Letras logo.svg">
+                <label class="nombrepac">${nomPaciente}</label></div>
             <label class="h3">Generar Orden de laboratorio</label>
             <br>
             <hr color="white" size="1">
             <div class="pacienteM">
                 <label class="h4">Diagnóstico del paciente</label>
                 <hr color="white" width="672" size=" 1 ">
-                <form>
-                    <textarea id="diagnostico" name=" textarea " rows="10 " cols="50 " placeholder="Diagnóstico... "></textarea>
-                </form>
+                <form action="generarOrden" method="GET">
+                    <textarea id="diagnostico" name="diagnosticoGo" rows="10 " cols="50 " placeholder="Diagnóstico... "></textarea>
+                
 
             </div>
-            <form>
+            
                 <label class="h5">Escoger los examenes que se debe realizar el paciente</label>
-                <button class="agregarexamenes" id="botagregar" onclick="mostrarbots()">+</button>
+                
                 <hr id="linea3" color="white" width="672" size="1">
-                <select name="tiposexamenes" id="tipos" required>
+
+          <select name="tiposexamenes0" id="tipos" required>
             <option value="" disabled selected>Tipo de examen correspondiente</option>
-            <option value="ex1">ex1</option>
-            <option value="ex2">ex2</option>
-            <option value="ex3">ex3</option>
-            <option value="ex4">ex4</option>
-            <option value="ex5">ex5</option>
-            <option value="ex6">ex6</option>
-            <option value="ex7">ex7</option>
-            <option value="ex8">ex8</option>
-            
+            ${listaTipos}
           </select>
-                <select name="tiposexamenes" id="tipos1" hidden="true">
+          <select name="tiposexamenes1" id="tipos1" hidden="true">
             <option value="" disabled selected>Tipo de examen correspondiente</option>
-            <option value="ex1">ex1</option>
-            <option value="ex2">ex2</option>
-            <option value="ex3">ex3</option>
-            <option value="ex4">ex4</option>
-            <option value="ex5">ex5</option>
-            <option value="ex6">ex6</option>
-            <option value="ex7">ex7</option>
-            <option value="ex8">ex8</option>
-            
+            ${listaTipos}
           </select>
-                <select name="tiposexamenes" id="tipos2" hidden="true">
+
+          <select name="tiposexamenes2" id="tipos2" hidden="true">
             <option value="" disabled selected>Tipo de examen correspondiente</option>
-            <option value="ex1">ex1</option>
-            <option value="ex2">ex2</option>
-            <option value="ex3">ex3</option>
-            <option value="ex4">ex4</option>
-            <option value="ex5">ex5</option>
-            <option value="ex6">ex6</option>
-            <option value="ex7">ex7</option>
-            <option value="ex8">ex8</option>
-            
+            ${listaTipos}
           </select>
-                <select name="tiposexamenes" id="tipos3" hidden="true">
+
+          <select name="tiposexamenes3" id="tipos3" hidden="true">
             <option value="" disabled selected>Tipo de examen correspondiente</option>
-            <option value="ex1">ex1</option>
-            <option value="ex2">ex2</option>
-            <option value="ex3">ex3</option>
-            <option value="ex4">ex4</option>
-            <option value="ex5">ex5</option>
-            <option value="ex6">ex6</option>
-            <option value="ex7">ex7</option>
-            <option value="ex8">ex8</option>
-            
+            ${listaTipos}
           </select>
-                <select name="tiposexamenes" id="tipos4" hidden="true">
+
+          <select name="tiposexamenes4" id="tipos4" hidden="true">
             <option value="" disabled selected>Tipo de examen correspondiente</option>
-            <option value="ex1">ex1</option>
-            <option value="ex2">ex2</option>
-            <option value="ex3">ex3</option>
-            <option value="ex4">ex4</option>
-            <option value="ex5">ex5</option>
-            <option value="ex6">ex6</option>
-            <option value="ex7">ex7</option>
-            <option value="ex8">ex8</option>
-            
+            ${listaTipos}
           </select>
-                <button class="genorden">Generar Orden</button>
+
+                <button class="genorden" name="generarOrden">Generar Orden</button>
+
             </form>
+            <button class="agregarexamenes" id="botagregar" onclick="mostrarbots()">+</button>
             <div class="footer">
 
             </div>

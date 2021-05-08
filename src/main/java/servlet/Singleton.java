@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.text.Document;
@@ -917,10 +918,10 @@ public class Singleton {
 
     }
 
-    public static String getListaTipos(){
+    public static String getListaTipos() {
 
         String str = "";
-        String getTipos = "SELECT nombre_tipo_prueba FROM tipo_prueba;";
+        String getTipos = "SELECT nombre_tipo_prueba, id_tipo_prueba FROM tipo_prueba;";
 
         connectarBD();
         try {
@@ -928,17 +929,169 @@ public class Singleton {
             PreparedStatement statement = null;
             statement = connSQL.prepareStatement(getTipos);
             ResultSet rs = statement.executeQuery();
-            
-            while(rs.next()){
-                str += "<option value=\""+rs.getString("nombre_tipo_prueba")+"\">"+rs.getString("nombre_tipo_prueba")+"</option>";
-            }            
+
+            while (rs.next()) {
+                str += "<option value=\"" + rs.getString("id_tipo_prueba") + "\">" + rs.getString("nombre_tipo_prueba")
+                        + "</option>";
+            }
 
         } catch (Exception e) {
-            //TODO: handle exception3
+            // TODO: handle exception3
             e.printStackTrace();
         }
         cerrarConexion();
         return str;
+    }
+
+    public static int getIdExamen() {
+
+        int ValorInicial = 0;
+        String updateViEx = "";
+
+        try {
+            String buscarViEx = "SELECT valor_examen FROM valores_iniciales";
+            PreparedStatement statement = null;
+            statement = connSQL.prepareStatement(buscarViEx);
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                ValorInicial = rs.getInt("valor_examen");
+            }
+
+            ValorInicial++;
+            updateViEx = "UPDATE valores_iniciales SET valor_examen = " + ValorInicial + ";";
+            statement = connSQL.prepareStatement(updateViEx);
+            statement.executeUpdate(updateViEx);
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        return ValorInicial;
+
+    }
+
+    public static void crearExamen(String idMedico, int idPaciente, String diagnostico, String tipo0, String tipo1,
+            String tipo2, String tipo3, String tipo4) {
+
+        connectarBD();
+        String ingresarExamen = "INSERT INTO examen_laboratorio (id_examen, id_medico, id_paciente, diagnostico, fecha_remision) VALUES (?,?,?,?,?)";
+        long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
+        ArrayList<String> selects = new ArrayList<String>();
+        ArrayList<String> criterios = new ArrayList<String>();
+        int idEx = getIdExamen();
+        try {
+
+            PreparedStatement statement = connSQL.prepareStatement(ingresarExamen);
+            statement.setInt(1, idEx);
+            statement.setString(2, idMedico);
+            statement.setInt(3, idPaciente);
+            statement.setString(4, diagnostico);
+            statement.setDate(5, date);
+
+            statement.executeUpdate();
+
+            if (tipo0 != null) {
+                selects.add(tipo0);
+            }
+            if (tipo1 != null) {
+                selects.add(tipo1);
+            }
+            if (tipo2 != null) {
+                selects.add(tipo2);
+            }
+            if (tipo3 != null) {
+                selects.add(tipo3);
+            }
+            if (tipo4 != null) {
+                selects.add(tipo4);
+            }
+
+            for (int i = 0; i < selects.size(); i++) {
+
+                criterios = Singleton.getCriterios(selects.get(i), statement);
+
+                for (int j = 0; j < criterios.size(); j++) {
+
+                    String ingresarTipos = "INSERT INTO examen_lab_tiene_tipo_prueba (id_examen, id_tipo_prueba, criterio_tipo_prueba) VALUES (?,?,?);";
+                    statement = connSQL.prepareStatement(ingresarTipos);
+                    statement.setInt(1, idEx);
+                    statement.setString(2, selects.get(i));
+                    statement.setString(3, criterios.get(j));
+                    statement.executeUpdate();
+
+                }
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        cerrarConexion();
+
+    }
+
+    public static ArrayList<String> getCriterios(String idTipo, PreparedStatement statement) {
+
+        ArrayList<String> criterios = new ArrayList<String>();
+        
+        try {
+
+            String traerCriterios = "SELECT criterio_tipo_prueba FROM criterios_tipo_prueba WHERE id_tipo_prueba = '"+idTipo+"';";
+    
+            statement = connSQL.prepareStatement(traerCriterios);
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()){
+                criterios.add(rs.getString("criterio_tipo_prueba"));
+            }
+
+        } catch (Exception e) {
+            //TODO: handle exception
+            e.printStackTrace();
+        }
+        
+        return criterios;
+
+    }
+
+    public static String getBarraEstado(String username){
+
+        String str = "";
+        int id = Integer.parseInt(username);
+        int idexamen = 0;
+        String estado = getEstadoP(username);
+
+        try {
+
+            if (estado.equals("ESPERANDO CITA")){
+
+                str = "Se ha mandado su solicitud de cita a los medicos, espere a que se genere su orden";
+
+            }
+
+            if (estado.equals("ESPERANDO REALIZACIÓN")){
+
+                String getNumeroExamen = "SELECT id_examen FROM examen_laboratorio e INNER JOIN paciente p";
+                PreparedStatement statement = null;
+                statement = connSQL.prepareStatement(getNumeroExamen);
+                ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                idexamen = rs.getInt("id_examen");
+            }
+                str = "Ya se ha generado su orden, con el número ";
+
+            }
+
+        } catch (Exception e) {
+            //TODO: handle exception
+            e.printStackTrace();
+        }
+
+        return str;
+
     }
 
     public static void generarPdf(String nombrePdf, String url) {

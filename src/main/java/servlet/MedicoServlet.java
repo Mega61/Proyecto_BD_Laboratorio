@@ -68,6 +68,7 @@ public class MedicoServlet extends HttpServlet {
                     session = req.getSession();
                     session.setAttribute("idPaciente", id);
                     session.setAttribute("idMedico", usuarioIngresado);
+                    session.setAttribute("nomMedico", nombreUsuario);
                     req.setAttribute("nomMed", nombreUsuario);
                     req.setAttribute("nomPaciente", nombrePaciente);
                     String listaTipos = Singleton.getListaTipos();

@@ -39,8 +39,6 @@
             <button class="botagendar" name="botonagendar">Agendar Cita</button>
             <button class="botsolicitar" name="botonsolicitar">Solicitar Examen (es)</button>
             <button class="botresultados" name="botonresultados">Resultados</button>
-
-
         </form>
         <div>
             <img id="footerp" src="svg/Footer vistas.svg">
