@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import javax.swing.text.Document;
 
 import javassist.compiler.ast.StringL;
+
+import com.mysql.cj.protocol.Resultset;
+import com.mysql.cj.x.protobuf.MysqlxPrepare.Prepare;
 import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
 import com.openhtmltopdf.svgsupport.BatikSVGDrawer;
 
@@ -621,7 +624,8 @@ public class Singleton {
                 String edadcep = rs.getString("edad_contacto_emergencia");
                 String correocep = rs.getString("correo_contacto_emergencia");
 
-                infop = "<form action = \"perfilPaciente\" method=\"GET\">\r\n"
+                infop = "<div class=\"contenedor1\"><div class=\"hizq\"><img id=\"logo1\" src=\"svg/Letras logo.svg\"> <label class=\"info\">Información</label> </div><div>"
+                        + "                <form action = \"perfilPaciente\" method=\"GET\">\r\n"
                         + "                <img class=\"fotop\" src=\"svg/Group 63.svg\"> >\r\n"
                         + "                <label class=\"entrada\" id=\"nomp\">" + nombrep + "</label>\r\n"
                         + "                <label id=\"docp\">Documento:</label>\r\n"
@@ -658,9 +662,10 @@ public class Singleton {
                         + "                <label id=\"confirmp\">Confirmar Contraseña</label>\r\n"
                         + "                <input type=\"password\" id=\"editconfirmp\" name=\"cambiarContrasegnaP\">\r\n"
                         + "                <button class=\"confirmar\" name = \"botcambpac\">Confirmar Cambios</button>\r\n"
-                        + "            </form>\r\n" + "            <div class=\"divisor2\">\r\n"
-                        + "                <img id=\"logoce\" src=\"svg/Group 66.svg\">\r\n" + "            </div>\r\n"
-                        + "            <form action = \"perfilPaciente\" method=\"GET\">\r\n"
+                        + "            </form></div></div>\r\n"
+                        + "    <div class = \"contenedor2\">        <div class=\"hder\">\r\n"
+                        + "                <img id=\"logoce\" src=\"svg/Group 66.svg\">\r\n"
+                        + "            <div><form action = \"perfilPaciente\" method=\"GET\">\r\n"
                         + "                <img class=\"puntonomce\" src=\"svg/Ellipse 2.svg\">\r\n"
                         + "                <label id=\"nomce\">Nombre:</label>\r\n"
                         + "                <label id=\"vnomce\">" + nombrecep + "</label>\r\n"
@@ -682,7 +687,7 @@ public class Singleton {
                         + telefonocep + "\">\r\n"
                         + "                <input type = \"hidden\" name =\"idcepp\" value = \"" + idcep + "\">\r\n"
                         + "                <button class=\"confirmarce\" name = \"botcambpacep\">Confirmar Cambios</button>\r\n"
-                        + "                <br>\r\n" + "                <br>\r\n </form>";
+                        + "                <br>\r\n" + "                <br>\r\n </form></div></div></div>";
 
             } else {
 
@@ -1036,27 +1041,28 @@ public class Singleton {
     public static ArrayList<String> getCriterios(String idTipo, PreparedStatement statement) {
 
         ArrayList<String> criterios = new ArrayList<String>();
-        
+
         try {
 
-            String traerCriterios = "SELECT criterio_tipo_prueba FROM criterios_tipo_prueba WHERE id_tipo_prueba = '"+idTipo+"';";
-    
+            String traerCriterios = "SELECT criterio_tipo_prueba FROM criterios_tipo_prueba WHERE id_tipo_prueba = '"
+                    + idTipo + "';";
+
             statement = connSQL.prepareStatement(traerCriterios);
             ResultSet rs = statement.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 criterios.add(rs.getString("criterio_tipo_prueba"));
             }
 
         } catch (Exception e) {
-            //TODO: handle exception
+            // TODO: handle exception
             e.printStackTrace();
         }
-        
+
         return criterios;
 
     }
 
-    public static String getBarraEstado(String username){
+    public static String getBarraEstado(String username) {
 
         String str = "";
         int id = Integer.parseInt(username);
@@ -1065,20 +1071,20 @@ public class Singleton {
 
         try {
 
-            if (estado.equals("ESPERANDO CITA")){
+            if (estado.equals("ESPERANDO CITA")) {
 
-                str = "<div class=\"estado\">\r\n" + 
-"                       <div class=\"estgen\">\r\n" + 
-"                       <img src=\"Estado Genesis.svg\">\r\n" + 
-"                       </div>\r\n" + 
-"                       <label class=\"feedback\">"+"Se ha mandado su solicitud, espere a que un medico genere su orden"+"</label>\r\n" + 
-"                       </div>";
+                str = "<div class=\"estado\">\r\n" + "                       <div class=\"estgen\">\r\n"
+                        + "                       <img src=\"svg/Estado Genesis.svg\">\r\n"
+                        + "                       </div>\r\n" + "                       <label class=\"feedback\">"
+                        + "Se ha mandado su solicitud, espere a que un medico genere su orden" + "</label>\r\n"
+                        + "                       </div>";
 
             }
 
-            if (estado.equals("ESPERANDO REALIZACIÓN")){
+            if (estado.equals("ESPERANDO REALIZACIÓN")) {
 
-                String getNumeroExamen = "SELECT id_examen FROM examen_laboratorio e INNER JOIN paciente p WHERE p.id_paciente = "+id+" AND  p.id_paciente = e.id_paciente AND fecha_resultados is null";
+                String getNumeroExamen = "SELECT id_examen FROM examen_laboratorio e INNER JOIN paciente p WHERE p.id_paciente = "
+                        + id + " AND  p.id_paciente = e.id_paciente AND fecha_resultados is null";
                 PreparedStatement statement = null;
                 statement = connSQL.prepareStatement(getNumeroExamen);
                 ResultSet rs = statement.executeQuery();
@@ -1087,39 +1093,105 @@ public class Singleton {
                     idexamen = rs.getInt("id_examen");
                 }
 
-                str = "<div class=\"estado\">\r\n" + 
-"                       <div class=\"estgen\">\r\n" + 
-"                       <img src=\"Estado Genesis.svg\">\r\n" + 
-"                       </div>\r\n" + 
-"                       <label class=\"feedback\">"+"Ya se ha generado su orden, con el número "+idexamen+"</label>\r\n" + 
-"                       </div>"; ;
+                str = "<div class=\"estado\">\r\n" + "                       <div class=\"estgen\">\r\n"
+                        + "                       <img src=\"svg/Estado Genesis.svg\">\r\n"
+                        + "                       </div>\r\n" + "                       <label class=\"feedback\">"
+                        + "Ya se ha generado su orden, con el número: " + idexamen + "</label>\r\n"
+                        + "                       </div>";
+                ;
 
             }
 
-            if (estado.equals("ESPERANDO RESULTADOS")){
-                
-                str ="<div class=\"estado\">\r\n" + 
-"                       <div class=\"estgen\">\r\n" + 
-"                       <img src=\"Estado Genesis.svg\">\r\n" + 
-"                       </div>\r\n" + 
-"                       <label class=\"feedback\">"+"Ya se ha enviado su orden de laboratorio, esperando a que el doctor ingrese los resultados"+"</label>\r\n" + 
-"                       </div>";
+            if (estado.equals("ESPERANDO RESULTADOS")) {
+
+                str = "<div class=\"estado\">\r\n" + "                       <div class=\"estgen\">\r\n"
+                        + "                       <img src=\"svg/Estado Genesis.svg\">\r\n"
+                        + "                       </div>\r\n" + "                       <label class=\"feedback\">"
+                        + "Ya se ha enviado su orden de laboratorio, esperando a que el doctor ingrese los resultados"
+                        + "</label>\r\n" + "                       </div>";
 
             }
 
-            if (estado.equals("RESULTADOS GENERADOS")){
+            if (estado.equals("RESULTADOS GENERADOS")) {
 
-                str="<div class=\"estado\">\r\n" + 
-"                       <div class=\"estgen\">\r\n" + 
-"                       <img src=\"Estado Genesis.svg\">\r\n" + 
-"                       </div>\r\n" + 
-"                       <label class=\"feedback\">"+"Ya se han ingresado sus resultados, consultelos en la pestaña RESULTADOS"+"</label>\r\n" + 
-"                       </div>";
+                str = "<div class=\"estado\">\r\n" + "                       <div class=\"estgen\">\r\n"
+                        + "                       <img src=\"svg/Estado Genesis.svg\">\r\n"
+                        + "                       </div>\r\n" + "                       <label class=\"feedback\">"
+                        + "Ya se han ingresado sus resultados, consultelos en la pestaña RESULTADOS" + "</label>\r\n"
+                        + "                       </div>";
 
             }
 
         } catch (Exception e) {
-            //TODO: handle exception
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        return str;
+
+    }
+
+    public static int getIdExamen(String username) {
+
+        String getId = "SELECT id_examen FROM examen_laboratorio e INNER JOIN paciente p WHERE p.id_paciente = "
+                + username + " AND  p.id_paciente = e.id_paciente AND fecha_resultados is null;";
+
+        int idEx = 0;
+
+        try {
+
+            PreparedStatement statement = connSQL.prepareStatement(getId);
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                idEx = rs.getInt("id_examen");
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        return idEx;
+
+    }
+
+    public static String getListaTiposExamen(int idEx) {
+
+        String fullEx = "SELECT p.nombre_tipo_prueba, e.criterio_tipo_prueba FROM examen_lab_tiene_tipo_prueba e INNER JOIN tipo_prueba p WHERE e.id_tipo_prueba = p.id_tipo_prueba AND e.id_examen = "
+                + idEx + ";";
+        String str = "";
+        String tipoActual, tipoNuevo = ""; 
+        int control = 0;  
+
+        try {
+            PreparedStatement statement = connSQL.prepareStatement(fullEx);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                
+                tipoActual = rs.getString("nombre_tipo_prueba");
+
+                while(tipoActual.equals(tipoNuevo) || control == 0){
+                    
+                    if(control == 0){
+
+                        //str +=
+
+                    }
+
+                    str += 
+
+                    tipoNuevo = rs.getString("nombre_tipo_prueba");
+                    control++;
+                }
+                
+                control = 0;
+
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
             e.printStackTrace();
         }
 
@@ -1168,7 +1240,12 @@ public class Singleton {
 
     private static void htmlToPdf(String inputHTML, String outputPDF, String uri) throws IOException {
         org.w3c.dom.Document doc = html5ParseDocument(inputHTML);
-        String baseURI = uri;
+        String baseURI = "File:///C:/Users/jedaz/Desktop/Laboratorio%20Genesis%20Proyecto%20BD/Proyecto_BD_Laboratorio/src/main/webapp/pdf";
+        // FileSystems.getDefault().getPath("C:/", "Users/jedaz/Desktop/", "Laboratorio
+        // Genesis Proyecto
+        // BD/Proyecto_BD_Laboratorio/src/main/webapp/pdf/").toUri().toString();
+        // C:\Users\jedaz\Desktop\Laboratorio Genesis Proyecto
+        // BD\Proyecto_BD_Laboratorio\src\main\webapp\pdf
 
         OutputStream out = new FileOutputStream(outputPDF);
         PdfRendererBuilder builder = new PdfRendererBuilder();
@@ -1176,6 +1253,7 @@ public class Singleton {
         builder.withUri(outputPDF);
         builder.toStream(out);
         builder.withW3cDocument(doc, baseURI);
+        builder.useUriResolver(new ResolverURI());
         builder.run();
         out.close();
     }
