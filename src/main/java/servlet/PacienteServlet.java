@@ -40,7 +40,7 @@ public class PacienteServlet extends HttpServlet {
             req.setAttribute("usuarioLogeado", nombreUsuario);
             String barraEstado = Singleton.getBarraEstado(usuarioIngresado);
             req.setAttribute("barraestado", barraEstado);
-            rDispatcher = req.getRequestDispatcher("paciente.jsp");
+            rDispatcher = req.getRequestDispatcher("ordenpac.html");
 
         }
 
@@ -83,7 +83,10 @@ public class PacienteServlet extends HttpServlet {
 
             if (idExImp == idEX){
 
-                Singleton.cambiarEstadoP(usuarioIngresado, "");
+                Singleton.cambiarEstadoP(usuarioIngresado, "ESPERANDO RESULTADOS");
+                Singleton.setFechaRealizacion(idEX);
+                String barraEstado = Singleton.getBarraEstado(usuarioIngresado);
+                req.setAttribute("barraestado", barraEstado);
 
             }
             
