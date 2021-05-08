@@ -1067,7 +1067,12 @@ public class Singleton {
 
             if (estado.equals("ESPERANDO CITA")){
 
-                str = "Se ha mandado su solicitud de cita a los medicos, espere a que se genere su orden";
+                str = "<div class=\"estado\">\r\n" + 
+"                       <div class=\"estgen\">\r\n" + 
+"                       <img src=\"Estado Genesis.svg\">\r\n" + 
+"                       </div>\r\n" + 
+"                       <label class=\"feedback\">"+"Se ha mandado su solicitud, espere a que un medico genere su orden"+"</label>\r\n" + 
+"                       </div>";
 
             }
 
@@ -1082,19 +1087,34 @@ public class Singleton {
                     idexamen = rs.getInt("id_examen");
                 }
 
-                str = "Ya se ha generado su orden, con el número "+idexamen;
+                str = "<div class=\"estado\">\r\n" + 
+"                       <div class=\"estgen\">\r\n" + 
+"                       <img src=\"Estado Genesis.svg\">\r\n" + 
+"                       </div>\r\n" + 
+"                       <label class=\"feedback\">"+"Ya se ha generado su orden, con el número "+idexamen+"</label>\r\n" + 
+"                       </div>"; ;
 
             }
 
             if (estado.equals("ESPERANDO RESULTADOS")){
-
-                str = "Ya se ha enviado su orden de laboratorio, esperando a que el doctor ingrese los resultados";
+                
+                str ="<div class=\"estado\">\r\n" + 
+"                       <div class=\"estgen\">\r\n" + 
+"                       <img src=\"Estado Genesis.svg\">\r\n" + 
+"                       </div>\r\n" + 
+"                       <label class=\"feedback\">"+"Ya se ha enviado su orden de laboratorio, esperando a que el doctor ingrese los resultados"+"</label>\r\n" + 
+"                       </div>";
 
             }
 
             if (estado.equals("RESULTADOS GENERADOS")){
 
-                str="";
+                str="<div class=\"estado\">\r\n" + 
+"                       <div class=\"estgen\">\r\n" + 
+"                       <img src=\"Estado Genesis.svg\">\r\n" + 
+"                       </div>\r\n" + 
+"                       <label class=\"feedback\">"+"Ya se han ingresado sus resultados, consultelos en la pestaña RESULTADOS"+"</label>\r\n" + 
+"                       </div>";
 
             }
 

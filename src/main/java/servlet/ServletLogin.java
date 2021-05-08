@@ -35,7 +35,7 @@ public class ServletLogin extends HttpServlet {
         if (req.getParameter("botoniniciars") != null) {
 
             String url = req.getSession().getServletContext().getRealPath("pdf/");
-            //Singleton.generarPdf("prueba", url);
+            Singleton.generarPdf("prueba", url);
 
             identificacion = req.getParameter("docP");
             contrasegna = req.getParameter("conP");
