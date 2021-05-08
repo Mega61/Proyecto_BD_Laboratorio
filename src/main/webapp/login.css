@@ -1,222 +1,173 @@
-body{
-    
-position: relative;
-width: 1920px;
-height: 1080px;
-overflow-y: hidden;
-overflow-x: hidden;
-background: #E6FFFB;
-    
-    }
-
-.logologin{
-
-    position: absolute;
-width: 207px;
-height: 260px;
-left: 856px;
-top: 16px;
-
-
+body {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    background: #E6FFFB;
 }
 
-.layer{
-  
+.logologin {
+    position: absolute;
+    width: 207px;
+    height: 260px;
+    left: 856px;
+    top: 16px;
+}
+
+.layer {
     position: absolute;
     width: 447px;
     height: 143px;
     left: 736.5px;
     top: 274px
-
 }
 
-.container{
-
+.container {
     position: relative;
     width: 580px;
     height: 418px;
     left: 670px;
     top: 465px;
-    
-    
     /* Página laboratorio médico/20 */
-    
     background: #B5F5EC;
     /* Página laboratorio médico/70 */
-    
     border: 2px solid #08979C;
-   
     border-radius: 47px;
-
 }
-.documentoP{
 
-
-
+.documentoP {
     position: relative;
     width: 510px;
     height: 40px;
     left: 35px;
     top: 67px;
-    
-    
     /* Neutral / 1 */
-    
     background: #FFFFFF;
     /* Cyan / 6 */
-    
     border: 1px solid #13C2C2;
     box-sizing: border-box;
     border-radius: 2px;
-
 }
-.contraseñaP{
 
+.contraseñaP {
     position: relative;
     width: 510px;
     height: 40px;
     left: 35px;
     top: 96px;
-    
-    
     /* Neutral / 1 */
-    
     background: #FFFFFF;
     /* Cyan / 6 */
-    
     border: 1px solid #13C2C2;
     box-sizing: border-box;
     border-radius: 2px;
-
 }
-::placeholder{
-position: relative;    
-width: 466px;
-height: 24px;
-left: 32px;
 
-
-/* Subheading 16 / regular */
-
-font-family: Roboto;
-font-style: normal;
-font-weight: normal;
-font-size: 16px;
-line-height: 24px;
-/* identical to box height, or 150% */
-
-
-/* Character / Disabled&amp;Placeholder .25 */
-
-color: rgba(0, 0, 0, 0.25);
-
-
+::placeholder {
+    position: relative;
+    width: 466px;
+    height: 24px;
+    left: 32px;
+    /* Subheading 16 / regular */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    /* Character / Disabled&amp;Placeholder .25 */
+    color: rgba(0, 0, 0, 0.25);
 }
-.recuerdame{
-  
-    
+
+input:focus {
+    border-color: #006D75;
+    box-shadow: 0 1px 1px #08979C inset, 0 0 8px #08979C;
+    outline: 0 none;
+}
+
+.recuerdame {
     position: relative;
     width: 16px;
     height: 16px;
     left: 36px;
     top: 161px;
-    
     /* Neutral / 1 */
-    
     background: #FFFFFF;
     border-radius: 2px;
-
 }
-#cbox{
-position: relative;   
-width: 79px;
-height: 22px;
-left: 60px;
-top: 125px;
 
-/* Body 14 / regular */
-
-font-family: Roboto;
-font-style: normal;
-font-weight: normal;
-font-size: 14px;
-line-height: 22px;
-/* identical to box height, or 157% */
-
-
-/* Cyan / 10 */
-
-color: #002329;
-}
-.olvido{
-
-position: relative;    
-width: 256px;
-height: 24px;
-left: 324px;
-top: 125px;
-
-background-color: transparent;
-border: transparent;
-
-/* Subheading 16 / regular */
-
-font-family: Roboto;
-font-style: normal;
-font-weight: normal;
-font-size: 16px;
-line-height: 24px;
-/* identical to box height, or 150% */
-
-text-align: center;
-
-/* Cyan / 7 */
-
-color: #08979C;}
-
-.iniciarS{
-
-    
-    
+#cbox {
     position: relative;
+    width: 79px;
+    height: 22px;
+    left: 60px;
+    top: 125px;
+    /* Body 14 / regular */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 22px;
+    /* identical to box height, or 157% */
+    /* Cyan / 10 */
+    color: #002329;
+}
 
+.olvido {
+    position: relative;
+    width: 256px;
+    height: 24px;
+    left: 324px;
+    top: 125px;
+    background-color: transparent;
+    border: transparent;
+    /* Subheading 16 / regular */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    text-align: center;
+    /* Cyan / 7 */
+    color: #08979C;
+}
+
+.iniciarS {
+    position: relative;
     width: 510px;
     height: 40px;
     left: 35px;
     top: 154px;
-    
-    
     /* Cyan / 7 */
-    
     background: #08979C;
     /* Cyan / 7 */
-    
     border: 1px solid #08979C;
     box-sizing: border-box;
     /* drop-shadow / button-primary */
-    
     box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
-    border-radius: 10px;   
-    
+    border-radius: 10px;
     font-family: Roboto;
-font-style: normal;
-font-weight: normal;
-font-size: 16px;
-line-height: 24px;
-/* identical to box height, or 150% */
-
-text-align: center;
-
-/* Character / Primary(inverse) */
-
-color: #FFFFFF;
-
-
-
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    text-align: center;
+    /* Character / Primary(inverse) */
+    color: #FFFFFF;
+    cursor: pointer;
 }
 
-.registro{
+.iniciarS:hover {
+    background: #00474F;
+    color: #E6FFFB;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #5CDBD3, 0 0 25px #5CDBD3, 0 0 50px #5CDBD3, 0 0 100px #5CDBD3;
+}
 
+.registro {
     position: relative;
     width: 116px;
     height: 24px;
@@ -224,42 +175,34 @@ color: #FFFFFF;
     top: 185px;
     background: transparent;
     border: transparent;
-    /* Subheading 16 / regular */
-    
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
     line-height: 24px;
-    /* identical to box height, or 150% */
-    
     text-align: center;
-    
-    /* Cyan / 7 */
-    
     color: #08979C;
-
+    cursor: pointer;
 }
 
-.pregunta{
+.registro:hover {
+    color: #002329;
+    transform: scale(1.1);
+}
 
+.pregunta {
     position: relative;
     width: 189px;
     height: 24px;
     top: 185px;
-    left: -47px;   
-    /* Subheading 16 / regular */
-    
+    left: -47px;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
     line-height: 24px;
     /* identical to box height, or 150% */
-    
     text-align: center;
-    
     /* Cyan / 10 */
-    
-    color: #002329;   
+    color: #002329;
 }

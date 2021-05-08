@@ -210,4 +210,12 @@ select:focus {
     text-align: center;
     /* Character / Primary(inverse) */
     color: #FFFFFF;
+    cursor: pointer;
+}
+
+.continuar:hover {
+    background: #00474F;
+    color: #E6FFFB;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #5CDBD3, 0 0 25px #5CDBD3, 0 0 50px #5CDBD3, 0 0 100px #5CDBD3;
 }
