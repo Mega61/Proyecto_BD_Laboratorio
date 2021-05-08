@@ -38,7 +38,7 @@
             <label class="h3">Ingresa Resultados de Examenes</label>
             <br>
             <hr color="white" size="1">
-            <form>
+            <form action = "ingresarResultados" method = "GET">
                 ${listaresultados}    
                 <%-- <div class="elingreso">
                     <hr color="white" size="1">
@@ -54,7 +54,7 @@
                         <input type="text" class="cri4">
                 
                 </div> --%>
-                <button class="genorden">Generar Orden</button>
+                <button class="genorden" name = "generaror">Generar Orden</button>
             </form>
         </div>
     </div>

@@ -25,6 +25,7 @@ import com.openhtmltopdf.svgsupport.BatikSVGDrawer;
 
 import org.apache.regexp.recompile;
 import org.apache.tomcat.jni.OS;
+import org.apache.xml.utils.URI;
 import org.jsoup.Jsoup;
 import org.jsoup.helper.W3CDom;
 
@@ -1221,6 +1222,29 @@ public class Singleton {
 
     }
 
+    public static ArrayList<String> getTiposExamen(int id_examen){
+
+        ArrayList<String> tipos = new ArrayList<String>();
+        String buscarString = "SELECT t.nombre_tipo_prueba FROM examen_lab_tiene_tipo_prueba e INNER JOIN tipo_prueba t" 
+                                +"WHERE e.id_examen = "+id_examen+" AND e.id_tipo_prueba = t.id_tipo_prueba";
+
+        try {
+
+            PreparedStatement statement = connSQL.prepareStatement(buscarString);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                tipos.add(rs.getString("nombre_tipo_prueba"));
+            }
+            
+        } catch (Exception e) {
+            //TODO: handle exception
+            e.printStackTrace();
+        }
+
+        return tipos;
+
+    }
+
     public static void generarPdf(String nombrePdf, String url) {
 
         String rutaPdf = url + nombrePdf + ".pdf";
@@ -1262,7 +1286,9 @@ public class Singleton {
 
     private static void htmlToPdf(String inputHTML, String outputPDF, String uri) throws IOException {
         org.w3c.dom.Document doc = html5ParseDocument(inputHTML);
-        String baseURI = "File:///C:/Users/jedaz/Desktop/Laboratorio%20Genesis%20Proyecto%20BD/Proyecto_BD_Laboratorio/src/main/webapp/pdf";
+        String baseURI = new URI(uri).toString();
+        System.out.println(baseURI);
+        
         // FileSystems.getDefault().getPath("C:/", "Users/jedaz/Desktop/", "Laboratorio
         // Genesis Proyecto
         // BD/Proyecto_BD_Laboratorio/src/main/webapp/pdf/").toUri().toString();
@@ -1275,9 +1301,11 @@ public class Singleton {
         builder.withUri(outputPDF);
         builder.toStream(out);
         builder.withW3cDocument(doc, baseURI);
-        builder.useUriResolver(new ResolverURI());
+        //builder.useUriResolver(new ResolverURI());
         builder.run();
         out.close();
     }
+    
+    
 
 }

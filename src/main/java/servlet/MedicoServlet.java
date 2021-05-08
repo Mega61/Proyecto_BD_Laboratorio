@@ -100,6 +100,10 @@ public class MedicoServlet extends HttpServlet {
                     req.setAttribute("listaresultados", listaResultados);
                     req.setAttribute("nomMed", nombreUsuario);
                     req.setAttribute("nomPaciente", nombrePaciente);
+                    session.setAttribute("medico", usuarioIngresado);
+                    session.setAttribute("medicoNombre", nombreUsuario);
+                    session.setAttribute("idPac", id);
+                    session.setAttribute("examen", idEx);
                     System.out.println("si puede presionar este botón: Generar Resultados");
                     Singleton.cerrarConexion();
                     rDispatcher = req.getRequestDispatcher("ingresores.jsp");

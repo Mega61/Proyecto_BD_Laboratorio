@@ -23,7 +23,7 @@ public class IngresarResultados extends HttpServlet {
         String nombreMedico = session.getAttribute("medicoNombre").toString();
         int idExamen = Integer.parseInt(session.getAttribute("examen").toString());
         ArrayList<String> tipos = new ArrayList<String>();
-        String s
+        String str = "";
 
         RequestDispatcher rDispatcher = req.getRequestDispatcher("generarorden.jsp");
 

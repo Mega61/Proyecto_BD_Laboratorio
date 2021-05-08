@@ -35,11 +35,17 @@ public class ServletLogin extends HttpServlet {
         if (req.getParameter("botoniniciars") != null) {
 
             String url = req.getSession().getServletContext().getRealPath("pdf/");
-            //Singleton.generarPdf("prueba", url);
+            Singleton.generarPdf("prueba", url);
 
             identificacion = req.getParameter("docP");
             contrasegna = req.getParameter("conP");
-            char prueba = identificacion.charAt(0);
+            char prueba = 0;
+            if(identificacion.equals("")){
+                prueba = 1;
+            }else{
+                prueba = identificacion.charAt(0);
+            }
+            
 
             System.out.println("Se ha oprimido Iniciar Sesión");
 
