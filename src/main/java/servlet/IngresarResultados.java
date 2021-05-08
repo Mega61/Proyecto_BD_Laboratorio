@@ -51,7 +51,7 @@ public class IngresarResultados extends HttpServlet {
 
                     pelicula2 = tipoActual+pelicula;
                     str += "--"+pelicula2+"-"+req.getParameter(pelicula2)+"--"+idTipos.get(i)+"\n";
-                    Singleton.updateResultadosExamen(req.getParameter(pelicula2), idExamen, idTipos.get(i), tipoActual);
+                    Singleton.updateResultadosExamen(req.getParameter(pelicula2), idExamen, idTipos.get(i), criterios.get(pelicula));
                     pelicula++;
 
                 } else if (i != 0){
@@ -59,7 +59,7 @@ public class IngresarResultados extends HttpServlet {
                     pelicula = 1;
                     pelicula2 = tipoActual+pelicula;
                     str += "--"+pelicula2+"-"+req.getParameter(pelicula2)+"--"+idTipos.get(i)+"\n";
-                    Singleton.updateResultadosExamen(req.getParameter(pelicula2), idExamen, idTipos.get(i), tipoActual);
+                    Singleton.updateResultadosExamen(req.getParameter(pelicula2), idExamen, idTipos.get(i), criterios.get(pelicula));
                     pelicula++;
 
                 }
