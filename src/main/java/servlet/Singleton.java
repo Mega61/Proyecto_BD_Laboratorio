@@ -1073,15 +1073,28 @@ public class Singleton {
 
             if (estado.equals("ESPERANDO REALIZACIÓN")){
 
-                String getNumeroExamen = "SELECT id_examen FROM examen_laboratorio e INNER JOIN paciente p";
+                String getNumeroExamen = "SELECT id_examen FROM examen_laboratorio e INNER JOIN paciente p WHERE p.id_paciente = "+id+" AND  p.id_paciente = e.id_paciente AND fecha_resultados is null";
                 PreparedStatement statement = null;
                 statement = connSQL.prepareStatement(getNumeroExamen);
                 ResultSet rs = statement.executeQuery();
 
-            if (rs.next()) {
-                idexamen = rs.getInt("id_examen");
+                if (rs.next()) {
+                    idexamen = rs.getInt("id_examen");
+                }
+
+                str = "Ya se ha generado su orden, con el número "+idexamen;
+
             }
-                str = "Ya se ha generado su orden, con el número ";
+
+            if (estado.equals("ESPERANDO RESULTADOS")){
+
+                str = "Ya se ha enviado su orden de laboratorio, esperando a que el doctor ingrese los resultados";
+
+            }
+
+            if (estado.equals("RESULTADOS GENERADOS")){
+
+                str="";
 
             }
 

@@ -28,6 +28,8 @@ public class PacienteServlet extends HttpServlet {
             Singleton.cambiarEstadoP(usuarioIngresado, "ESPERANDO CITA");
             req.setAttribute("usuarioLogeado", nombreUsuario);
             System.out.println("Se ha oprimido agendar");
+            String barraEstado = Singleton.getBarraEstado(usuarioIngresado);
+            req.setAttribute("barraestado", barraEstado);
             rDispatcher = req.getRequestDispatcher("paciente.jsp");
             
         }
@@ -35,6 +37,9 @@ public class PacienteServlet extends HttpServlet {
         if (req.getParameter("botonsolicitar") != null) {
 
             System.out.println("Se ha oprimido solicitar");
+            req.setAttribute("usuarioLogeado", nombreUsuario);
+            String barraEstado = Singleton.getBarraEstado(usuarioIngresado);
+            req.setAttribute("barraestado", barraEstado);
             rDispatcher = req.getRequestDispatcher("paciente.jsp");
 
         }
@@ -42,6 +47,9 @@ public class PacienteServlet extends HttpServlet {
         if (req.getParameter("botonresultados") != null) {
 
             System.out.println("Se ha oprimido resultados");
+            req.setAttribute("usuarioLogeado", nombreUsuario);
+            String barraEstado = Singleton.getBarraEstado(usuarioIngresado);
+            req.setAttribute("barraestado", barraEstado);
             rDispatcher = req.getRequestDispatcher("paciente.jsp");
 
         }

@@ -72,6 +72,8 @@ public class ServletLogin extends HttpServlet {
                     HttpSession sessionAdmin = req.getSession();
                     sessionAdmin.setAttribute("paciente", identificacion);
                     String nombreP = Singleton.getNombrePaciente(identificacion);
+                    String barraEstado = Singleton.getBarraEstado(identificacion);
+                    req.setAttribute("barraestado", barraEstado);
                     req.setAttribute("usuarioLogeado", nombreP);
                     sessionAdmin.setAttribute("pacienteNombre", nombreP);
                     rDispatcher = req.getRequestDispatcher("paciente.jsp");
