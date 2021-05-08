@@ -1193,7 +1193,7 @@ public class Singleton {
 
                     str += "<label class=\"criterio" + control + "\">" + rs.getString("criterio_tipo_prueba")
                             + "</label>" + "<input type=\"text\" class=\"cri" + control + "\" name = \"" + tipoActual
-                            + control + "\">";
+                            + control + "\" required>";
 
                     control++;
 
@@ -1205,7 +1205,7 @@ public class Singleton {
                             + "</label>";
                     str += "<label class=\"criterio" + control + "\">" + rs.getString("criterio_tipo_prueba")
                             + "</label>" + "<input type=\"text\" class=\"cri" + control + "\" name = \"" + tipoActual
-                            + control + "\">";
+                            + control + "\" required>";
                     control++;
 
                 }
@@ -1270,11 +1270,19 @@ public class Singleton {
 
     public static void updateResultadosExamen(String res, int idEx, String tipo, String criterio){
 
-        String updateRes = "UPDATE examen_lab_tiene_tipo_prueba SET resultado = '"+res+"' WHERE id_examen = "+idEx+" AND id_tipo_prueba = '"+tipo+"' AND criterio_tipo_prueba = '"+criterio+"'";
+        long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
+        String updateRes = "";
 
         try {
+                updateRes = "UPDATE examen_lab_tiene_tipo_prueba SET resultado = '"+res+"' WHERE id_examen = "+idEx+" AND id_tipo_prueba = '"+tipo+"' AND criterio_tipo_prueba = '"+criterio+"'";
                 PreparedStatement statement = connSQL.prepareStatement(updateRes);
                 statement.executeUpdate(updateRes);
+
+                updateRes = "UPDATE examen_laboratorio SET fecha_resultados = "+date+" WHERE id_examen = "+idEx;
+                statement = connSQL.prepareStatement(updateRes);
+                statement.executeUpdate(updateRes);
+
             } catch (Exception e) {
                 // TODO: handle exception
                 e.printStackTrace();
@@ -1285,7 +1293,7 @@ public class Singleton {
     public static void generarPdf(String nombrePdf, String url) {
 
         String rutaPdf = url + nombrePdf + ".pdf";
-        String rutaHtml = url + "plantilla.html";
+        String rutaHtml = url + "nuevaPlantilla.html";
 
         generarHtmlTemplate(url);
 
@@ -1326,9 +1334,7 @@ public class Singleton {
 
     private static void htmlToPdf(String inputHTML, String outputPDF, String uri) throws IOException {
         org.w3c.dom.Document doc = html5ParseDocument(inputHTML);
-        String baseURI = FileSystems.getDefault().getPath("C:/", "Users/jedaz/Desktop/", "Laboratorio Genesis Proyecto", "BD/Proyecto_BD_Laboratorio/src/main/webapp/pdf/").toUri().toString();
-        System.out.println(baseURI);
-        
+        String baseURI = uri;
         //new URI(uri).toString();
 
         // FileSystems.getDefault().getPath("C:/", "Users/jedaz/Desktop/", "Laboratorio
@@ -1343,7 +1349,7 @@ public class Singleton {
         builder.withUri(outputPDF);
         builder.toStream(out);
         builder.withW3cDocument(doc, baseURI);
-        //builder.useUriResolver(new ResolverURI());
+        builder.useUriResolver(new ResolverURI());
         builder.run();
         out.close();
     }
@@ -1354,9 +1360,25 @@ public class Singleton {
         File plantillaHTML = new File(uri + "plantilla.html");
         try {
             String htmlString = FileUtils.readFileToString(plantillaHTML);
-            String nombrePaciente = "YoPelicula";
-            htmlString = htmlString.replace("$nombrePaciente", nombrePaciente);
-            File HtmlNuevo = new File(uri + "plantilla.html");
+            String nombrePaciente = "Ana Maria Perez";
+            String numeroExamen = "123";
+            String documentoPaciente = "1000366000";
+            String edadPaciente = "50";
+            String medicoRemitente = "Toby";
+            String fechaRemision = "01/01/01";
+            String fechaResultados = "02/02/02";
+            String divs = "<label class=\"tipo\">Hemograma</label>" +
+            "<label class=\"cri1\">Globulos Blancos</label>" +
+            "<label class=\"res1\">4.8</label>";
+            htmlString = htmlString.replace("$nombrepaciente", nombrePaciente);
+            htmlString = htmlString.replace("$numeroexamen", numeroExamen);
+            htmlString = htmlString.replace("$documentopaciente", documentoPaciente);
+            htmlString = htmlString.replace("$edadpaciente", edadPaciente);
+            htmlString = htmlString.replace("$medicoremitente", medicoRemitente);
+            htmlString = htmlString.replace("$fecharemision", fechaRemision);
+            htmlString = htmlString.replace("$fecharesultados", fechaResultados);
+            htmlString = htmlString.replace("$hemograma", divs);
+            File HtmlNuevo = new File(uri + "nuevaPlantilla.html");
             FileUtils.writeStringToFile(HtmlNuevo, htmlString);
         } catch (Exception e) {
             //TODO: handle exception

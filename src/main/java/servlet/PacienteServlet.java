@@ -76,7 +76,18 @@ public class PacienteServlet extends HttpServlet {
 
         }
 
+        if (req.getParameter("ingorden") != null) {
 
+            int idExImp = Integer.parseInt(req.getParameter("ingnumorden"));
+            int idEX = Singleton.getIdExamenPaciente(usuarioIngresado);
+
+            if (idExImp == idEX){
+
+                Singleton.cambiarEstadoP(usuarioIngresado, "");
+
+            }
+            
+        }
 
         rDispatcher.forward(req, resp);
 
