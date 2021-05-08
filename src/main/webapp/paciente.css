@@ -25,6 +25,8 @@ body {
 
 .nomperfil {
     position: relative;
+    width: 111px;
+    height: 57px;
     top: 0px;
     left: 1625px;
     font-family: Roboto;
@@ -38,6 +40,14 @@ body {
     color: #E6FFFB;
     cursor: pointer;
     background-color: violet;
+}
+
+.caret {
+    position: absolute;
+    width: 30.76px;
+    height: 28px;
+    left: 1835.74px;
+    top: 72px;
 }
 
 .subhP {
