@@ -38,8 +38,8 @@
         </div>
         <div class="subhP">
             <img id="oficina" src="svg/oficina virtual.svg">
-            <button class="nomperfil" onmouseover="mostrarbots()">${usuarioLogeado}</button>
-            <img class="caret" src="svg/CaretDown.svg">
+            <button class="nomperfil" onmouseover="mostrarbots()">${usuarioLogeado} <img src="svg/CaretDown.svg"></button>
+
             <label>${barraestado}</label>
             <form action="paciente" method="GET">
                 <div id=divinferior hidden=true>
