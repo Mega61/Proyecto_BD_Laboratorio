@@ -33,14 +33,11 @@ body {
     font-size: 20px;
     line-height: 28px;
     /* identical to box height, or 140% */
-    display: flex;
-    align-items: right;
     text-align: right;
     /* Página laboratorio médico/10 */
     color: #E6FFFB;
-    background-color: transparent;
-    border: transparent;
     cursor: pointer;
+    background-color: violet;
 }
 
 .subhP {
