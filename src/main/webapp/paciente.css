@@ -128,3 +128,37 @@ body {
     text-align: center;
     color: #E6FFFB;
 }
+.estado {
+    position: absolute;
+    width: 486px;
+    height: 334px;
+    left: 1353px;
+    top: 482px;
+    background: #36CFC9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.estgen {
+    position: absolute;
+    width: 486px;
+    height: 61px;
+    left: 0px;
+    top: 0px;
+    /* Página laboratorio médico/70 */
+    background: #08979C;
+}
+
+.feedback {
+    position: absolute;
+    width: 404px;
+    height: 72px;
+    left: 41px;
+    top: 81px;
+    /* Typography Laboratorio/Headers/SubHeader */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #E6FFFB;
+}
