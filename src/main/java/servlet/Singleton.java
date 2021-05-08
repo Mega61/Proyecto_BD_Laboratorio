@@ -457,6 +457,8 @@ public class Singleton {
             e.printStackTrace();
         }
 
+        cerrarConexion();
+
         return str;
 
     }
@@ -476,6 +478,8 @@ public class Singleton {
             // TODO: handle exception
             e.printStackTrace();
         }
+
+        cerrarConexion();
 
     }
 
@@ -525,6 +529,8 @@ public class Singleton {
             // TODO: handle exception
             e.printStackTrace();
         }
+
+        cerrarConexion();
 
         return str;
 
@@ -589,6 +595,8 @@ public class Singleton {
             // TODO: handle exception
             e.printStackTrace();
         }
+
+        cerrarConexion();
 
         return str;
 
@@ -1131,7 +1139,7 @@ public class Singleton {
 
     }
 
-    public static int getIdExamen(String username) {
+    public static int getIdExamenPaciente(String username) {
 
         String getId = "SELECT id_examen FROM examen_laboratorio e INNER JOIN paciente p WHERE p.id_paciente = "
                 + username + " AND  p.id_paciente = e.id_paciente AND fecha_resultados is null;";
@@ -1161,32 +1169,46 @@ public class Singleton {
         String fullEx = "SELECT p.nombre_tipo_prueba, e.criterio_tipo_prueba FROM examen_lab_tiene_tipo_prueba e INNER JOIN tipo_prueba p WHERE e.id_tipo_prueba = p.id_tipo_prueba AND e.id_examen = "
                 + idEx + ";";
         String str = "";
-        String tipoActual, tipoNuevo = ""; 
-        int control = 0;  
+        String tipoActual, tipoNuevo = "";
+        int control = 1;
 
         try {
             PreparedStatement statement = connSQL.prepareStatement(fullEx);
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {
-                
+
                 tipoActual = rs.getString("nombre_tipo_prueba");
+                
+                if (tipoNuevo.equals(tipoActual) || control == 1) {
 
-                while(tipoActual.equals(tipoNuevo) || control == 0){
-                    
-                    if(control == 0){
+                    if (control == 1) {
 
-                        //str +=
+                        str += "<div class=\"elingreso\"><hr color=\"white\" size=\"1\"><label class=\"h4\">"
+                                + tipoActual + "</label>";
 
                     }
 
-                    str += 
+                    str += "<label class=\"criterio" + control + "\">" + rs.getString("criterio_tipo_prueba")
+                            + "</label>" + "<input type=\"text\" class=\"cri" + control + "\" name = \""+tipoActual
+                            + control + "\">";
 
-                    tipoNuevo = rs.getString("nombre_tipo_prueba");
                     control++;
+
+                } else if(control != 1){
+
+                    control = 1;
+                    str += "</div>";
+                    str += "<div class=\"elingreso\"><hr color=\"white\" size=\"1\"><label class=\"h4\">"
+                                + tipoActual + "</label>";
+                    str += "<label class=\"criterio" + control + "\">" + rs.getString("criterio_tipo_prueba")
+                            + "</label>" + "<input type=\"text\" class=\"cri" + control + "\" name = \""+tipoActual
+                            + control + "\">";
+                    control ++;
+
                 }
-                
-                control = 0;
+
+                tipoNuevo = rs.getString("nombre_tipo_prueba");
 
             }
 

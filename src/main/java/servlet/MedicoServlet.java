@@ -76,7 +76,13 @@ public class MedicoServlet extends HttpServlet {
                     rDispatcher = req.getRequestDispatcher("generarorden.jsp");
 
                 } else {
+                    String str = Singleton.getPacientesMed();
+                    req.setAttribute("listaPacMed", str);
+                    req.setAttribute("nameM", nombreUsuario);
+                    session.setAttribute("medico", usuarioIngresado);
+                    session.setAttribute("medicoNombre", nombreUsuario);
                     System.out.println("El paciente no tiene el estado ESPERANDO CITA");
+                    rDispatcher = req.getRequestDispatcher("medico.jsp");
                 }
 
             }
@@ -84,14 +90,26 @@ public class MedicoServlet extends HttpServlet {
             if (req.getParameter(botonResultados) != null) {
 
                 String id = req.getParameter(nameid);
+                String nombrePaciente = Singleton.getNombrePaciente(id);
                 System.out.println("Se ha oprimido el botón resultados " + i + " con ID: " + id);
                 String estado = Singleton.getEstadoP(id);
                 if (estado.equals("ESPERANDO RESULTADOS")) {
-
+                    Singleton.connectarBD();
+                    int idEx = Singleton.getIdExamenPaciente(id);
+                    String listaResultados = Singleton.getListaTiposExamen(idEx);
+                    req.setAttribute("listaresultados", listaResultados);
+                    req.setAttribute("nomMed", nombreUsuario);
+                    req.setAttribute("nomPaciente", nombrePaciente);
                     System.out.println("si puede presionar este botón: Generar Resultados");
-                    rDispatcher = req.getRequestDispatcher("resultadosPaciente.html");
+                    Singleton.cerrarConexion();
+                    rDispatcher = req.getRequestDispatcher("ingresores.jsp");
 
                 } else {
+                    String str = Singleton.getPacientesMed();
+                    req.setAttribute("listaPacMed", str);
+                    req.setAttribute("nameM", nombreUsuario);
+                    session.setAttribute("medico", usuarioIngresado);
+                    session.setAttribute("medicoNombre", nombreUsuario);
                     System.out.println("El paciente no tiene el estado ESPERANDO RESULTADOS");
                     rDispatcher = req.getRequestDispatcher("medico.jsp");
                 }
