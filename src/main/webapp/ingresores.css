@@ -1,0 +1,319 @@
+body {
+    background-size: cover;
+    text-align: center;
+    overflow-x: hidden;
+    /* Página laboratorio médico/10 */
+    background: #E6FFFB;
+}
+
+#logoh {
+    position: absolute;
+    width: 195px;
+    height: 51px;
+    left: 61px;
+    top: 6px;
+}
+
+#bannerM {
+    position: absolute;
+    width: 111px;
+    height: 57px;
+    left: 1684px;
+    top: 3px;
+}
+
+.subhM {
+    position: absolute;
+    width: 1920px;
+    height: 48px;
+    left: 0px;
+    top: 67.05px;
+    background: #36CFC9;
+}
+
+.contenedor {
+    position: absolute;
+    width: 836px;
+    height: 760px;
+    left: 543px;
+    top: 141px;
+    background: #36CFC9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.headerGe {
+    position: relative;
+    width: 836px;
+    height: 78px;
+    left: 0px;
+    top: 0px;
+    /* Página laboratorio médico/70 */
+    background: #08979C;
+}
+
+.h3 {
+    position: relative;
+    top: 13px;
+    left: 24px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 38px;
+    /* or 127% */
+    display: flex;
+    align-items: center;
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
+}
+
+.elingreso {
+    position: relative;
+    width: 836px;
+    height: 305px;
+    top: 37px;
+    left: 0px;
+}
+
+#logopac {
+    position: relative;
+    width: 395px;
+    height: 43px;
+    top: 16px;
+    left: -200px;
+}
+
+.nombrepac {
+    position: absolute;
+    top: 16px;
+    left: 500px;
+    /* Typography Laboratorio/Headers/H1 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 38px;
+    line-height: 46px;
+    /* or 121% */
+    display: flex;
+    align-items: center;
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
+}
+
+.h4 {
+    position: relative;
+    top: 0px;
+    left: 239px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 38px;
+    /* or 140% */
+    display: flex;
+    align-items: center;
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
+}
+
+.h5 {
+    position: relative;
+    top: 243px;
+    left: 82px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 38px;
+    /* or 140% */
+    display: flex;
+    align-items: center;
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
+}
+
+#tipos {
+    position: relative;
+    width: 671px;
+    height: 40px;
+    left: 0px;
+    top: 297px;
+    /* Neutral / 1 */
+    background: #FFFFFF;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+
+#linea3 {
+    position: relative;
+    top: 250px;
+}
+
+.footer {
+    position: relative;
+    width: 836px;
+    height: 50px;
+    left: 0px;
+    top: 100px;
+    background-color: #36CFC9
+}
+
+.criterio1 {
+    position: absolute;
+    left: 141px;
+    top: 63px;
+    /* Typography Laboratorio/Headers/H4 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    /* or 140% */
+    display: flex;
+    align-items: center;
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
+}
+
+.criterio2 {
+    position: absolute;
+    left: 141px;
+    top: 123px;
+    /* Typography Laboratorio/Headers/H4 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    /* or 140% */
+    display: flex;
+    align-items: center;
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
+}
+
+.criterio3 {
+    position: absolute;
+    left: 141px;
+    top: 183px;
+    /* Typography Laboratorio/Headers/H4 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    /* or 140% */
+    display: flex;
+    align-items: center;
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
+}
+
+.criterio4 {
+    position: absolute;
+    left: 141px;
+    top: 243px;
+    /* Typography Laboratorio/Headers/H4 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    /* or 140% */
+    display: flex;
+    align-items: center;
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
+}
+
+.cri1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 12px;
+    position: absolute;
+    width: 455px;
+    height: 29px;
+    left: 239px;
+    top: 63px;
+    /* Neutral / 1 */
+    background: #FFFFFF;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+
+.cri2 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 12px;
+    position: absolute;
+    width: 455px;
+    height: 29px;
+    left: 239px;
+    top: 123px;
+    /* Neutral / 1 */
+    background: #FFFFFF;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+
+.cri3 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 12px;
+    position: absolute;
+    width: 455px;
+    height: 29px;
+    left: 239px;
+    top: 183px;
+    /* Neutral / 1 */
+    background: #FFFFFF;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+
+.cri4 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 12px;
+    position: absolute;
+    width: 455px;
+    height: 29px;
+    left: 239px;
+    top: 243px;
+    /* Neutral / 1 */
+    background: #FFFFFF;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+
+.genorden {
+    position: absolute;
+    width: 463px;
+    height: 40px;
+    left: 185px;
+    top: 515px;
+    /* Cyan / 7 */
+    background: #08979C;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+    /* drop-shadow / button-primary */
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
+    border-radius: 10px;
+}
