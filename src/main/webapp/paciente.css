@@ -24,23 +24,29 @@ body {
 }
 
 .nomperfil {
-    position: relative;
-    top: 0px;
-    left: 1625px;
+    position: absolute;
+    width: 325px;
+    height: 31px;
+    top: -5px;
+    left: 1525px;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
     line-height: 28px;
     /* identical to box height, or 140% */
-    display: flex;
-    align-items: right;
     text-align: right;
+    vertical-align: middle;
     /* Página laboratorio médico/10 */
     color: #E6FFFB;
     background-color: transparent;
-    border: transparent;
     cursor: pointer;
+    border: transparent;
+}
+
+#flecha {
+    position: relative;
+    top: 5px;
 }
 
 .subhP {
@@ -188,18 +194,18 @@ body {
 
 #divinferior {
     position: relative;
-    top: 3px;
+    top: 34px;
     left: 1782px;
-    width: 84px;
+    width: 89px;
     height: 66px;
     background: #08979C;
 }
 
 .botperfil {
     position: absolute;
-    width: 49px;
+    width: 89px;
     height: 24px;
-    left: 17px;
+    left: 0px;
     top: 4px;
     background-color: transparent;
     border: transparent;
@@ -222,9 +228,9 @@ body {
 
 .botlogout {
     position: absolute;
-    width: 49px;
+    width: 89px;
     height: 24px;
-    left: 12px;
+    left: 0px;
     top: 38px;
     background-color: transparent;
     border: transparent;
@@ -249,4 +255,8 @@ body {
     position: absolute;
     left: 82px;
     top: 10px;
+}
+
+top: 10px;
+
 }

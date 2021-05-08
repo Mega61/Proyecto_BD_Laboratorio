@@ -38,13 +38,13 @@
         </div>
         <div class="subhP">
             <img id="oficina" src="svg/oficina virtual.svg">
-            <button class="nomperfil" onmouseover="mostrarbots()">${usuarioLogeado} <img src="svg/CaretDown.svg"></button>
+            <button class="nomperfil" onmouseover="mostrarbots()">${usuarioLogeado} <img id="flecha" src="svg/CaretDown.svg"></button>
 
             <label>${barraestado}</label>
             <form action="paciente" method="GET">
                 <div id=divinferior hidden=true>
-                    <button class="botperfil" name="botonperfilpac">Perfil</button>
-                    <button class="botlogout" name="botonlogoutpac">LogOut</button>
+                    <button class="botperfil" name="botonperfilpac">Perfil <img src="svg/User.svg"></button>
+                    <button class="botlogout" name="botonlogoutpac">LogOut <img src="svg/Upload.svg"></button>
                 </div>
             </form>
 
@@ -53,9 +53,9 @@
         <div>
             <form action="paciente" method="GET">
 
-                <button class="botagendar" name="botonagendar">Agendar Cita</button>
-                <button class="botsolicitar" name="botonsolicitar">Solicitar Examen (es)</button>
-                <button class="botresultados" name="botonresultados">Resultados</button>
+                <button class="botagendar" name="botonagendar"><img src="svg/Book.svg"> <br><hr color="white" size="1px">Agendar <br>Cita</button>
+                <button class="botsolicitar" name="botonsolicitar"><img src="svg/FileText.svg"><br><hr color="white" size="1px">Solicitar<br> Examen(es)</button>
+                <button class="botresultados" name="botonresultados"><img src="svg/CarryOut.svg"><br><hr color="white" size="1px">Historial de <br>Resultados</button>
             </form>
             <div>
                 <img id="footerp" src="svg/Footer vistas.svg">
