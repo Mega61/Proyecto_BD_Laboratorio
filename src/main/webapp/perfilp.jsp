@@ -38,21 +38,37 @@
             ${infopac}
         </div>
     </div>
-    <div class="contenedor2">
+   <div class="contenedor2">
         <div class="hder">
-            <img id="logo2" src="svg/Letras logo.svg">
-            <label class="histo">Historial</label> </div>
-        <div>
-            <label class="nexa">N° Examen</label>
-            <label class="fere">Fecha de Remisión</label>
-            <hr id="divisor3" color="white" size="1" class="linea">
-            <form>
-                <label class="codexa">E12560</label>
-                <label class="ferem">10/04/2021</label>
-                <button class="verres">Ver Resultados</button>
-            </form>
+            <img id="logoce" src="Group 66.svg">
 
-        </div>eba
+            <div>
+
+                <form>
+                    <img class="puntonomce" src="Ellipse 2.svg">
+                    <label id="nomce">Nombre:</label>
+                    <label id="vnomce">Juan</label>
+                    <img class="puntoedadce" src="Ellipse 2.svg">
+                    <label id="edadce">Edad:</label>
+                    <label id="vedadce">85</label>
+                    <img class="puntoparce" src="Ellipse 2.svg">
+                    <label id="parce">Parentesco:</label>
+                    <label id="vparce">Padre</label>
+                    <img class="puntotoolcorreoce" src="Ellipse 2.svg">
+                    <img class="toolcorreoce" src="tool.svg">
+                    <label id="correoce">Correo</label>
+                    <input type="text" id="editcorreoce">
+                    <img class="puntotooltelce" src="Ellipse 2.svg">
+                    <img class="tooltelce" src="tool.svg">
+                    <label id="telce">Confirmar Contraseña</label>
+                    <input type="text" id="edittelce">
+                    <button class="confirmarce">Confirmar Cambios</button>
+                    <br>
+                    <br>
+                </form>
+
+            </div>
+        </div>
     </div>
 
 
