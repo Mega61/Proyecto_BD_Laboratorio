@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,25 +25,57 @@ public class IngresarResultados extends HttpServlet {
         String nombreMedico = session.getAttribute("medicoNombre").toString();
         int idExamen = Integer.parseInt(session.getAttribute("examen").toString());
         ArrayList<String> tipos = new ArrayList<String>();
+        ArrayList<String> idTipos = new ArrayList<String>();
+        ArrayList<String> criterios = new ArrayList<String>();
         String str = "";
+        String pelicula2 = "";
+        int pelicula = 1;
 
-        RequestDispatcher rDispatcher = req.getRequestDispatcher("generarorden.jsp");
+        RequestDispatcher rDispatcher = req.getRequestDispatcher("medico.jsp");
 
         if (req.getParameter("generaror") != null) {
 
+            Singleton.connectarBD();
             tipos = Singleton.getTiposExamen(idExamen);
+            idTipos = Singleton.getIdTiposExamen(idExamen);
+            String tipoActual = "";
+            String tipoNuevo = "";
 
             for (int i = 0; i < tipos.size(); i++) {
-                
-                str
+
+                tipoActual = tipos.get(i);
+                PreparedStatement statement = null;
+                criterios = Singleton.getCriterios(idTipos.get(i), statement);
+
+                if(tipoActual.equals(tipoNuevo) || i == 0){
+
+                    pelicula2 = tipoActual+pelicula;
+                    str += "--"+pelicula2+"-"+req.getParameter(pelicula2)+"--"+idTipos.get(i)+"\n";
+                    Singleton.updateResultadosExamen(req.getParameter(pelicula2), idExamen, idTipos.get(i), tipoActual);
+                    pelicula++;
+
+                } else if (i != 0){
+
+                    pelicula = 1;
+                    pelicula2 = tipoActual+pelicula;
+                    str += "--"+pelicula2+"-"+req.getParameter(pelicula2)+"--"+idTipos.get(i)+"\n";
+                    Singleton.updateResultadosExamen(req.getParameter(pelicula2), idExamen, idTipos.get(i), tipoActual);
+                    pelicula++;
+
+                }
+                    
+                tipoNuevo = tipos.get(i);
 
             }
-           
+        
+           //rDispatcher = req.getRequestDispatcher("medico.jsp");
+           System.out.println(str);
+           Singleton.cerrarConexion();
         }
 
        
 
-        rDispatcher.forward(req, resp);
+        //rDispatcher.forward(req, resp);
 
     }
 

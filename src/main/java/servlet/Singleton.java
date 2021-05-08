@@ -23,6 +23,7 @@ import com.mysql.cj.x.protobuf.MysqlxPrepare.Prepare;
 import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
 import com.openhtmltopdf.svgsupport.BatikSVGDrawer;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.regexp.recompile;
 import org.apache.tomcat.jni.OS;
 import org.apache.xml.utils.URI;
@@ -1180,7 +1181,7 @@ public class Singleton {
             while (rs.next()) {
 
                 tipoActual = rs.getString("nombre_tipo_prueba");
-                
+
                 if (tipoNuevo.equals(tipoActual) || control == 1) {
 
                     if (control == 1) {
@@ -1191,21 +1192,21 @@ public class Singleton {
                     }
 
                     str += "<label class=\"criterio" + control + "\">" + rs.getString("criterio_tipo_prueba")
-                            + "</label>" + "<input type=\"text\" class=\"cri" + control + "\" name = \""+tipoActual
+                            + "</label>" + "<input type=\"text\" class=\"cri" + control + "\" name = \"" + tipoActual
                             + control + "\">";
 
                     control++;
 
-                } else if(control != 1){
+                } else if (control != 1) {
 
                     control = 1;
                     str += "</div>";
-                    str += "<div class=\"elingreso\"><hr color=\"white\" size=\"1\"><label class=\"h4\">"
-                                + tipoActual + "</label>";
+                    str += "<div class=\"elingreso\"><hr color=\"white\" size=\"1\"><label class=\"h4\">" + tipoActual
+                            + "</label>";
                     str += "<label class=\"criterio" + control + "\">" + rs.getString("criterio_tipo_prueba")
-                            + "</label>" + "<input type=\"text\" class=\"cri" + control + "\" name = \""+tipoActual
+                            + "</label>" + "<input type=\"text\" class=\"cri" + control + "\" name = \"" + tipoActual
                             + control + "\">";
-                    control ++;
+                    control++;
 
                 }
 
@@ -1222,11 +1223,11 @@ public class Singleton {
 
     }
 
-    public static ArrayList<String> getTiposExamen(int id_examen){
+    public static ArrayList<String> getTiposExamen(int id_examen) {
 
         ArrayList<String> tipos = new ArrayList<String>();
-        String buscarString = "SELECT t.nombre_tipo_prueba FROM examen_lab_tiene_tipo_prueba e INNER JOIN tipo_prueba t" 
-                                +"WHERE e.id_examen = "+id_examen+" AND e.id_tipo_prueba = t.id_tipo_prueba";
+        String buscarString = "SELECT t.nombre_tipo_prueba FROM examen_lab_tiene_tipo_prueba e INNER JOIN tipo_prueba t "
+                + "WHERE e.id_examen = " + id_examen + " AND e.id_tipo_prueba = t.id_tipo_prueba";
 
         try {
 
@@ -1235,13 +1236,49 @@ public class Singleton {
             while (rs.next()) {
                 tipos.add(rs.getString("nombre_tipo_prueba"));
             }
-            
+
         } catch (Exception e) {
-            //TODO: handle exception
+            // TODO: handle exception
             e.printStackTrace();
         }
 
         return tipos;
+
+    }
+
+    public static ArrayList<String> getIdTiposExamen(int id_examen) {
+
+        ArrayList<String> idTipos = new ArrayList<String>();
+        String idString = "SELECT id_tipo_prueba FROM examen_lab_tiene_tipo_prueba WHERE id_examen = "+id_examen;
+
+        try {
+
+            PreparedStatement statement = connSQL.prepareStatement(idString);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                idTipos.add(rs.getString("id_tipo_prueba"));
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        return idTipos;
+
+    }
+
+    public static void updateResultadosExamen(String res, int idEx, String tipo, String criterio){
+
+        String updateRes = "UPDATE examen_lab_tiene_tipo_prueba SET resultado = '"+res+"' WHERE id_examen = "+idEx+" AND id_tipo_prueba = '"+tipo+"' AND criterio_tipo_prueba = '"+criterio+"'";
+
+        try {
+                PreparedStatement statement = connSQL.prepareStatement(updateRes);
+                statement.executeUpdate(updateRes);
+            } catch (Exception e) {
+                // TODO: handle exception
+                e.printStackTrace();
+            }
 
     }
 
@@ -1286,9 +1323,11 @@ public class Singleton {
 
     private static void htmlToPdf(String inputHTML, String outputPDF, String uri) throws IOException {
         org.w3c.dom.Document doc = html5ParseDocument(inputHTML);
-        String baseURI = new URI(uri).toString();
+        String baseURI = FileSystems.getDefault().getPath("C:/", "Users/jedaz/Desktop/", "Laboratorio Genesis Proyecto", "BD/Proyecto_BD_Laboratorio/src/main/webapp/pdf/").toUri().toString();
         System.out.println(baseURI);
         
+        //new URI(uri).toString();
+
         // FileSystems.getDefault().getPath("C:/", "Users/jedaz/Desktop/", "Laboratorio
         // Genesis Proyecto
         // BD/Proyecto_BD_Laboratorio/src/main/webapp/pdf/").toUri().toString();
@@ -1305,7 +1344,20 @@ public class Singleton {
         builder.run();
         out.close();
     }
-    
-    
+
+
+    private static void generarHtmlTemplate(String uri){
+
+        File plantillaHTML = new File(uri + "plantilla.html");
+        try {
+            String htmlString = FileUtils.readFileToString(plantillaHTML);
+        } catch (Exception e) {
+            //TODO: handle exception
+            e.printStackTrace();
+        }
+        
+
+
+    }
 
 }
