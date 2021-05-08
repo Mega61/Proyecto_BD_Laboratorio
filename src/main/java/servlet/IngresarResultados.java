@@ -30,6 +30,7 @@ public class IngresarResultados extends HttpServlet {
         String str = "";
         String pelicula2 = "";
         int pelicula = 1;
+        int pelicula3 = 0;
 
         RequestDispatcher rDispatcher = req.getRequestDispatcher("medico.jsp");
 
@@ -50,16 +51,18 @@ public class IngresarResultados extends HttpServlet {
                 if(tipoActual.equals(tipoNuevo) || i == 0){
 
                     pelicula2 = tipoActual+pelicula;
+                    pelicula3 = pelicula-1;
                     str += "--"+pelicula2+"-"+req.getParameter(pelicula2)+"--"+idTipos.get(i)+"\n";
-                    Singleton.updateResultadosExamen(req.getParameter(pelicula2), idExamen, idTipos.get(i), criterios.get(pelicula));
+                    Singleton.updateResultadosExamen(req.getParameter(pelicula2), idExamen, idTipos.get(i), criterios.get(pelicula3));
                     pelicula++;
 
                 } else if (i != 0){
 
                     pelicula = 1;
+                    pelicula3 = pelicula-1;
                     pelicula2 = tipoActual+pelicula;
                     str += "--"+pelicula2+"-"+req.getParameter(pelicula2)+"--"+idTipos.get(i)+"\n";
-                    Singleton.updateResultadosExamen(req.getParameter(pelicula2), idExamen, idTipos.get(i), criterios.get(pelicula));
+                    Singleton.updateResultadosExamen(req.getParameter(pelicula2), idExamen, idTipos.get(i), criterios.get(pelicula3));
                     pelicula++;
 
                 }

@@ -1286,6 +1286,9 @@ public class Singleton {
 
         String rutaPdf = url + nombrePdf + ".pdf";
         String rutaHtml = url + "plantilla.html";
+
+        generarHtmlTemplate(url);
+
         try {
             htmlToPdf(rutaHtml, rutaPdf, url);
         } catch (Exception e) {
@@ -1351,6 +1354,10 @@ public class Singleton {
         File plantillaHTML = new File(uri + "plantilla.html");
         try {
             String htmlString = FileUtils.readFileToString(plantillaHTML);
+            String nombrePaciente = "YoPelicula";
+            htmlString = htmlString.replace("$nombrePaciente", nombrePaciente);
+            File HtmlNuevo = new File(uri + "plantilla.html");
+            FileUtils.writeStringToFile(HtmlNuevo, htmlString);
         } catch (Exception e) {
             //TODO: handle exception
             e.printStackTrace();
