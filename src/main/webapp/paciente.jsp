@@ -29,6 +29,12 @@
             <button class="botlogout" name="botonlogoutpac">LogOut</button>
 		<label class="nomperfil">${usuarioLogeado}</label>
         </form>
+	     <div class="estado">
+            <div class="estgen">
+                <img src="Estado Genesis.svg">
+            </div>
+            <label class="feedback">Estimado Usuario........</label>
+        </div>
     </div>
     <div>
         <img id="carPac" src="svg/CarruselPac.svg">
