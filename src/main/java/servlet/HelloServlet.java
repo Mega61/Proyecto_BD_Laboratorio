@@ -19,7 +19,7 @@ public class HelloServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        Singleton singleton = Singleton.getSingleton();
+        //Singleton singleton = Singleton.getSingleton();
         
         /*String correo = "";
         String contrasegna = "";*/

@@ -1309,6 +1309,14 @@ public class Singleton {
 
     }
 
+    public static String getHistorialExamenesPaciente(String username){
+
+        String getHistorial = "SELECT "
+        
+        return "";
+
+    }
+
     public static void generarPdf(String nombrePdf, String url, int idExamen) {
 
         String rutaPdf = url + nombrePdf + ".pdf";
