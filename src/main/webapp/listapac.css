@@ -105,7 +105,7 @@ body {
     position: relative;
     width: 836px;
     height: 105px;
-    top: 50px;
+    top: 0px;
     left: 0px;
 }
 
@@ -285,3 +285,4 @@ body {
     /* Página laboratorio médico/10 */
     color: #E6FFFB;
 }
+

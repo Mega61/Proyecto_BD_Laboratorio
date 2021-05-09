@@ -873,12 +873,12 @@ public class Singleton {
                 String estado = rs.getString("estado_paciente");
                 int id = rs.getInt("id_paciente");
 
-                str += "<br> <div class=\"pacienteM\"><label class=\"nombrePac\">" + nombre + "</label>\r\n"
+                str += "<br> <div class=\"pacienteM\"><hr color=\"white\" size=\"1\" class=\"linea\"> <label class=\"nombrePac\">" + nombre + "</label>\r\n"
                         + "                <label class=\"docpac\">" + id + "</label>\r\n"
                         + "                <label class=\"estado\">" + estado + "</label>\r\n"
                         + "                <button class=\"editarpac\" name=\"botoneditarpac" + contb
                         + "\">Editar</button>\r\n"
-                        + "                <button class=\"eliminarpac\" name-=\"botoneliminarpac" + contb
+                        + "                <button class=\"eliminarpac\" name=\"botoneliminarpac" + contb
                         + "\">Eliminar</button></div>";
 
                 contb++;
@@ -917,7 +917,7 @@ public class Singleton {
                         + "                <label class=\"consul\">" + consultorio + "</label>\r\n"
                         + "                <button class=\"editarmed\" name=\"botoneditarmed" + numerobot
                         + "\">Editar</button>\r\n"
-                        + "                <button class=\"eliminarmed\" name-=\"botoneliminarmed" + numerobot
+                        + "                <button class=\"eliminarmed\" name=\"botoneliminarmed" + numerobot
                         + "\">Eliminar</button></div>";
 
                 numerobot++;
