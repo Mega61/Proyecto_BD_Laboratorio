@@ -1055,7 +1055,7 @@ public class Singleton {
 
         try {
 
-            String traerCriterios = "SELECT criterio_tipo_prueba FROM WHERE id_tipo_prueba = '"
+            String traerCriterios = "SELECT criterio_tipo_prueba FROM criterios_tipo_prueba WHERE id_tipo_prueba = '"
                     + idTipo + "';";
 
             statement = connSQL.prepareStatement(traerCriterios);
@@ -1076,7 +1076,6 @@ public class Singleton {
     public static String getBarraEstado(String username) {
 
         String str = "";
-        int id = Integer.parseInt(username);
         int idexamen = 0;
         String estado = getEstadoP(username);
 
@@ -1092,24 +1091,19 @@ public class Singleton {
 
             }
 
-            if (estado.equals("ESPERANDO REALIZACIÓN")) {
+            if (estado.equals("ESPERANDO REALIZACION")) {
 
-                String getNumeroExamen = "SELECT id_examen FROM examen_laboratorio e INNER JOIN paciente p WHERE p.id_paciente = "
-                        + id + " AND  p.id_paciente = e.id_paciente AND fecha_resultados is null";
-                PreparedStatement statement = null;
-                statement = connSQL.prepareStatement(getNumeroExamen);
-                ResultSet rs = statement.executeQuery();
-
-                if (rs.next()) {
-                    idexamen = rs.getInt("id_examen");
-                }
-
+                connectarBD();
+                idexamen = getIdExamenPaciente(username);
+                
                 str = "<div class=\"estado\">\r\n" + "                       <div class=\"estgen\">\r\n"
                         + "                       <img src=\"svg/Estado Genesis.svg\">\r\n"
                         + "                       </div>\r\n" + "                       <label class=\"feedback\">"
                         + "Ya se ha generado su orden, con el número: " + idexamen + "</label>\r\n"
                         + "                       </div>";
                 ;
+
+                cerrarConexion();
 
             }
 
@@ -1143,6 +1137,8 @@ public class Singleton {
     }
 
     public static int getIdExamenPaciente(String username) {
+
+        
 
         String getId = "SELECT id_examen FROM examen_laboratorio e INNER JOIN paciente p WHERE p.id_paciente = "
                 + username + " AND  p.id_paciente = e.id_paciente AND fecha_resultados is null;";

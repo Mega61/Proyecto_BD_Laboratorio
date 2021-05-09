@@ -34,7 +34,7 @@ public class generarOrden extends HttpServlet {
             String tipo4 = req.getParameter("tiposexamenes4");
 
             Singleton.crearExamen(idMedico, idPaciente, diagnostico, tipo0, tipo1, tipo2, tipo3, tipo4);
-            Singleton.cambiarEstadoP(idPacienteS, "ESPERANDO REALIZACIÓN");
+            Singleton.cambiarEstadoP(idPacienteS, "ESPERANDO REALIZACION");
             
             System.out.println(diagnostico + " " + tipo0 + " " + tipo1 + " " + tipo2 + " " + tipo3 + " " + tipo4);
             session = req.getSession();
