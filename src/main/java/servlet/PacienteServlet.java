@@ -48,10 +48,11 @@ public class PacienteServlet extends HttpServlet {
 
             System.out.println("Se ha oprimido resultados");
             req.setAttribute("usuarioLogeado", nombreUsuario);
-            String barraEstado = Singleton.getBarraEstado(usuarioIngresado);
-            req.setAttribute("barraestado", barraEstado);
-            req.setAttribute("nombrePac", nombreUsuario);
-            rDispatcher = req.getRequestDispatcher("paciente.jsp");
+            session.setAttribute("pacienteNombre", nombreUsuario);
+            session.setAttribute("paciente", usuarioIngresado);
+            String examenes = Singleton.getHistorialExamenesPaciente(usuarioIngresado);
+            req.setAttribute("listaexamenes", examenes);
+            rDispatcher = req.getRequestDispatcher("respacientes.jsp");
 
         }
 

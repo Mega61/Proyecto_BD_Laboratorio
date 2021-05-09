@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <html>
@@ -30,11 +32,11 @@
         <div class="hder">
             <img id="logo2" src="svg/resgenesis.svg">
             <label class="exa">No Exámen:</label>
-            <label class="numexa">El numero</label>
+            <label class="numexa">${numeroexamen}</label>
         </div>
         <div class="pdf">
 
-            <iframe src="pdf/prueba.pdf" width="995px" height="638px" style="border: none;">
+            <iframe ${rutaexamen} width="995px" height="638px" style="border: none;">
               
             </iframe>
 

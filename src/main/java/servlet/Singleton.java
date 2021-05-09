@@ -873,8 +873,8 @@ public class Singleton {
                 String estado = rs.getString("estado_paciente");
                 int id = rs.getInt("id_paciente");
 
-                str += "<br> <div class=\"pacienteM\"><hr color=\"white\" size=\"1\" class=\"linea\"> <label class=\"nombrePac\">" + nombre + "</label>\r\n"
-                        + "                <label class=\"docpac\">" + id + "</label>\r\n"
+                str += "<br> <div class=\"pacienteM\"><hr color=\"white\" size=\"1\" class=\"linea\"> <label class=\"nombrePac\">"
+                        + nombre + "</label>\r\n" + "                <label class=\"docpac\">" + id + "</label>\r\n"
                         + "                <label class=\"estado\">" + estado + "</label>\r\n"
                         + "                <button class=\"editarpac\" name=\"botoneditarpac" + contb
                         + "\">Editar</button>\r\n"
@@ -1095,7 +1095,7 @@ public class Singleton {
 
                 connectarBD();
                 idexamen = getIdExamenPaciente(username);
-                
+
                 str = "<div class=\"estado\">\r\n" + "                       <div class=\"estgen\">\r\n"
                         + "                       <img src=\"svg/Estado Genesis.svg\">\r\n"
                         + "                       </div>\r\n" + "                       <label class=\"feedback\">"
@@ -1137,8 +1137,6 @@ public class Singleton {
     }
 
     public static int getIdExamenPaciente(String username) {
-
-        
 
         String getId = "SELECT id_examen FROM examen_laboratorio e INNER JOIN paciente p WHERE p.id_paciente = "
                 + username + " AND  p.id_paciente = e.id_paciente AND fecha_resultados is null;";
@@ -1309,12 +1307,63 @@ public class Singleton {
 
     }
 
-    public static String getHistorialExamenesPaciente(String username){
+    public static String getHistorialExamenesPaciente(String username) {
 
-        String getHistorial = "SELECT "
-        
-        return "";
+        String getHistorial = "SELECT id_examen, fecha_resultados FROM examen_laboratorio WHERE id_paciente = " + username + " AND fecha_resultados is not null";
+        String str = "";
+        int contador = 0;
+        connectarBD();
+        try {
+            PreparedStatement statement = connSQL.prepareStatement(getHistorial);
+            ResultSet rs = statement.executeQuery();
 
+           // String ruta = "";
+            
+            while (rs.next()) {
+                
+                //ruta = "src=\"pdf/E"+rs.getInt("id_examen")+".pdf";
+                str += "<div class=\"exa\">\r\n" + 
+"                   <hr id=\"divisor3\" color=\"white\" size=\"1\" class=\"linea\">\r\n" +
+"                   <label class=\"codexa\">"+rs.getInt("id_examen")+"</label>\r\n" + 
+"                   <label class=\"ferem\">"+rs.getDate("fecha_resultados")+"</label>\r\n" + 
+"                   <button class=\"verres\" name = \"verres"+contador+"\">Ver Resultados</button>\r\n" + 
+"                   <input type = \"hidden\" name =\"idexamen" + contador + "\" value = \"" +rs.getInt("id_examen")+"\"></div>";
+
+                contador++;
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        cerrarConexion();
+
+        return str;
+
+    }
+
+    public static int getCantidadExamenesPaciente(String username) {
+        connectarBD();
+
+        String query = "SELECT count(*) FROM examen_laboratorio WHERE id_paciente = "+username+" AND fecha_resultados is not null";
+        int cantidadExamenes = 0;
+
+        try {
+            PreparedStatement statement = null;
+            statement = connSQL.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                cantidadExamenes = rs.getInt("count(*)");
+            } 
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        cerrarConexion();
+
+        return cantidadExamenes;
     }
 
     public static void generarPdf(String nombrePdf, String url, int idExamen) {
@@ -1322,7 +1371,7 @@ public class Singleton {
         String rutaPdf = url + nombrePdf + ".pdf";
         String rutaHtml = url + "nuevaPlantilla.html";
 
-        generarHtmlTemplate(url, idExamen );
+        generarHtmlTemplate(url, idExamen);
 
         try {
             htmlToPdf(rutaHtml, rutaPdf, url);
@@ -1384,7 +1433,9 @@ public class Singleton {
     private static void generarHtmlTemplate(String uri, int idExamen) {
 
         connectarBD();
-        String queryResultados = "SELECT p.nombre_paciente, p.id_paciente, e.id_examen, p.edad_paciente, m.nombre_medico, e.fecha_remision, e.fecha_resultados, tp.nombre_tipo_prueba, c.criterio_tipo_prueba, t.resultado, c.unidades_criterio_tipo FROM examen_laboratorio e INNER JOIN paciente p INNER JOIN examen_lab_tiene_tipo_prueba t INNER JOIN tipo_prueba tp  INNER JOIN criterios_tipo_prueba c INNER JOIN medico m WHERE e.id_examen = "+ idExamen +" AND p.id_paciente = e.id_paciente AND e.id_medico = m.id_medico AND t.id_examen = e.id_examen AND tp.id_tipo_prueba = t.id_tipo_prueba AND c.id_tipo_prueba = t.id_tipo_prueba AND c.criterio_tipo_prueba = t.criterio_tipo_prueba";
+        String queryResultados = "SELECT p.nombre_paciente, p.id_paciente, e.id_examen, p.edad_paciente, m.nombre_medico, e.fecha_remision, e.fecha_resultados, tp.nombre_tipo_prueba, c.criterio_tipo_prueba, t.resultado, c.unidades_criterio_tipo FROM examen_laboratorio e INNER JOIN paciente p INNER JOIN examen_lab_tiene_tipo_prueba t INNER JOIN tipo_prueba tp  INNER JOIN criterios_tipo_prueba c INNER JOIN medico m WHERE e.id_examen = "
+                + idExamen
+                + " AND p.id_paciente = e.id_paciente AND e.id_medico = m.id_medico AND t.id_examen = e.id_examen AND tp.id_tipo_prueba = t.id_tipo_prueba AND c.id_tipo_prueba = t.id_tipo_prueba AND c.criterio_tipo_prueba = t.criterio_tipo_prueba";
 
         File plantillaHTML = new File(uri + "plantilla.html");
         try {
@@ -1400,25 +1451,25 @@ public class Singleton {
             String medicoRemitente = "";
             String fechaRemision = "";
             String fechaResultados = "";
-            String divs =   "";
+            String divs = "";
             String unidades = "";
 
             String tipoActual = "";
             String tipoNuevo = "";
             int control = 1;
 
-            while(rs.next()){
+            while (rs.next()) {
                 nombrePaciente = rs.getString("nombre_paciente");
                 numeroExamen = rs.getInt("id_examen") + "";
-                documentoPaciente = rs.getInt("id_paciente")+"";
-                edadPaciente = rs.getInt("edad_paciente")+"";
+                documentoPaciente = rs.getInt("id_paciente") + "";
+                edadPaciente = rs.getInt("edad_paciente") + "";
                 medicoRemitente = rs.getString("nombre_medico");
                 fechaRemision = rs.getDate("fecha_remision").toString();
                 fechaResultados = rs.getDate("fecha_resultados").toString();
 
-                if(rs.getString("unidades_criterio_tipo") == null){
+                if (rs.getString("unidades_criterio_tipo") == null) {
                     unidades = "";
-                }else{
+                } else {
                     unidades = rs.getString("unidades_criterio_tipo");
                 }
 
@@ -1432,7 +1483,9 @@ public class Singleton {
 
                     }
 
-                    divs += "<label class=\"cri"+control+"\">" + rs.getString("criterio_tipo_prueba") + "</label>" + "<label class=\"res"+control+"\">" + rs.getString("resultado") + "</label>" + "<label class=\"uni"+control+"\">" + unidades + "</label>";
+                    divs += "<label class=\"cri" + control + "\">" + rs.getString("criterio_tipo_prueba") + "</label>"
+                            + "<label class=\"res" + control + "\">" + rs.getString("resultado") + "</label>"
+                            + "<label class=\"uni" + control + "\">" + unidades + "</label>";
 
                     control++;
 
@@ -1441,7 +1494,9 @@ public class Singleton {
                     control = 1;
                     divs += "</div><br>";
                     divs += "<div class=\"elingreso\"><label class=\"tipo\">" + tipoActual + "</label>";
-                    divs += "<label class=\"cri"+control+"\">" + rs.getString("criterio_tipo_prueba") + "</label>" + "<label class=\"res"+control+"\">" + rs.getString("resultado") + "</label>" + "<label class=\"uni"+control+"\">" + unidades + "</label>";
+                    divs += "<label class=\"cri" + control + "\">" + rs.getString("criterio_tipo_prueba") + "</label>"
+                            + "<label class=\"res" + control + "\">" + rs.getString("resultado") + "</label>"
+                            + "<label class=\"uni" + control + "\">" + unidades + "</label>";
                     control++;
 
                 }
@@ -1450,7 +1505,6 @@ public class Singleton {
 
             }
 
-            
             htmlString = htmlString.replace("$nombrepaciente", nombrePaciente);
             htmlString = htmlString.replace("$numeroexamen", numeroExamen);
             htmlString = htmlString.replace("$documentopaciente", documentoPaciente);

@@ -44,7 +44,7 @@
     }
     
     .exa {
-        position: absolute;
+        position: relative;
         width: 705px;
         height: 91px;
         left: 0px;
@@ -166,7 +166,7 @@
     
     .ferem {
         position: absolute;
-        width: 82px;
+        width: 500px;
         height: 32px;
         left: 226px;
         top: 30px;
