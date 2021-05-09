@@ -1290,6 +1290,25 @@ public class Singleton {
 
     }
 
+    public static void setFechaRealizacion(int idEx){
+
+        long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
+        String updateFecha = "";
+
+        try {
+
+            updateFecha = "UPDATE examen_laboratorio SET fecha_realizacion = "+date+" WHERE id_examen = "+idEx;
+            PreparedStatement statement = connSQL.prepareStatement(updateFecha);
+            statement.executeUpdate(updateFecha);
+            
+        } catch (Exception e) {
+            //TODO: handle exception
+            e.printStackTrace();
+        }
+
+    }
+
     public static void generarPdf(String nombrePdf, String url) {
 
         String rutaPdf = url + nombrePdf + ".pdf";
