@@ -50,7 +50,7 @@
             <img id="logo2" src="svg/Letras logoM.svg">
             <label class="histo">Historial</label>
         </div>
-        <div>
+        <div class = "pelicula">
             <label class="nexa">N° Examen</label>
             <label class="fere">Fecha de Remisión</label>
             <hr id="divisor3" color="white" size="1" class="linea">

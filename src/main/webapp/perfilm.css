@@ -807,18 +807,11 @@ body {
 }
 
 .divExamenesMedico{
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 836px;
-    height: 150px;
-    top: 50px;
-    left: 0px;
-
+    
     position: relative;
         width: 705px;
         height: 91px;
         left: 0px;
-        top: 121px;
+        top: 0px;
     
 }
