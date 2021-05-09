@@ -10,7 +10,7 @@
         <meta charset="UTF-8">
         <meta name="viewport">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <title>Laboratorio Genesis</title>
+        <title>Menú Administración</title>
         <link href="admin.css" rel="stylesheet">
         <link>
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -24,24 +24,28 @@
             <img id="bannerI" src="svg/Banner indicativo.svg ">
         </div>
         <div class="subh">
-            <form action="admin" method="GET"><button name="logoutAdmin">logout</button></form>
+            <img id="oficina" src="svg/oficina virtual.svg">
+            <form action="admin" method="GET">
+                <button class="botlogout" name="logoutAdmin"><img src="svg/Upload.svg"></button>
+            </form>
         </div>
-        <label>${usuarioLogeado}</label>
+        <label class="nomadmin"><img src="svg/Group 49.svg">${usuarioLogeado}</label>
         <div>
             <img id="caradmin" src="svg/CarruselAdmin.svg">
         </div>
         <div>
             <form action="admin" method="GET">
 
-                <button class="botlistapac" name="botonlistapac">Lista de Pacientes</button>
-                <button class="botlistamed" name="botonlistamed">Lista de Médicos</button>
-                <button class="botlistaexa" name="botonlistaexa">Lista de exámenes</button>
-
+                <button class="botlistapac" name="botonlistapac"><img src="svg/UserG.svg"> <br><hr color="white" size="1px">Lista de <br>Pacientes</button>
+                <button class="botlistamed" name="botonlistamed"><img src="svg/Vector.svg"> <br><hr color="white" size="1px">Lista de <br>Médicos</button>
+                <button class="botlistaexa" name="botonlistaexa"><img src="svg/FileText.svg"> <br><hr color="white" size="1px">Lista de <br>exámenes</button>
+                <button class="botstats" name="botonstats"><img src="svg/stats.svg"> <br><hr color="white" size="1px">Estadísticas <br>Génesis</button>
 
             </form>
-            <div>
-                <img id="footerad" src="svg/Footer vistas.svg">
-            </div>
+
+        </div>
+        <div class="footer">
+
         </div>
     </body>
 

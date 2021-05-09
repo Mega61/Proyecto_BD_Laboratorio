@@ -28,7 +28,7 @@
     </head>
 
 
-    <body>
+    <body onclick="ocultarbots()">
         <div> <img id="logoh" src="svg/Logo completo.svg ">
             <img id="bannerP" src="svg/Banner indicativoP.svg">
         </div>
@@ -49,7 +49,7 @@
         <div>
             <img id="footerp" src="svg/Footer vistas.svg">
         </div>
-        </div>
+
     </body>
 
     </html>
