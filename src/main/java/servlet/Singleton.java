@@ -496,6 +496,29 @@ public class Singleton {
         return cantidadPacientes;
     }
 
+    public static int getCantidadPacientes() {
+        connectarBD();
+
+        String query = "SELECT count(*) FROM paciente;";
+        int cantidadPacientes = 0;
+
+        try {
+            PreparedStatement statement = connSQL.prepareStatement(query);
+            ;
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                cantidadPacientes = rs.getInt("count(*)");
+            } else {
+                System.out.println("No se han encontrado pacientes");
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        return cantidadPacientes;
+    }
+
     public static String getEstadoP(String username) {
 
         String str = "";
@@ -1100,7 +1123,7 @@ public class Singleton {
                 str = "<div class=\"estado\">\r\n" + "                       <div class=\"estgen\">\r\n"
                         + "                       <img src=\"svg/Estado Genesis.svg\">\r\n"
                         + "                       </div>\r\n" + "                       <label class=\"feedback\">"
-                        + "Ya se ha enviado su orden de laboratorio, esperando a que el doctor ingrese los resultados"
+                        + "Ya se ha enviado su orden de laboratorio, su doctor ingresará los resultados con un plazo de 1-3 dias"
                         + "</label>\r\n" + "                       </div>";
 
             }
@@ -1110,8 +1133,8 @@ public class Singleton {
                 str = "<div class=\"estado\">\r\n" + "                       <div class=\"estgen\">\r\n"
                         + "                       <img src=\"svg/Estado Genesis.svg\">\r\n"
                         + "                       </div>\r\n" + "                       <label class=\"feedback\">"
-                        + "Ya se han ingresado sus resultados, consultelos en la pestaña RESULTADOS" + "</label>\r\n"
-                        + "                       </div>";
+                        + "El doctor ya ha ingresado sus resultados, consultelos en la pestaña RESULTADOS"
+                        + "</label>\r\n" + "                       </div>";
 
             }
 
@@ -1402,8 +1425,8 @@ public class Singleton {
         int cantidadExamenes = 0;
 
         try {
-            PreparedStatement statement = null;
-            statement = connSQL.prepareStatement(query);
+
+            PreparedStatement statement = connSQL.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 cantidadExamenes = rs.getInt("count(*)");
@@ -1417,6 +1440,85 @@ public class Singleton {
         cerrarConexion();
 
         return cantidadExamenes;
+
+    }
+
+    public static void eliminarPaciente(int idPaciente) {
+
+        String eliminarPaciente = "DELETE FROM paciente WHERE id_paciente = " + idPaciente + ";";
+
+        try {
+            PreparedStatement statement = connSQL.prepareStatement(eliminarPaciente);
+            statement.execute();
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+    }
+
+    public static String estadisticas() {
+
+        String str = "";
+        String query = "";
+
+        try {
+            PreparedStatement statement = null;
+            query = "SELECT count(*) FROM medico";
+            statement = connSQL.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                str += "medicos: " + rs.getInt("count(*)") + " \n";
+            }
+
+            query = "SELECT count(*) FROM paciente";
+            statement = connSQL.prepareStatement(query);
+            rs = statement.executeQuery();
+            if (rs.next()) {
+                str += "pacientes: " + rs.getInt("count(*)") + " \n";
+            }
+
+            query = "SELECT count(*) FROM examen_laboratorio";
+            statement = connSQL.prepareStatement(query);
+            rs = statement.executeQuery();
+            if (rs.next()) {
+                str += "examenes: " + rs.getInt("count(*)") + " \n";
+            }
+
+            query = "SELECT count(*) FROM examen_laboratorio WHERE fecha_resultados is not null";
+            statement = connSQL.prepareStatement(query);
+            rs = statement.executeQuery();
+            if (rs.next()) {
+                str += "examenes con resultados: " + rs.getInt("count(*)") + " \n";
+            }
+
+            query = "SELECT count(*) FROM examen_laboratorio WHERE fecha_resultados is null";
+            statement = connSQL.prepareStatement(query);
+            rs = statement.executeQuery();
+            if (rs.next()) {
+                str += "examenes sin resultados: " + rs.getInt("count(*)") + " \n";
+            }
+
+            query = "SELECT sum(costo_prueba) FROM tipo_prueba t INNER JOIN examen_lab_tiene_tipo_prueba e WHERE e.id_tipo_prueba = t.id_tipo_prueba";
+            statement = connSQL.prepareStatement(query);
+            rs = statement.executeQuery();
+            if (rs.next()) {
+                str += "costo total de todos los examenes: " + rs.getInt("count(*)") + " \n";
+            }
+
+            query = "SELECT count(resultado) FROM examen_lab_tiene_tipo_prueba WHERE resultado is not null";
+            statement = connSQL.prepareStatement(query);
+            rs = statement.executeQuery();
+            if (rs.next()) {
+                str += "resultados ingresados: " + rs.getInt("count(resultado)") + " \n";
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        return str;
 
     }
 
