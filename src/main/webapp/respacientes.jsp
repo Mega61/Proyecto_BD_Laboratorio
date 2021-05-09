@@ -37,7 +37,7 @@
             <button class="nomperfil" onmouseover="mostrarbots()">${usuarioLogeado} <img id="flecha" src="svg/CaretDown.svg"></button>
             <form action="perfilPaciente" method="GET">
                 <div id=divinferior hidden=true>
-                    <button class="botperfil" name="botonvolver">Perfil <img src="svg/User.svg"></button>
+                    <button class="botperfil" name="botonvolver">Volver <img src="svg/User.svg"></button>
                     <button class="botlogout" name="botonlogout">LogOut <img src="svg/Upload.svg"></button>
                 </div>
             </form>
