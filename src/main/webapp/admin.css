@@ -1,6 +1,7 @@
 body {
     background-size: cover;
     text-align: center;
+    overflow-y: scroll;
     overflow-x: hidden;
     /* Página laboratorio médico/10 */
     background: #E6FFFB;
@@ -35,16 +36,17 @@ body {
     position: absolute;
     width: 1920px;
     height: 347.73px;
-    left: 0px;
+    left: -5px;
     top: 100.63px;
 }
 
-#footerad {
+.footer {
     position: absolute;
     width: 1920px;
     height: 197px;
     left: 0px;
     top: 883px;
+    background-image: url("svg/Footer\ vistas.svg");
 }
 
 .botlistapac {
@@ -62,10 +64,16 @@ body {
     font-weight: 500;
     font-size: 38px;
     line-height: 46px;
-    display: flex;
-    align-items: center;
     text-align: center;
     color: #E6FFFB;
+    cursor: pointer;
+}
+
+.botlistapac:hover {
+    background: #00474F;
+    color: #E6FFFB;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #5CDBD3, 0 0 25px #5CDBD3, 0 0 50px #5CDBD3, 0 0 100px #5CDBD3;
 }
 
 .botlistamed {
@@ -84,10 +92,16 @@ body {
     font-weight: 500;
     font-size: 38px;
     line-height: 46px;
-    display: flex;
-    align-items: center;
     text-align: center;
     color: #E6FFFB;
+    cursor: pointer;
+}
+
+.botlistamed:hover {
+    background: #00474F;
+    color: #E6FFFB;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #5CDBD3, 0 0 25px #5CDBD3, 0 0 50px #5CDBD3, 0 0 100px #5CDBD3;
 }
 
 .botlistaexa {
@@ -106,8 +120,86 @@ body {
     font-weight: 500;
     font-size: 38px;
     line-height: 46px;
+    text-align: center;
+    color: #E6FFFB;
+    cursor: pointer;
+}
+
+.botlistaexa:hover {
+    background: #00474F;
+    color: #E6FFFB;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #5CDBD3, 0 0 25px #5CDBD3, 0 0 50px #5CDBD3, 0 0 100px #5CDBD3;
+}
+
+.botstats {
+    position: absolute;
+    width: 301.22px;
+    height: 341px;
+    left: 1095px;
+    top: 482px;
+    /* Página laboratorio médico/50 */
+    background: #36CFC9;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    border: transparent;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 38px;
+    line-height: 46px;
+    text-align: center;
+    color: #E6FFFB;
+    cursor: pointer;
+}
+
+.botstats:hover {
+    background: #00474F;
+    color: #E6FFFB;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #5CDBD3, 0 0 25px #5CDBD3, 0 0 50px #5CDBD3, 0 0 100px #5CDBD3;
+}
+
+.nomadmin {
+    position: absolute;
+    width: 64px;
+    height: 28px;
+    left: 1713px;
+    top: 70px;
+    /* Typography Laboratorio/Headers/H4 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    /* identical to box height, or 140% */
     display: flex;
     align-items: center;
     text-align: center;
+    /* Página laboratorio médico/10 */
     color: #E6FFFB;
+    cursor: pointer;
+}
+
+.botlogout {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    left: 1819px;
+    top: 4px;
+    background-color: transparent;
+    border: transparent;
+    cursor: pointer;
+}
+
+.botlogout:hover {
+    color: #002329;
+    transform: scale(1.1);
+    filter: invert(0.8);
+}
+
+#oficina {
+    position: absolute;
+    left: 82px;
+    top: 10px;
 }
