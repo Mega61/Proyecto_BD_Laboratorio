@@ -28,6 +28,7 @@ public class IngresarResultados extends HttpServlet {
         ArrayList<String> idTipos = new ArrayList<String>();
         ArrayList<String> criterios = new ArrayList<String>();
         String str = "";
+        String ruta = "";
         String nameImput = "";
         int control = 1;
         int control2 = 0;
@@ -48,35 +49,59 @@ public class IngresarResultados extends HttpServlet {
                 PreparedStatement statement = null;
                 criterios = Singleton.getCriterios(idTipos.get(i), statement);
 
-                if(tipoActual.equals(tipoNuevo) || i == 0){
+                if (tipoActual.equals(tipoNuevo) || i == 0) {
 
-                    nameImput = tipoActual+control;
-                    control2 = control-1;
-                    str += "--"+nameImput+"-"+req.getParameter(nameImput)+"--"+idTipos.get(i)+"\n";
-                    Singleton.updateResultadosExamen(req.getParameter(nameImput), idExamen, idTipos.get(i), criterios.get(control2));
+                    nameImput = tipoActual + control;
+                    control2 = control - 1;
+                    str += "--" + nameImput + "-" + req.getParameter(nameImput) + "--" + idTipos.get(i) + "\n";
+                    Singleton.updateResultadosExamen(req.getParameter(nameImput), idExamen, idTipos.get(i),
+                            criterios.get(control2));
                     control++;
 
-                } else if (i != 0){
+                } else if (i != 0) {
 
                     control = 1;
-                    control2 = control-1;
-                    nameImput = tipoActual+control;
-                    str += "--"+nameImput+"-"+req.getParameter(nameImput)+"--"+idTipos.get(i)+"\n";
-                    Singleton.updateResultadosExamen(req.getParameter(nameImput), idExamen, idTipos.get(i), criterios.get(control2));
+                    control2 = control - 1;
+                    nameImput = tipoActual + control;
+                    str += "--" + nameImput + "-" + req.getParameter(nameImput) + "--" + idTipos.get(i) + "\n";
+                    Singleton.updateResultadosExamen(req.getParameter(nameImput), idExamen, idTipos.get(i),
+                            criterios.get(control2));
                     control++;
 
                 }
-                    
+
                 tipoNuevo = tipos.get(i);
 
             }
-        
-           rDispatcher = req.getRequestDispatcher("medico.jsp");
-           System.out.println(str);
-           Singleton.cerrarConexion();
+
+            Singleton.cerrarConexion();
+
+            String url = req.getSession().getServletContext().getRealPath("pdf/");
+            String nombrePdf = "E" + idExamen;
+            Singleton.generarPdf(nombrePdf, url, idExamen);
+            ruta = "src=\"pdf/" + nombrePdf + ".pdf\"";
+
+            req.setAttribute("nombremedico", nombreMedico);
+            req.setAttribute("numexamen", idExamen);
+            req.setAttribute("rutapdf", ruta);
+            session.setAttribute("medico", idMedico);
+            session.setAttribute("medicoNombre", nombreMedico);
+            rDispatcher = req.getRequestDispatcher("examenmed.jsp");
+            System.out.println(str);
+            
         }
 
-       
+        if (req.getParameter("botonconfirmar") != null){
+
+            Singleton.cambiarEstadoP(idPacienteS, "DEFAULT");
+            String strff = Singleton.getPacientesMed();
+            req.setAttribute("listaPacMed", strff);
+            req.setAttribute("nameM", nombreMedico);
+            session.setAttribute("medico", idMedico);
+            session.setAttribute("medicoNombre", nombreMedico);
+            rDispatcher = req.getRequestDispatcher("medico.jsp");
+
+        }
 
         rDispatcher.forward(req, resp);
 

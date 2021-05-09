@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <html>
@@ -23,25 +25,32 @@
     <div class="subhP">
         <form>
             <button class="botlogout" name="botonlogout">LogOut</button>
-            <label class="nomperfil">Medico</label>
+            <label class="nomperfil">${nombremedico}</label>
         </form>
     </div>
     <div class="contenedor1">
         <div class="hder">
             <img id="logo2" src="svg/resgenesis.svg">
             <label class="exa">No Exámen:</label>
-            <label class="numexa">El numero</label>
+            <label class="numexa">${numexamen}</label>
         </div>
         <div class="pdf">
 
-            <iframe src="pdf/prueba.pdf" width="995px" height="638px" style="border: none;">
-              
+            <object data="https://example.com/test.pdf#page=2" type="application/pdf" width="100%" height="100%">
+            <iframe
+              ${rutapdf}
+              width="995px"
+              height="638px"
+              style="border: none;">
+              <p>Your browser does not support PDFs.
+                <a href="https://example.com/test.pdf%22%3EDownload" ></a>.</p>
             </iframe>
-
-
+          </object>
+        <form action = "ingresarResultados" method = "GET">
         </div>
-        <button class="confirm">Confirmar</button>
+        <button class="confirm" name = "botonconfirmar">Confirmar</button>
         <div class="footer">
+        </form>
 
         </div>
 </body>

@@ -91,7 +91,9 @@ public class PacienteServlet extends HttpServlet {
                 req.setAttribute("barraestado", barraEstado);
 
             }
+
             Singleton.cerrarConexion();
+            session.setAttribute("usuarioLogueado", nombreUsuario);
             session.setAttribute("pacienteNombre", nombreUsuario);
             session.setAttribute("paciente", usuarioIngresado);
             rDispatcher = req.getRequestDispatcher("paciente.jsp");
