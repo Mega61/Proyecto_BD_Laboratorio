@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class ListaPacientesAdmin extends HttpServlet {
 
@@ -16,12 +17,15 @@ public class ListaPacientesAdmin extends HttpServlet {
 
         int cantidadPaciente = Singleton.getCantidadPacientes();
         RequestDispatcher rDispatcher = req.getRequestDispatcher("listapac.jsp");
+        HttpSession session = req.getSession();
+        String listaPac = "";
+        String usuarioIngresado = session.getAttribute("admin").toString();
 
         for (int i = 0; i < cantidadPaciente; i++) {
 
             String botonEliminar = "botoneliminarpac" + i;
             String botonEditar = "botoneditarpac" + i;
-            int idPaciente = 0;
+            int idPaciente = Integer.parseInt(req.getParameter("idpac" + i));
 
             if(req.getParameter(botonEditar) != null){
 
@@ -31,7 +35,11 @@ public class ListaPacientesAdmin extends HttpServlet {
             if(req.getParameter(botonEliminar) != null){
 
                 Singleton.eliminarPaciente(idPaciente);
-
+                listaPac = Singleton.getListaPacientes();
+                req.setAttribute("listapac", listaPac);
+                req.setAttribute("admin", usuarioIngresado);
+                
+                rDispatcher = req.getRequestDispatcher("listapac.jsp");
             }
 
         }
