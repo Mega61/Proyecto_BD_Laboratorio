@@ -33,12 +33,13 @@
         <div class="contenedor">
             <label class="h3">Lista de Médicos</label>
             <form action="listamedicosadmin" method="GET">
-            <button class="agregarmed" name="botonagregarmed">Agregar Medicos</button>
+                <button class="agregarmed" name="botonagregarmed">Agregar Medicos</button>
             </form>
             <br>
             <hr color="white" size="1">
             <form>
                 <input type="search" id="busquedamed" name="busmed" placeholder="Escriba el ID del Médico...">
+                <button class="botbuscar">Buscar</button>
             </form>
             <label class="nombre">Nombre-Medico</label>
             <label class="doc">Documento</label>

@@ -222,11 +222,44 @@ body {
 
 #busquedamed {
     position: relative;
-    width: 510px;
-    height: 40px;
+    width: 486px;
+    height: 29px;
+    left: 0px;
     top: 10px;
     border: 1px solid #13C2C2;
     box-sizing: border-box;
+}
+
+.botbuscar {
+    position: relative;
+    width: 86px;
+    height: 29px;
+    left: 70px;
+    top: 10px;
+    background: #08979C;
+    /* Cyan / 6 */
+    border: 1px solid #13C2C2;
+    box-sizing: border-box;
+    /* drop-shadow / button-primary */
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
+    border-radius: 10px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    text-align: center;
+    /* Character / Primary(inverse) */
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.botbuscar:hover {
+    background: #00474F;
+    color: #E6FFFB;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #5CDBD3, 0 0 25px #5CDBD3, 0 0 50px #5CDBD3, 0 0 100px #5CDBD3;
 }
 
 input:focus {
@@ -290,7 +323,7 @@ input:focus {
     position: absolute;
     width: 180px;
     height: 22px;
-    left: 36px;
+    left: 24px;
     top: 140px;
     /* Typography Laboratorio/Headers/H3 */
     font-family: Roboto;

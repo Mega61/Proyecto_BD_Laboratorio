@@ -37,7 +37,7 @@
             <form action="admin" method="GET">
 
                 <button class="botlistapac" name="botonlistapac"><img src="svg/UserG.svg"> <br><hr color="white" size="1px">Lista de <br>Pacientes</button>
-                <button class="botlistamed" name="botonlistamed"><img src="svg/Vector.svg"> <br><hr color="white" size="1px">Lista de <br>Médicos</button>
+                <button class="botlistamed" name="botonlistamed"><img src="svg/Vector.svg"> <br> <br><hr color="white" size="1px">Lista de <br>Médicos</button>
                 <button class="botlistaexa" name="botonlistaexa"><img src="svg/FileText.svg"> <br><hr color="white" size="1px">Lista de <br>exámenes</button>
                 <button class="botstats" name="botonstats"><img src="svg/stats.svg"> <br><hr color="white" size="1px">Estadísticas <br>Génesis</button>
 
