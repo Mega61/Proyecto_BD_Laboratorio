@@ -47,6 +47,12 @@ public class PacienteServlet extends HttpServlet {
         if (req.getParameter("botonresultados") != null) {
 
             System.out.println("Se ha oprimido resultados");
+            String estador = Singleton.getEstadoP(usuarioIngresado);
+            if(estador.equals("RESULTADOS GENERADOS")){
+
+                Singleton.cambiarEstadoP(usuarioIngresado, "DEFAULT");
+
+            }
             req.setAttribute("usuarioLogeado", nombreUsuario);
             session.setAttribute("pacienteNombre", nombreUsuario);
             session.setAttribute("paciente", usuarioIngresado);

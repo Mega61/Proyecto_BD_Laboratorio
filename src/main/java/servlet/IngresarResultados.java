@@ -93,7 +93,7 @@ public class IngresarResultados extends HttpServlet {
 
         if (req.getParameter("botonconfirmar") != null){
 
-            Singleton.cambiarEstadoP(idPacienteS, "DEFAULT");
+            Singleton.cambiarEstadoP(idPacienteS, "RESULTADOS GENERADOS");
             String strff = Singleton.getPacientesMed();
             req.setAttribute("listaPacMed", strff);
             req.setAttribute("nameM", nombreMedico);
