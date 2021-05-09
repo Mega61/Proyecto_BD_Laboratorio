@@ -1447,7 +1447,7 @@ public class Singleton {
 
     public static void eliminarPaciente(int idPaciente) {
 
-        String eliminarPaciente = "DELETE FROM paciente WHERE id_paciente = " + idPaciente + ";";
+        String eliminarPaciente = "DELETE FROM paciente WHERE id_paciente = " + idPaciente + " AND estado_paciente = 'DEFAULT';";
 
         try {
             PreparedStatement statement = connSQL.prepareStatement(eliminarPaciente);

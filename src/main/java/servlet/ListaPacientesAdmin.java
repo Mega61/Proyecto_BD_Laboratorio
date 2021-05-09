@@ -5,10 +5,13 @@ import java.sql.PreparedStatement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+@WebServlet(name = "ListaPacientesAdmin", urlPatterns = { "/pacientesadmin" })
 
 public class ListaPacientesAdmin extends HttpServlet {
 
@@ -31,7 +34,6 @@ public class ListaPacientesAdmin extends HttpServlet {
 
             }
 
-
             if(req.getParameter(botonEliminar) != null){
 
                 Singleton.eliminarPaciente(idPaciente);
@@ -44,8 +46,10 @@ public class ListaPacientesAdmin extends HttpServlet {
 
         }
 
-        
-        
+        listaPac = Singleton.getListaPacientes();
+        req.setAttribute("listapac", listaPac);
+        req.setAttribute("admin", usuarioIngresado);
+        rDispatcher.forward(req, resp);
 
     }
 

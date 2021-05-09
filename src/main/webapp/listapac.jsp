@@ -41,7 +41,7 @@
         <label class="doc">Documento</label>
         <label class="est">Estado</label>
         <div class="listapacientes">
-            <form>
+            <form action = "pacientesadmin" method = "GET">
                 ${listapac}
             </form>
 
