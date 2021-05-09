@@ -889,9 +889,7 @@ public class Singleton {
                         + "                <label class=\"estado\">" + estado + "</label>\r\n"
                         + "                <input type = \"hidden\" name =\"idpac" + contb + "\" value = \""
                         + id + "\"><button class=\"editarpac\" name=\"botoneditarpac" + contb
-                        + "\">Editar</button>\r\n"
-                        + "                <button class=\"eliminarpac\" name=\"botoneliminarpac" + contb
-                        + "\">Eliminar</button></div>";
+                        + "\">Editar</button>\r\n</div>";
 
                 contb++;
             }
@@ -929,9 +927,7 @@ public class Singleton {
                         + "                <label class=\"consul\">" + consultorio + "</label>\r\n"
                         + "                <input type = \"hidden\" name =\"idmed" + numerobot + "\" value = \""
                         + id + "\"><button class=\"editarmed\" name=\"botoneditarmed" + numerobot
-                        + "\">Editar</button>\r\n"
-                        + "                <button class=\"eliminarmed\" name=\"botoneliminarmed" + numerobot
-                        + "\">Eliminar</button></div>";
+                        + "\">Editar</button></div>";
 
                 numerobot++;
             }
