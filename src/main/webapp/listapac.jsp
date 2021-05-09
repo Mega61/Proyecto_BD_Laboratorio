@@ -34,7 +34,7 @@
         <label class="h3">Lista de Pacientes</label>
         <br>
         <hr color="white" size="1">
-        <form>
+        <form action = "pacientesadmin" method = "GET">
             <input type="search" id="busquedapac" name="buspac" placeholder="Escriba el Documento del Paciente...">
         </form>
         <label class="nombre">Nombre-Paciente</label>
