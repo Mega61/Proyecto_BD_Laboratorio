@@ -19,8 +19,8 @@
 
 
 <body>
-    <div> <img id="logoh" src="Logo completo.svg ">
-        <img id="bannerP" src="Banner indicativo.svg">
+    <div> <img id="logoh" src="svg/Logo completo.svg ">
+        <img id="bannerP" src="svg/Banner indicativo.svg">
     </div>
     <div class="subhP">
         <form action="admin" method = "GET">
@@ -42,12 +42,7 @@
         <label class="est">Estado</label>
         <div class="listapacientes">
             <form>
-                <hr color="white" size="1" class="linea">
-                <label class="nombrePac">Fabio Camilo Cachucha</label>
-                <label class="docpac">1010202020</label>
-                <label class="estado">Esperando Resultados</label>
-                <button class="editarpac" name="botoneditarpac">Editar</button>
-                <button class="eliminarpac" name-="botoneliminarpac">Eliminar</button>
+                ${listapac}
             </form>
 
         </div>

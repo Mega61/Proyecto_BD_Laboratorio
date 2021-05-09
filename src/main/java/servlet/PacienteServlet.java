@@ -21,7 +21,7 @@ public class PacienteServlet extends HttpServlet {
         HttpSession session = req.getSession();
         String usuarioIngresado = session.getAttribute("paciente").toString();
         String nombreUsuario = session.getAttribute("pacienteNombre").toString();
-        RequestDispatcher rDispatcher = req.getRequestDispatcher("index.html");
+        RequestDispatcher rDispatcher = req.getRequestDispatcher("paciente.jsp");
 
         if (req.getParameter("botonagendar") != null) {
 
@@ -40,7 +40,7 @@ public class PacienteServlet extends HttpServlet {
             req.setAttribute("usuarioLogeado", nombreUsuario);
             String barraEstado = Singleton.getBarraEstado(usuarioIngresado);
             req.setAttribute("barraestado", barraEstado);
-            rDispatcher = req.getRequestDispatcher("ordenpac.html");
+            rDispatcher = req.getRequestDispatcher("ordenpac.jsp");
 
         }
 
@@ -50,6 +50,7 @@ public class PacienteServlet extends HttpServlet {
             req.setAttribute("usuarioLogeado", nombreUsuario);
             String barraEstado = Singleton.getBarraEstado(usuarioIngresado);
             req.setAttribute("barraestado", barraEstado);
+            req.setAttribute("nombrePac", nombreUsuario);
             rDispatcher = req.getRequestDispatcher("paciente.jsp");
 
         }
@@ -76,8 +77,9 @@ public class PacienteServlet extends HttpServlet {
 
         }
 
-        if (req.getParameter("ingorden") != null) {
+        if (req.getParameter("ingresarorden") != null) {
 
+            Singleton.connectarBD();
             int idExImp = Integer.parseInt(req.getParameter("ingnumorden"));
             int idEX = Singleton.getIdExamenPaciente(usuarioIngresado);
 
@@ -89,7 +91,22 @@ public class PacienteServlet extends HttpServlet {
                 req.setAttribute("barraestado", barraEstado);
 
             }
-            
+            Singleton.cerrarConexion();
+            session.setAttribute("pacienteNombre", nombreUsuario);
+            session.setAttribute("paciente", usuarioIngresado);
+            rDispatcher = req.getRequestDispatcher("paciente.jsp");
+        }
+
+        if(req.getParameter("botonvolver") != null){
+
+            session = req.getSession();
+            session.setAttribute("pacienteNombre", nombreUsuario);
+            session.setAttribute("paciente", usuarioIngresado);
+            req.setAttribute("usuarioLogeado", nombreUsuario);
+            String barraEstado = Singleton.getBarraEstado(usuarioIngresado);
+            req.setAttribute("barraestado", barraEstado);
+            rDispatcher = req.getRequestDispatcher("paciente.jsp");
+
         }
 
         rDispatcher.forward(req, resp);

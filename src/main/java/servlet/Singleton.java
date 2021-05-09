@@ -20,6 +20,7 @@ import javassist.compiler.ast.StringL;
 
 import com.mysql.cj.protocol.Resultset;
 import com.mysql.cj.x.protobuf.MysqlxPrepare.Prepare;
+import com.mysql.cj.xdevapi.Result;
 import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
 import com.openhtmltopdf.svgsupport.BatikSVGDrawer;
 
@@ -1054,7 +1055,7 @@ public class Singleton {
 
         try {
 
-            String traerCriterios = "SELECT criterio_tipo_prueba FROM criterios_tipo_prueba WHERE id_tipo_prueba = '"
+            String traerCriterios = "SELECT criterio_tipo_prueba FROM WHERE id_tipo_prueba = '"
                     + idTipo + "';";
 
             statement = connSQL.prepareStatement(traerCriterios);
@@ -1249,7 +1250,7 @@ public class Singleton {
     public static ArrayList<String> getIdTiposExamen(int id_examen) {
 
         ArrayList<String> idTipos = new ArrayList<String>();
-        String idString = "SELECT id_tipo_prueba FROM examen_lab_tiene_tipo_prueba WHERE id_examen = "+id_examen;
+        String idString = "SELECT id_tipo_prueba FROM examen_lab_tiene_tipo_prueba WHERE id_examen = " + id_examen;
 
         try {
 
@@ -1268,53 +1269,56 @@ public class Singleton {
 
     }
 
-    public static void updateResultadosExamen(String res, int idEx, String tipo, String criterio){
+    public static void updateResultadosExamen(String res, int idEx, String tipo, String criterio) {
 
         long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);
         String updateRes = "";
 
         try {
-                updateRes = "UPDATE examen_lab_tiene_tipo_prueba SET resultado = '"+res+"' WHERE id_examen = "+idEx+" AND id_tipo_prueba = '"+tipo+"' AND criterio_tipo_prueba = '"+criterio+"'";
-                PreparedStatement statement = connSQL.prepareStatement(updateRes);
-                statement.executeUpdate(updateRes);
+            updateRes = "UPDATE examen_lab_tiene_tipo_prueba SET resultado = '" + res + "' WHERE id_examen = " + idEx
+                    + " AND id_tipo_prueba = '" + tipo + "' AND criterio_tipo_prueba = '" + criterio + "'";
+            PreparedStatement statement = connSQL.prepareStatement(updateRes);
+            statement.executeUpdate(updateRes);
 
-                updateRes = "UPDATE examen_laboratorio SET fecha_resultados = "+date+" WHERE id_examen = "+idEx;
-                statement = connSQL.prepareStatement(updateRes);
-                statement.executeUpdate(updateRes);
+            updateRes = "UPDATE examen_laboratorio SET fecha_resultados = '" + date + "' WHERE id_examen = " + idEx;
+            statement = connSQL.prepareStatement(updateRes);
+            statement.executeUpdate(updateRes);
 
-            } catch (Exception e) {
-                // TODO: handle exception
-                e.printStackTrace();
-            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
 
     }
 
-    public static void setFechaRealizacion(int idEx){
+    public static void setFechaRealizacion(int idEx) {
 
+        connectarBD();
         long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);
         String updateFecha = "";
 
         try {
 
-            updateFecha = "UPDATE examen_laboratorio SET fecha_realizacion = "+date+" WHERE id_examen = "+idEx;
+            updateFecha = "UPDATE examen_laboratorio SET fecha_realizacion = '" + date + "' WHERE id_examen = " + idEx;
             PreparedStatement statement = connSQL.prepareStatement(updateFecha);
             statement.executeUpdate(updateFecha);
-            
+
         } catch (Exception e) {
-            //TODO: handle exception
+            // TODO: handle exception
             e.printStackTrace();
         }
+        cerrarConexion();
 
     }
 
-    public static void generarPdf(String nombrePdf, String url) {
+    public static void generarPdf(String nombrePdf, String url, int idExamen) {
 
         String rutaPdf = url + nombrePdf + ".pdf";
         String rutaHtml = url + "nuevaPlantilla.html";
 
-        generarHtmlTemplate(url);
+        generarHtmlTemplate(url, idExamen );
 
         try {
             htmlToPdf(rutaHtml, rutaPdf, url);
@@ -1354,7 +1358,7 @@ public class Singleton {
     private static void htmlToPdf(String inputHTML, String outputPDF, String uri) throws IOException {
         org.w3c.dom.Document doc = html5ParseDocument(inputHTML);
         String baseURI = uri;
-        //new URI(uri).toString();
+        // new URI(uri).toString();
 
         // FileSystems.getDefault().getPath("C:/", "Users/jedaz/Desktop/", "Laboratorio
         // Genesis Proyecto
@@ -1373,22 +1377,76 @@ public class Singleton {
         out.close();
     }
 
+    private static void generarHtmlTemplate(String uri, int idExamen) {
 
-    private static void generarHtmlTemplate(String uri){
+        connectarBD();
+        String queryResultados = "SELECT p.nombre_paciente, p.id_paciente, e.id_examen, p.edad_paciente, m.nombre_medico, e.fecha_remision, e.fecha_resultados, tp.nombre_tipo_prueba, c.criterio_tipo_prueba, t.resultado, c.unidades_criterio_tipo FROM examen_laboratorio e INNER JOIN paciente p INNER JOIN examen_lab_tiene_tipo_prueba t INNER JOIN tipo_prueba tp  INNER JOIN criterios_tipo_prueba c INNER JOIN medico m WHERE e.id_examen = "+ idExamen +" AND p.id_paciente = e.id_paciente AND e.id_medico = m.id_medico AND t.id_examen = e.id_examen AND tp.id_tipo_prueba = t.id_tipo_prueba AND c.id_tipo_prueba = t.id_tipo_prueba AND c.criterio_tipo_prueba = t.criterio_tipo_prueba";
 
         File plantillaHTML = new File(uri + "plantilla.html");
         try {
+
+            PreparedStatement statement = connSQL.prepareStatement(queryResultados);
+            ResultSet rs = statement.executeQuery();
+
             String htmlString = FileUtils.readFileToString(plantillaHTML);
-            String nombrePaciente = "Ana Maria Perez";
-            String numeroExamen = "123";
-            String documentoPaciente = "1000366000";
-            String edadPaciente = "50";
-            String medicoRemitente = "Toby";
-            String fechaRemision = "01/01/01";
-            String fechaResultados = "02/02/02";
-            String divs = "<label class=\"tipo\">Hemograma</label>" +
-            "<label class=\"cri1\">Globulos Blancos</label>" +
-            "<label class=\"res1\">4.8</label>";
+            String nombrePaciente = "";
+            String numeroExamen = "";
+            String documentoPaciente = "";
+            String edadPaciente = "";
+            String medicoRemitente = "";
+            String fechaRemision = "";
+            String fechaResultados = "";
+            String divs =   "";
+            String unidades = "";
+
+            String tipoActual = "";
+            String tipoNuevo = "";
+            int control = 1;
+
+            while(rs.next()){
+                nombrePaciente = rs.getString("nombre_paciente");
+                numeroExamen = rs.getInt("id_examen") + "";
+                documentoPaciente = rs.getInt("id_paciente")+"";
+                edadPaciente = rs.getInt("edad_paciente")+"";
+                medicoRemitente = rs.getString("nombre_medico");
+                fechaRemision = rs.getDate("fecha_remision").toString();
+                fechaResultados = rs.getDate("fecha_resultados").toString();
+
+                if(rs.getString("unidades_criterio_tipo") == null){
+                    unidades = "";
+                }else{
+                    unidades = rs.getString("unidades_criterio_tipo");
+                }
+
+                tipoActual = rs.getString("nombre_tipo_prueba");
+
+                if (tipoNuevo.equals(tipoActual) || control == 1) {
+
+                    if (control == 1) {
+
+                        divs += "<div class=\"elingreso\"><label class=\"tipo\">" + tipoActual + "</label>";
+
+                    }
+
+                    divs += "<label class=\"cri"+control+"\">" + rs.getString("criterio_tipo_prueba") + "</label>" + "<label class=\"res"+control+"\">" + rs.getString("resultado") + "</label>" + "<label class=\"uni"+control+"\">" + unidades + "</label>";
+
+                    control++;
+
+                } else if (control != 1) {
+
+                    control = 1;
+                    divs += "</div><br>";
+                    divs += "<div class=\"elingreso\"><label class=\"tipo\">" + tipoActual + "</label>";
+                    divs += "<label class=\"cri"+control+"\">" + rs.getString("criterio_tipo_prueba") + "</label>" + "<label class=\"res"+control+"\">" + rs.getString("resultado") + "</label>" + "<label class=\"uni"+control+"\">" + unidades + "</label>";
+                    control++;
+
+                }
+
+                tipoNuevo = rs.getString("nombre_tipo_prueba");
+
+            }
+
+            
             htmlString = htmlString.replace("$nombrepaciente", nombrePaciente);
             htmlString = htmlString.replace("$numeroexamen", numeroExamen);
             htmlString = htmlString.replace("$documentopaciente", documentoPaciente);
@@ -1396,15 +1454,15 @@ public class Singleton {
             htmlString = htmlString.replace("$medicoremitente", medicoRemitente);
             htmlString = htmlString.replace("$fecharemision", fechaRemision);
             htmlString = htmlString.replace("$fecharesultados", fechaResultados);
-            htmlString = htmlString.replace("$hemograma", divs);
+            htmlString = htmlString.replace("$resultados", divs);
             File HtmlNuevo = new File(uri + "nuevaPlantilla.html");
             FileUtils.writeStringToFile(HtmlNuevo, htmlString);
         } catch (Exception e) {
-            //TODO: handle exception
+            // TODO: handle exception
             e.printStackTrace();
         }
-        
 
+        cerrarConexion();
 
     }
 
