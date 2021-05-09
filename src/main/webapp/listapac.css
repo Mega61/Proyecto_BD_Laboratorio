@@ -101,6 +101,14 @@ body {
     color: #FFFFFF;
 }
 
+.pacienteM {
+    position: relative;
+    width: 836px;
+    height: 105px;
+    top: 50px;
+    left: 0px;
+}
+
 .salida {
     position: absolute;
     width: 124px;

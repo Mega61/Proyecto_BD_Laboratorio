@@ -39,8 +39,8 @@
             <form action="perfilPaciente" method="GET">
 
                 <div id=divinferior hidden=true>
-                    <button class="botperfil" name="botonperfilpac">Perfil <img src="svg/User.svg"></button>
-                    <button class="botlogout" name="botonlogoutpac">LogOut <img src="svg/Upload.svg"></button>
+                    <button class="botperfil" name="botonvolver">Perfil <img src="svg/User.svg"></button>
+                    <button class="botlogout" name="botonlogout">LogOut <img src="svg/Upload.svg"></button>
                 </div>
 
             </form>
