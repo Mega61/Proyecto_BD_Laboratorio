@@ -44,6 +44,7 @@ public class HistorialPacientes extends HttpServlet {
         String ruta = "src=\"pdf/E"+idEx+".pdf\"";
         req.setAttribute("numeroexamen", idEx);
         req.setAttribute("rutaexamen", ruta);
+        req.setAttribute("pacienteNombre", nombreUsuario);
         
         rDispatcher.forward(req, resp);
 

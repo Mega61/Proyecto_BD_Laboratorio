@@ -1372,7 +1372,7 @@ public class Singleton {
 
             while (rs.next()) {
 
-                str += "<div class = \"divExamenesMedico\"><hr id=\"divisor3\" color=\"white\" size=\"1\" class=\"linea\">"
+                str += "<div class = \"divExamenesMedico\">\r\n<hr id=\"divisor3\" color=\"white\" size=\"1\" class=\"linea\">"
                         + "                <label class=\"codexa\">" + rs.getInt("id_examen") + "</label>\r\n"
                         + "                <label class=\"ferem\">" + rs.getDate("fecha_remision") + "</label>\r\n"
                         + "                <button class=\"verres\" name = \"verres" + contador

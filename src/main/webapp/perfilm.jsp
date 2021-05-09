@@ -54,7 +54,7 @@
             <label class="nexa">N° Examen</label>
             <label class="fere">Fecha de Remisión</label>
             <hr id="divisor3" color="white" size="1" class="linea">
-            <form>
+            <form action="historialm" method="GET"> 
                 <%-- <div class = "divExamenesMedico">
                 <label class="codexa">E12560</label>
                 <label class="ferem">10/04/2021</label>

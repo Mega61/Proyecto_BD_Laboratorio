@@ -21,7 +21,7 @@ public class HistorialMedicos extends HttpServlet {
 
         String usuarioIngresado = session.getAttribute("medico").toString();
         String nombreUsuario = session.getAttribute("medicoNombre").toString();
-        RequestDispatcher rDispatcher = req.getRequestDispatcher("examenpac.jsp");
+        RequestDispatcher rDispatcher = req.getRequestDispatcher("historialmed.jsp"); 
 
         int iteraciones = Singleton.getCantidadExamenesMed(usuarioIngresado);
         String nomBoton = "";
