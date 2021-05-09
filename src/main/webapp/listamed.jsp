@@ -32,7 +32,9 @@
         <label class="nomadminM"><img src="svg/Group 49.svg"> ${admin} </label>
         <div class="contenedor">
             <label class="h3">Lista de Médicos</label>
+            <form action="listamedicosadmin" method="GET">
             <button class="agregarmed" name="botonagregarmed">Agregar Medicos</button>
+            </form>
             <br>
             <hr color="white" size="1">
             <form>

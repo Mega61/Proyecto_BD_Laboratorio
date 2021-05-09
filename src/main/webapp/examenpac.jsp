@@ -25,7 +25,7 @@
     <div class="subhP">
         <form>
             <button class="botlogout" name="botonlogout">LogOut</button>
-            <label class="nomperfil">Paciente</label>
+            <label class="nomperfil">${}</label>
         </form>
     </div>
     <div class="contenedor1">

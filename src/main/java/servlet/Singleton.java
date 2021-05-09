@@ -4,30 +4,17 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.nio.file.FileSystem;
-import java.nio.file.FileSystems;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
-import javax.swing.text.Document;
-
-import javassist.compiler.ast.StringL;
-
-import com.mysql.cj.protocol.Resultset;
-import com.mysql.cj.x.protobuf.MysqlxPrepare.Prepare;
-import com.mysql.cj.xdevapi.Result;
 import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
 import com.openhtmltopdf.svgsupport.BatikSVGDrawer;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.regexp.recompile;
-import org.apache.tomcat.jni.OS;
-import org.apache.xml.utils.URI;
 import org.jsoup.Jsoup;
 import org.jsoup.helper.W3CDom;
 
@@ -812,6 +799,7 @@ public class Singleton {
             e.printStackTrace();
         }
 
+        cerrarConexion();
         return infom;
 
     }
@@ -1309,7 +1297,8 @@ public class Singleton {
 
     public static String getHistorialExamenesPaciente(String username) {
 
-        String getHistorial = "SELECT id_examen, fecha_resultados FROM examen_laboratorio WHERE id_paciente = " + username + " AND fecha_resultados is not null";
+        String getHistorial = "SELECT id_examen, fecha_resultados FROM examen_laboratorio WHERE id_paciente = "
+                + username + " AND fecha_resultados is not null";
         String str = "";
         int contador = 0;
         connectarBD();
@@ -1317,17 +1306,19 @@ public class Singleton {
             PreparedStatement statement = connSQL.prepareStatement(getHistorial);
             ResultSet rs = statement.executeQuery();
 
-           // String ruta = "";
-            
+            // String ruta = "";
+
             while (rs.next()) {
-                
-                //ruta = "src=\"pdf/E"+rs.getInt("id_examen")+".pdf";
-                str += "<div class=\"exa\">\r\n" + 
-"                   <hr id=\"divisor3\" color=\"white\" size=\"1\" class=\"linea\">\r\n" +
-"                   <label class=\"codexa\">"+rs.getInt("id_examen")+"</label>\r\n" + 
-"                   <label class=\"ferem\">"+rs.getDate("fecha_resultados")+"</label>\r\n" + 
-"                   <button class=\"verres\" name = \"verres"+contador+"\">Ver Resultados</button>\r\n" + 
-"                   <input type = \"hidden\" name =\"idexamen" + contador + "\" value = \"" +rs.getInt("id_examen")+"\"></div>";
+
+                // ruta = "src=\"pdf/E"+rs.getInt("id_examen")+".pdf";
+                str += "<div class=\"exa\">\r\n"
+                        + "                   <hr id=\"divisor3\" color=\"white\" size=\"1\" class=\"linea\">\r\n"
+                        + "                   <label class=\"codexa\">" + rs.getInt("id_examen") + "</label>\r\n"
+                        + "                   <label class=\"ferem\">" + rs.getDate("fecha_resultados") + "</label>\r\n"
+                        + "                   <button class=\"verres\" name = \"verres" + contador
+                        + "\">Ver Resultados</button>\r\n"
+                        + "                   <input type = \"hidden\" name =\"idexamen" + contador + "\" value = \""
+                        + rs.getInt("id_examen") + "\"></div>";
 
                 contador++;
             }
@@ -1345,7 +1336,8 @@ public class Singleton {
     public static int getCantidadExamenesPaciente(String username) {
         connectarBD();
 
-        String query = "SELECT count(*) FROM examen_laboratorio WHERE id_paciente = "+username+" AND fecha_resultados is not null";
+        String query = "SELECT count(*) FROM examen_laboratorio WHERE id_paciente = " + username
+                + " AND fecha_resultados is not null";
         int cantidadExamenes = 0;
 
         try {
@@ -1354,7 +1346,7 @@ public class Singleton {
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 cantidadExamenes = rs.getInt("count(*)");
-            } 
+            }
 
         } catch (Exception e) {
             // TODO: handle exception
@@ -1364,6 +1356,68 @@ public class Singleton {
         cerrarConexion();
 
         return cantidadExamenes;
+    }
+
+    public static String getHistorialExamenesMed(String id) {
+
+        connectarBD();
+        String str = "";
+        int contador = 0;
+        String query = "SELECT id_examen, fecha_remision FROM examen_laboratorio WHERE id_medico = '" + id + "'";
+
+        try {
+
+            PreparedStatement statement = connSQL.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+
+                str += "<div class = \"divExamenesMedico\"><hr id=\"divisor3\" color=\"white\" size=\"1\" class=\"linea\">"
+                        + "                <label class=\"codexa\">" + rs.getInt("id_examen") + "</label>\r\n"
+                        + "                <label class=\"ferem\">" + rs.getDate("fecha_remision") + "</label>\r\n"
+                        + "                <button class=\"verres\" name = \"verres" + contador
+                        + "\">Ver Resultados</button>\r\n" + "                <input type = \"hidden\" name =\"idexamen"
+                        + contador + "\" value = \"" + rs.getInt("id_examen") + "\"></div>";
+
+                contador++;
+
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        cerrarConexion();
+        return str;
+
+    }
+
+    public static int getCantidadExamenesMed(String username) {
+
+        connectarBD();
+
+        String query = "SELECT count(*) FROM examen_laboratorio WHERE id_medico = '" + username
+                + "' AND fecha_resultados is not null";
+        int cantidadExamenes = 0;
+
+        try {
+            PreparedStatement statement = null;
+            statement = connSQL.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                cantidadExamenes = rs.getInt("count(*)");
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        cerrarConexion();
+
+        return cantidadExamenes;
+
     }
 
     public static void generarPdf(String nombrePdf, String url, int idExamen) {

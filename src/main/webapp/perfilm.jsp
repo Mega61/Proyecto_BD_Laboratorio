@@ -55,9 +55,12 @@
             <label class="fere">Fecha de Remisión</label>
             <hr id="divisor3" color="white" size="1" class="linea">
             <form>
+                <%-- <div class = "divExamenesMedico">
                 <label class="codexa">E12560</label>
                 <label class="ferem">10/04/2021</label>
                 <button class="verres">Ver Resultados</button>
+                </div> --%>
+                ${examenesmed}
             </form>
 
         </div>

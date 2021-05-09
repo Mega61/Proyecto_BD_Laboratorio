@@ -5,7 +5,6 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,6 +30,8 @@ public class MedicoServlet extends HttpServlet {
             req.setAttribute("nameM", nombreUsuario);
             String info = Singleton.getInfoMedico(usuarioIngresado);
             req.setAttribute("infomed", info);
+            String historial = Singleton.getHistorialExamenesMed(usuarioIngresado);
+            req.setAttribute("examenesmed", historial);
             System.out.println("Se ha oprimido perfil");
             rDispatcher = req.getRequestDispatcher("perfilm.jsp");
 

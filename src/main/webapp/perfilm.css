@@ -767,7 +767,7 @@ body {
 
 .ferem {
     position: absolute;
-    width: 82px;
+    width: 400px;
     height: 32px;
     left: 226px;
     top: 151px;
@@ -804,4 +804,12 @@ body {
     /* drop-shadow / button-primary */
     box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
     border-radius: 10px;
+}
+
+.divExamenesMedico{
+    position: relative;
+    width: 836px;
+    height: 105px;
+    top: 50px;
+    left: 0px;
 }

@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "HistorialPacientes", urlPatterns = { "/historialp" })
+@WebServlet(name = "HistorialMedicos", urlPatterns = { "/historialm" })
 
-public class HistorialPacientes extends HttpServlet {
+public class HistorialMedicos extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
         HttpSession session = req.getSession();
 
-        String usuarioIngresado = session.getAttribute("paciente").toString();
-        String nombreUsuario = session.getAttribute("pacienteNombre").toString();
+        String usuarioIngresado = session.getAttribute("medico").toString();
+        String nombreUsuario = session.getAttribute("medicoNombre").toString();
         RequestDispatcher rDispatcher = req.getRequestDispatcher("examenpac.jsp");
 
-        int iteraciones = Singleton.getCantidadExamenesPaciente(usuarioIngresado);
+        int iteraciones = Singleton.getCantidadExamenesMed(usuarioIngresado);
         String nomBoton = "";
         String nomHidden = "";
         int idEx = 0;
@@ -42,6 +42,7 @@ public class HistorialPacientes extends HttpServlet {
         System.out.println("afuera: " + idEx);
 
         String ruta = "src=\"pdf/E"+idEx+".pdf\"";
+        req.setAttribute("nameM", nombreUsuario);
         req.setAttribute("numeroexamen", idEx);
         req.setAttribute("rutaexamen", ruta);
         

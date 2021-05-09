@@ -3,10 +3,8 @@ package servlet;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +18,7 @@ public class ServletLogin extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String identificacion, contrasegna = "";
-        Singleton singleton = Singleton.getSingleton();
+        //Singleton singleton = Singleton.getSingleton();
 
         RequestDispatcher rDispatcher = req.getRequestDispatcher("login.html");
 
