@@ -887,8 +887,8 @@ public class Singleton {
                 str += "<br> <div class=\"pacienteM\"><hr color=\"white\" size=\"1\" class=\"linea\"> <label class=\"nombrePac\">"
                         + nombre + "</label>\r\n" + "                <label class=\"docpac\">" + id + "</label>\r\n"
                         + "                <label class=\"estado\">" + estado + "</label>\r\n"
-                        + "                <input type = \"hidden\" name =\"idpac" + contb + "\" value = \""
-                        + id + "\"><button class=\"editarpac\" name=\"botoneditarpac" + contb
+                        + "                <input type = \"hidden\" name =\"idpac" + contb + "\" value = \"" + id
+                        + "\"><button class=\"editarpac\" name=\"botoneditarpac" + contb
                         + "\">Editar</button>\r\n</div>";
 
                 contb++;
@@ -903,6 +903,45 @@ public class Singleton {
 
         return str;
 
+    }
+
+    public static String buscarPaciente(int idPaciente) {
+
+        String buscarPaciente = "SELECT nombre_paciente, estado_paciente, id_paciente FROM paciente WHERE id_paciente = "
+                + idPaciente + ";";
+        String listaBuscadaPac = "";
+
+        connectarBD();
+
+        try {
+            PreparedStatement statement = connSQL.prepareStatement(buscarPaciente);
+            ResultSet rs = statement.executeQuery();
+
+            int contb = 0;
+
+            while (rs.next()) {
+                String nombre = rs.getString("nombre_paciente");
+                String estado = rs.getString("estado_paciente");
+                int id = rs.getInt("id_paciente");
+
+                listaBuscadaPac += "<br> <div class=\"pacienteM\"><hr color=\"white\" size=\"1\" class=\"linea\"> <label class=\"nombrePac\">"
+                        + nombre + "</label>\r\n" + "                <label class=\"docpac\">" + id + "</label>\r\n"
+                        + "                <label class=\"estado\">" + estado + "</label>\r\n"
+                        + "                <input type = \"hidden\" name =\"idpac" + contb + "\" value = \"" + id
+                        + "\"><button class=\"editarpac\" name=\"botoneditarpac" + contb
+                        + "\">Editar</button>\r\n</div>";
+
+                contb++;
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        cerrarConexion();
+
+        return listaBuscadaPac;
     }
 
     public static String getListaMedicos() {
@@ -925,8 +964,8 @@ public class Singleton {
                 str += "<br><div class=\"pacienteM\"><hr color=\"white\" size=\"1\" class=\"linea\"> <label class=\"nombreMed\">"
                         + nombre + "</label>\r\n" + "                <label class=\"docmed\">" + id + "</label>\r\n"
                         + "                <label class=\"consul\">" + consultorio + "</label>\r\n"
-                        + "                <input type = \"hidden\" name =\"idmed" + numerobot + "\" value = \""
-                        + id + "\"><button class=\"editarmed\" name=\"botoneditarmed" + numerobot
+                        + "                <input type = \"hidden\" name =\"idmed" + numerobot + "\" value = \"" + id
+                        + "\"><button class=\"editarmed\" name=\"botoneditarmed" + numerobot
                         + "\">Editar</button></div>";
 
                 numerobot++;
@@ -1443,7 +1482,8 @@ public class Singleton {
 
     public static void eliminarPaciente(int idPaciente) {
 
-        String eliminarPaciente = "DELETE FROM paciente WHERE id_paciente = " + idPaciente + " AND estado_paciente = 'DEFAULT';";
+        String eliminarPaciente = "DELETE FROM paciente WHERE id_paciente = " + idPaciente
+                + " AND estado_paciente = 'DEFAULT';";
 
         try {
             PreparedStatement statement = connSQL.prepareStatement(eliminarPaciente);
@@ -1519,8 +1559,6 @@ public class Singleton {
         return str;
 
     }
-
-
 
     public static void generarPdf(String nombrePdf, String url, int idExamen) {
 
