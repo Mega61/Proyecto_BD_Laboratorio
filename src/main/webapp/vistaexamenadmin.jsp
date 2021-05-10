@@ -31,7 +31,7 @@
 
     <body onclick="ocultarbots()">
         <div> <img id="logoh" src="svg/Logo completo.svg ">
-            <img id="bannerP" src="svg/Banner indicativoP.svg">
+            <img id="bannerP" src="svg/Banner indicativo.svg">
         </div>
         <div class="subhP">
             <img id="oficina" src="svg/oficina virtual.svg">
