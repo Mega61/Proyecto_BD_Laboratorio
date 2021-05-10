@@ -648,12 +648,9 @@ body {
 }
 
 .confirmar {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 16px;
     position: absolute;
+    width: 167px;
+    height: 40px;
     left: 269px;
     top: 693px;
     /* Cyan / 7 */

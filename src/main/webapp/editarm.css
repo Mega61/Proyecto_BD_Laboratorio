@@ -150,7 +150,7 @@ body {
 
 #nomM {
     position: absolute;
-    width: 305px;
+    width: 605px;
     height: 46px;
     left: 176px;
     top: 114px;
@@ -665,12 +665,9 @@ body {
 }
 
 .confirmar {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 16px;
     position: absolute;
+    width: 167px;
+    height: 40px;
     left: 269px;
     top: 793px;
     /* Cyan / 7 */
@@ -681,4 +678,102 @@ body {
     /* drop-shadow / button-primary */
     box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
     border-radius: 10px;
+    cursor: pointer;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    text-align: center;
+    /* Character / Primary(inverse) */
+    color: #E6FFFB;
+}
+
+.confirmar:hover {
+    background: #00474F;
+    color: #E6FFFB;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #5CDBD3, 0 0 25px #5CDBD3, 0 0 50px #5CDBD3, 0 0 100px #5CDBD3;
+}
+
+.botlogout {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    left: 1819px;
+    top: 9px;
+    background-color: transparent;
+    border: transparent;
+    cursor: pointer;
+}
+
+.botlogout:hover {
+    color: #002329;
+    transform: scale(1.1);
+    filter: invert(0.8);
+}
+
+#oficina {
+    position: absolute;
+    left: 82px;
+    top: 15px;
+}
+
+.botvolver {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    left: 25px;
+    top: 2px;
+    background-color: transparent;
+    border: transparent;
+    cursor: pointer;
+}
+
+.botvolver:hover {
+    color: #002329;
+    transform: scale(1.1);
+}
+
+.nomadminM {
+    position: absolute;
+    width: 64px;
+    height: 28px;
+    left: 1713px;
+    top: 75px;
+    /* Typography Laboratorio/Headers/H4 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    /* identical to box height, or 140% */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
+    cursor: pointer;
+}
+
+ ::placeholder {
+    /* Subheading 16 / regular */
+    position: relative;
+    width: 466px;
+    height: 24px;
+    left: 12px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+}
+
+input:focus {
+    border-color: #006D75;
+    box-shadow: 0 1px 1px #08979C inset, 0 0 8px #08979C;
+    outline: 0 none;
 }

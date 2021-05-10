@@ -19,15 +19,17 @@
 
     <body>
         <div> <img id="logoh" src="svg/Logo completo.svg ">
-            <img id="bannerM" src="svg/Banner indicativoP.svg">
+            <img id="bannerM" src="svg/Banner indicativo.svg">
         </div>
         <div class="subhM">
+            <img id="oficina" src="svg/oficina virtual.svg">
+
             <form action="perfilMedico" method="GET">
-                <button class="botlogout" name="botonlogout">LogOut</button>
-                <button class="botvolver" name="botonvolver">Volver</button>
-                <label class="nomperfil">${usuarioLogeado}</label>
+                <button class="botvolver" name="botonvolver"><img src="svg/button.svg"></button>
+                <button class="botlogout" name="botonlogout"><img src="svg/Upload.svg"></button>
             </form>
         </div>
+        <label class="nomadminM"><img src="svg/Group 49.svg"> ${admin} </label>
         <div class="contenedor1">
             <div class="hizq">
                 <img id="logo1" src="svg/Letras logoM.svg">
