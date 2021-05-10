@@ -26,8 +26,8 @@ public class PacienteServlet extends HttpServlet {
 
             
             if (Singleton.getEstadoP(usuarioIngresado).equals("DEFAULT")) {
-                String barraEstado = Singleton.getBarraEstado(usuarioIngresado);
                 Singleton.cambiarEstadoP(usuarioIngresado, "ESPERANDO CITA");
+                String barraEstado = Singleton.getBarraEstado(usuarioIngresado);
                 req.setAttribute("usuarioLogeado", nombreUsuario);
                 System.out.println("Se ha oprimido agendar");
                 req.setAttribute("barraestado", barraEstado);
