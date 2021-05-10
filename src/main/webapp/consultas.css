@@ -34,11 +34,13 @@ body {
 .contenedor {
     position: absolute;
     width: 1434px;
-    height: 100%;
+    height: 850px;
     left: 409px;
     top: 176px;
     background: #36CFC9;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .consultas {
@@ -51,12 +53,30 @@ body {
     background: #13C2C2;
 }
 
-.barra {
+.hder {
     position: absolute;
-    width: 212px;
+    width: 1434px;
+    height: 78px;
+    left: 0px;
+    top: 0px;
+    /* Página laboratorio médico/70 */
+    background: #08979C;
+}
+
+#subt {
+    position: absolute;
+    width: 838px;
+    height: 76px;
+    left: 50px;
+    top: 0px;
+}
+
+#cons {
+    position: absolute;
+    width: 300px;
     height: 46px;
-    left: 43px;
-    top: 19px;
+    left: 1205px;
+    top: 16px;
     /* Typography Laboratorio/Headers/H1 */
     font-family: Roboto;
     font-style: normal;
@@ -64,10 +84,20 @@ body {
     font-size: 38px;
     line-height: 46px;
     /* identical to box height, or 121% */
+    text-align: left;
+    color: #E6FFFB;
+}
+
+.barra {
+    position: absolute;
+    width: 298px;
+    height: 78px;
+    left: 0px;
+    top: 0px;
     display: flex;
     align-items: center;
     /* Neutral / 1 */
-    color: #FFFFFF;
+    background: #08979C;
 }
 
 .botbarra {
@@ -83,6 +113,7 @@ body {
     display: flex;
     align-items: center;
     color: #E6FFFB;
+    cursor: pointer;
 }
 
 #cant {
@@ -139,4 +170,165 @@ body {
     height: 38px;
     left: 61px;
     top: 355px;
+}
+
+.nomadminM {
+    position: absolute;
+    width: 64px;
+    height: 28px;
+    left: 1713px;
+    top: 75px;
+    /* Typography Laboratorio/Headers/H4 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    /* identical to box height, or 140% */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
+    cursor: pointer;
+}
+
+.botlogout {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    left: 1819px;
+    top: 9px;
+    background-color: transparent;
+    border: transparent;
+    cursor: pointer;
+}
+
+.botlogout:hover {
+    color: #002329;
+    transform: scale(1.1);
+    filter: invert(0.8);
+}
+
+#oficina {
+    position: absolute;
+    left: 82px;
+    top: 15px;
+}
+
+.botvolver {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    left: 25px;
+    top: 2px;
+    background-color: transparent;
+    border: transparent;
+    cursor: pointer;
+}
+
+.botvolver:hover {
+    color: #002329;
+    transform: scale(1.1);
+}
+
+.botbarra:hover {
+    color: #002329;
+    transform: scale(1.1);
+}
+
+.consulta1 {
+    position: absolute;
+    width: 612px;
+    height: 55px;
+    left: 89px;
+    top: 161px;
+    /* Typography Laboratorio/Headers/H2 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 38px;
+    /* or 127% */
+    color: #E6FFFB;
+}
+
+.consulta2 {
+    position: absolute;
+    width: 612px;
+    height: 55px;
+    left: 89px;
+    top: 261px;
+    /* Typography Laboratorio/Headers/H2 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 38px;
+    /* or 127% */
+    color: #E6FFFB;
+}
+
+.consulta3 {
+    position: absolute;
+    width: 612px;
+    height: 55px;
+    left: 89px;
+    top: 361px;
+    /* Typography Laboratorio/Headers/H2 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 38px;
+    /* or 127% */
+    color: #E6FFFB;
+}
+
+.consulta1der {
+    position: absolute;
+    width: 612px;
+    height: 55px;
+    left: 769px;
+    top: 161px;
+    /* Typography Laboratorio/Headers/H2 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 38px;
+    /* or 127% */
+    color: #E6FFFB;
+}
+
+.consulta2der {
+    position: absolute;
+    width: 612px;
+    height: 55px;
+    left: 769px;
+    top: 261px;
+    /* Typography Laboratorio/Headers/H2 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 38px;
+    /* or 127% */
+    color: #E6FFFB;
+}
+
+.consulta3der {
+    position: absolute;
+    width: 612px;
+    height: 55px;
+    left: 769px;
+    top: 361px;
+    /* Typography Laboratorio/Headers/H2 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 38px;
+    /* or 127% */
+    color: #E6FFFB;
 }
