@@ -45,7 +45,9 @@
 
             </form>
         </div>
+        <form action="perfilPaciente" method="GET">
         ${infopac}
+        </form>
         <div>
             <img id="footerp" src="svg/Footer vistas.svg">
         </div>
