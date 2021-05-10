@@ -33,27 +33,8 @@ public class generarOrden extends HttpServlet {
             String tipo3 = req.getParameter("tiposexamenes3");
             String tipo4 = req.getParameter("tiposexamenes4");
 
-            if(!tipo0.equals(tipo1) && !tipo0.equals(tipo2) && !tipo0.equals(tipo3) && !tipo0.equals(tipo4)){
-
-                if(!tipo1.equals(tipo2) && !tipo1.equals(tipo3) && !tipo1.equals(tipo4)){
-
-                    if (!tipo2.equals(tipo3) && !tipo2.equals(tipo4)) {
-                        
-                        if (!tipo3.equals(tipo4)) {
-                            
-                            Singleton.crearExamen(idMedico, idPaciente, diagnostico, tipo0, tipo1, tipo2, tipo3, tipo4);
-                            Singleton.cambiarEstadoP(idPacienteS, "ESPERANDO REALIZACION");
-
-                        }
-
-                    }
-
-                }
-
-            }
-
-            
-            
+            Singleton.crearExamen(idMedico, idPaciente, diagnostico, tipo0, tipo1, tipo2, tipo3, tipo4);
+            Singleton.cambiarEstadoP(idPacienteS, "ESPERANDO REALIZACION");
             System.out.println(diagnostico + " " + tipo0 + " " + tipo1 + " " + tipo2 + " " + tipo3 + " " + tipo4);
             session = req.getSession();
             session.setAttribute("medicoNombre", nombreMedico);
