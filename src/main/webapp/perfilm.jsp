@@ -61,7 +61,7 @@
                 <label class="histo">Historial</label>
             </div>
             <div class="pelicula">
-                <form>
+                <form action = "historialm" method  = "GET">
                 <input type="date" class="busquedaexa" name="fechabuscada" placeholder="Ingrese la fecha del examen..." required>
                 <button class="botbuscar" name="buscarexamenfecha">Buscar</button>
                 </form>
