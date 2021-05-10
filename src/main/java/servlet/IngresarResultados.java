@@ -81,7 +81,7 @@ public class IngresarResultados extends HttpServlet {
             Singleton.generarPdf(nombrePdf, url, idExamen);
             ruta = "src=\"pdf/" + nombrePdf + ".pdf\"";
 
-            req.setAttribute("nombremedico", nombreMedico);
+            req.setAttribute("nameM", nombreMedico);
             req.setAttribute("numexamen", idExamen);
             req.setAttribute("rutapdf", ruta);
             session.setAttribute("medico", idMedico);

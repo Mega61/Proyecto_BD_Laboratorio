@@ -25,12 +25,9 @@ public class ListaExamenes extends HttpServlet {
         if (req.getParameter("buscarexamen") != null) {
 
             int busquedaExamen = Integer.parseInt(req.getParameter("idbuscado"));
-
             String listaexamenes = Singleton.buscarExamen(busquedaExamen);
-
             req.setAttribute("listaexamenes", listaexamenes);
             req.setAttribute("admin", "admin");
-
             rDispatcher = req.getRequestDispatcher("listaexa.jsp");
 
         }
@@ -49,6 +46,26 @@ public class ListaExamenes extends HttpServlet {
                 idExamen = Integer.parseInt(req.getParameter(nomExamen));
                 rDispatcher = req.getRequestDispatcher("vistaexamenadmin.jsp");
             }
+
+        }
+
+        if (req.getParameter("botonvolver")  != null){
+
+            session = req.getSession();
+            session.setAttribute("admin", "admin");
+            req.setAttribute("admin", "admin");
+            String lista = Singleton.getHistorialExamenes();
+            req.setAttribute("listaexamenes", lista);
+            rDispatcher = req.getRequestDispatcher("listaexa.jsp");
+
+        }
+
+        if (req.getParameter("botonlogout") != null) {
+
+            System.out.println("Se ha oprimido logout");
+            session = req.getSession();  
+            session.invalidate(); 
+            rDispatcher = req.getRequestDispatcher("index.html");
 
         }
 
