@@ -20,22 +20,18 @@ public class ListaExamenes extends HttpServlet {
         HttpSession session = req.getSession();
         String usuarioIngresado = session.getAttribute("admin").toString();
 
-        RequestDispatcher rDispatcher = req.getRequestDispatcher("listamed.jsp");
+        RequestDispatcher rDispatcher = req.getRequestDispatcher(".jsp");
 
-        if (req.getParameter("botonagregarmed") != null) {
+        if (req.getParameter("buscarexamen") != null) {
 
-            rDispatcher = req.getRequestDispatcher("registromed.html");
+            int busquedaExamen = Integer.parseInt(req.getParameter("idbuscado"));
 
-        }
+            String listaexamenes = Singleton.buscarExamen(busquedaExamen);
 
-        if (req.getParameter("buscarmed") != null) {
-
-            String busquedaMed = req.getParameter("busmed");
-
-            String listaMedicos = Singleton.buscarMedico(busquedaMed);
-
-            req.setAttribute("listamed", listaMedicos);
+            req.setAttribute("listamed", listaexamenes);
             req.setAttribute("admin", "admin");
+
+            rDispatcher = req.getRequestDispatcher("editarm.jsp");
 
         }
 
@@ -44,10 +40,10 @@ public class ListaExamenes extends HttpServlet {
         String documentoMedico = "";
         for (int i = 0; i < cantidadMedicos; i++) {
 
-            nombrebot = "botoneditarmed"+i;
+            nombrebot = "botoneditarmed" + i;
             documentoMedico = "idmed" + i;
 
-            if(req.getParameter(nombrebot) != null){
+            if (req.getParameter(nombrebot) != null) {
 
                 String listaedit = Singleton.getInfoMedico(req.getParameter(documentoMedico));
                 req.setAttribute("infomed", listaedit);
@@ -55,7 +51,7 @@ public class ListaExamenes extends HttpServlet {
 
                 rDispatcher = req.getRequestDispatcher("editarm.jsp");
             }
-            
+
         }
 
         rDispatcher.forward(req, resp);

@@ -926,6 +926,44 @@ public class Singleton {
 
     }
 
+    public static String buscarExamen(int idexamen) {
+
+        String buscarexamen = "SELECT id_examen, fecha_resultados FROM examen_laboratorio WHERE id_examen = " + idexamen
+                + ";";
+        String listabuscadaexamen = "";
+
+        connectarBD();
+
+        try {
+            PreparedStatement statement = connSQL.prepareStatement(buscarexamen);
+            ResultSet rs = statement.executeQuery();
+
+            int contb = 0;
+
+            if (rs.next()) {
+
+                listabuscadaexamen += "<div class=\"exa\">\r\n"
+                        + "                <hr id=\"divisor3\" color=\"white\" size=\"1\" class=\"linea\">\r\n"
+                        + "                <label class=\"codexa\">" + rs.getInt("id_examen") + "</label>\r\n"
+                        + "                <label class=\"ferem\">" + rs.getDate("fecha_resultados")
+                        + "</label> <input type = \"hidden\" name =\"idexamen" + contb + "\" value = \""
+                        + rs.getInt("id_examen") + "\">" + "                <button class=\"verres\" name=\"verres"
+                        + contb + "\">Ver Resultados</button>\r\n" + "            </div>";
+
+                contb++;
+
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        cerrarConexion();
+
+        return listabuscadaexamen;
+    }
+
     public static String buscarMedico(String idmedico) {
 
         String buscarPaciente = "SELECT nombre_medico, id_medico, consultorio_medico FROM medico WHERE id_medico = '"

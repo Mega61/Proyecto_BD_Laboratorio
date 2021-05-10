@@ -52,6 +52,7 @@ public class ListaMedAdminServlet extends HttpServlet {
                 String listaedit = Singleton.getInfoMedico(req.getParameter(documentoMedico));
                 req.setAttribute("infomed", listaedit);
                 req.setAttribute("usuarioLogeado", "admin");
+                session.setAttribute("medico", req.getParameter(documentoMedico));
 
                 rDispatcher = req.getRequestDispatcher("editarm.jsp");
             }
