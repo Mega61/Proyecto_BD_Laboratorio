@@ -324,6 +324,11 @@ body {
     /* Neutral / 1 */
     background: #FFFFFF;
     /* Cyan / 6 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
     border: 1px solid #13C2C2;
     box-sizing: border-box;
     border-radius: 2px;
@@ -387,7 +392,7 @@ input:focus {
     width: 26px;
     height: 26px;
     left: 1819px;
-    top: 9px;
+    top: 11px;
     background-color: transparent;
     border: transparent;
     cursor: pointer;

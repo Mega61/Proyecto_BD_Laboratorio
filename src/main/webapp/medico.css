@@ -50,10 +50,10 @@ body {
 
 .subt {
     position: absolute;
-    width: 180px;
+    width: 480px;
     height: 32px;
-    left: 75px;
-    top: 90px;
+    left: 40px;
+    top: 95px;
     /* Typography Laboratorio/Headers/H3 */
     font-family: Roboto;
     font-style: normal;
@@ -132,6 +132,22 @@ body {
     box-shadow: 0 0 5px #5CDBD3, 0 0 25px #5CDBD3, 0 0 50px #5CDBD3, 0 0 100px #5CDBD3;
 }
 
+.sol {
+    position: relative;
+    width: 100px;
+    height: 20px;
+    top: -25px;
+    left: 274px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 38px;
+    /* or 127% */
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
+}
+
 .salida {
     position: absolute;
     width: 124px;
@@ -150,9 +166,19 @@ body {
     color: #002329;
 }
 
+.hder {
+    position: absolute;
+    width: 836px;
+    height: 78px;
+    left: 0px;
+    top: 0px;
+    /* Página laboratorio médico/70 */
+    background: #08979C;
+}
+
 .h3 {
     position: relative;
-    top: 13px;
+    top: 15px;
     left: 24px;
     font-family: Roboto;
     font-style: normal;
@@ -188,7 +214,7 @@ body {
     position: relative;
     width: 836px;
     height: 105px;
-    top: 37px;
+    top: 117px;
     left: 0px;
 }
 

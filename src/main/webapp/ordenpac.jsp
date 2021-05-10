@@ -9,7 +9,7 @@
         <meta charset="UTF-8">
         <meta name="viewport">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <title>Laboratorio Genesis</title>
+        <title>Solicitudes</title>
         <link href="ordenpac.css" rel="stylesheet">
         <link>
         <link rel="preconnect" href="https://fonts.gstatic.com">
