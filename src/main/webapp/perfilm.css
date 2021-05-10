@@ -4,7 +4,6 @@ body {
     overflow-x: hidden;
     /* Página laboratorio médico/10 */
     background: #E6FFFB;
-    
 }
 
 #logoh {
@@ -163,7 +162,7 @@ body {
 
 #nomM {
     position: absolute;
-    width: 305px;
+    width: 605px;
     height: 46px;
     left: 176px;
     top: 114px;
@@ -804,14 +803,13 @@ body {
     /* drop-shadow / button-primary */
     box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
     border-radius: 10px;
+    cursor: pointer;
 }
 
-.divExamenesMedico{
-    
+.divExamenesMedico {
     position: relative;
-        width: 705px;
-        height: 91px;
-        left: 0px;
-        top: 0px;
-    
+    width: 705px;
+    height: 91px;
+    left: 0px;
+    top: 0px;
 }
