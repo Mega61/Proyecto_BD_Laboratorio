@@ -1,8 +1,10 @@
 package servlet;
 
 import java.io.IOException;
+import java.nio.file.DirectoryStream.Filter;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +14,10 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "MedicoServlet", urlPatterns = { "/medico" })
 
-public class MedicoServlet extends HttpServlet {
+public class MedicoServlet extends HttpServlet implements Servlet, Filter{
+
+    
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -129,6 +134,12 @@ public class MedicoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+    }
+
+    @Override
+    public boolean accept(Object entry) throws IOException {
+        // TODO Auto-generated method stub
+        return false;
     }
 
 }

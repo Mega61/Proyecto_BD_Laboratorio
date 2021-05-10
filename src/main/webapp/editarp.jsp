@@ -9,8 +9,8 @@
         <meta charset="UTF-8">
         <meta name="viewport">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <title>Historial De Resultados</title>
-        <link href="respacientes.css" rel="stylesheet">
+        <title>Editar Paciente</title>
+        <link href="editarp.css" rel="stylesheet">
         <link>
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
@@ -33,40 +33,25 @@
             <img id="bannerP" src="svg/Banner indicativo.svg">
         </div>
         <div class="subhP">
+
             <img id="oficina" src="svg/oficina virtual.svg">
-            <button class="nomperfil" onmouseover="mostrarbots()">${usuarioLogeado} <img id="flecha" src="svg/CaretDown.svg"></button>
-            <form action="perfilPaciente" method="GET">
+            <button class="nomperfil" onmouseover="mostrarbots()">${admin} <img id="flecha" src="svg/CaretDown.svg"></button>
+            <form action="editarpacadmin" method="GET">
+
                 <div id=divinferior hidden=true>
                     <button class="botperfil" name="botonvolver">Volver <img src="svg/User.svg"></button>
                     <button class="botlogout" name="botonlogout">LogOut <img src="svg/Upload.svg"></button>
                 </div>
-            </form>
-        </div>
-        <div class="contenedor1">
-            <div class="hder">
-                <img id="logo2" src="svg/Letras logoA.svg">
-                <label class="histo">Historial</label>
-                <input type="search" class="busquedaexa" placeholder="Ingrese el ID del examen...">
-                <button class="botbuscar">Buscar</button>
-                <label class="nexa">N° Examen</label>
-                <label class="fere">Fecha de Resultados</label>
-            </div>
-            <form action="historialp" method="GET">
-                <%-- <div class="exa">
-                <hr id="divisor3" color="white" size="1" class="linea">
-            
-                <label class="codexa">E12560</label>
-                <label class="ferem">10/04/2021</label>
-                <button class="verres">Ver Resultados</button>
-            
-            </div> --%>
-                    ${listaexamenes}
-            </form>
-        </div>
 
+            </form>
+        </div>
+        <form action="editarpacadmin" method="GET">
+        ${infopac}
+        </form>
         <div>
             <img id="footerp" src="svg/Footer vistas.svg">
         </div>
+
     </body>
 
     </html>

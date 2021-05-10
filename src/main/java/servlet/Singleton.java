@@ -646,7 +646,6 @@ public class Singleton {
                 String correocep = rs.getString("correo_contacto_emergencia");
 
                 infop = "<div class=\"contenedor1\"><div class=\"hizq\"><img id=\"logo1\" src=\"svg/Letras logo.svg\"> <label class=\"info\">Información</label> </div><div>"
-                        + "                <form action = \"perfilPaciente\" method=\"GET\">\r\n"
                         + "                <img class=\"fotop\" src=\"svg/Group 63.svg\"> >\r\n"
                         + "                <label class=\"entrada\" id=\"nomp\">" + nombrep + "</label>\r\n"
                         + "                <label id=\"docp\">Documento:</label>\r\n"
@@ -683,10 +682,10 @@ public class Singleton {
                         + "                <label id=\"confirmp\">Confirmar Contraseña</label>\r\n"
                         + "                <input type=\"password\" id=\"editconfirmp\" name=\"cambiarContrasegnaP\">\r\n"
                         + "                <button class=\"confirmar\" name = \"botcambpac\">Confirmar Cambios</button>\r\n"
-                        + "            </form></div></div>\r\n"
+                        + "            </div></div>\r\n"
                         + "    <div class = \"contenedor2\">        <div class=\"hder\">\r\n"
                         + "                <img id=\"logoce\" src=\"svg/Group 66.svg\">\r\n"
-                        + "            <div><form action = \"perfilPaciente\" method=\"GET\">\r\n"
+                        + "            <div>\r\n"
                         + "                <img class=\"puntonomce\" src=\"svg/Ellipse 2.svg\">\r\n"
                         + "                <label id=\"nomce\">Nombre:</label>\r\n"
                         + "                <label id=\"vnomce\">" + nombrecep + "</label>\r\n"
@@ -708,7 +707,7 @@ public class Singleton {
                         + telefonocep + "\">\r\n"
                         + "                <input type = \"hidden\" name =\"idcepp\" value = \"" + idcep + "\">\r\n"
                         + "                <button class=\"confirmarce\" name = \"botcambpacep\">Confirmar Cambios</button>\r\n"
-                        + "                <br>\r\n" + "                <br>\r\n </form></div></div></div>";
+                        + "                <br>\r\n" + "                <br>\r\n</div></div></div>";
 
             } else {
 
@@ -1480,19 +1479,31 @@ public class Singleton {
 
     }
 
-    public static void eliminarPaciente(int idPaciente) {
+    public static String getHistorialExamenes(){
 
-        String eliminarPaciente = "DELETE FROM paciente WHERE id_paciente = " + idPaciente
-                + " AND estado_paciente = 'DEFAULT';";
+        String query = "SELECT id_examen, fecha_resultados FROM examen_laboratorio";
+        String str = "";
+        int contador = 0;
 
         try {
-            PreparedStatement statement = connSQL.prepareStatement(eliminarPaciente);
-            statement.execute();
+            
+            PreparedStatement statement = connSQL.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                str += "<div class=\"exa\">\r\n" + 
+"                <hr id=\"divisor3\" color=\"white\" size=\"1\" class=\"linea\">\r\n" +
+"                <label class=\"codexa\">E12560</label>\r\n" + 
+"                <label class=\"ferem\">10/04/2021</label>\r\n" + 
+"                <button class=\"verres\">Ver Resultados</button>\r\n" + 
+"            </div>";
+            }
+
         } catch (Exception e) {
-            // TODO: handle exception
+            //TODO: handle exception
             e.printStackTrace();
         }
 
+    
     }
 
     public static String estadisticas() {
