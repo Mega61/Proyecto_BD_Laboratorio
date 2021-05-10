@@ -22,7 +22,7 @@
             <img id="bannerM" src="svg/Banner indicativoP.svg">
         </div>
         <div class="subhM">
-            <form action="perfilMedico" method="GET">
+            <form action="perfilMedicoEd" method="GET">
                 <button class="botlogout" name="botonlogout">LogOut</button>
                 <button class="botvolver" name="botonvolver">Volver</button>
                 <label class="nomperfil">${usuarioLogeado}</label>

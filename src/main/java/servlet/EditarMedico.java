@@ -74,7 +74,7 @@ public class EditarMedico extends HttpServlet {
             session = req.getSession();
             String lista = Singleton.getListaMedicos();
             req.setAttribute("listamed", lista);
-            req.setAttribute("admin", usuarioIngresado);
+            req.setAttribute("admin", "admin");
             session.setAttribute("medico", usuarioIngresado);
             rDispatcher = req.getRequestDispatcher("listamed.jsp");
 

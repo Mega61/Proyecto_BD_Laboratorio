@@ -542,6 +542,29 @@ public class Singleton {
         return cantidadMedico;
     }
 
+    public static int getCantidadExamenes() {
+        connectarBD();
+
+        String query = "SELECT count(*) FROM examen_laboratorio;";
+        int cantidadExamen = 0;
+
+        try {
+            PreparedStatement statement = connSQL.prepareStatement(query);
+
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                cantidadExamen = rs.getInt("count(*)");
+            } else {
+                System.out.println("No se han encontrado examenes");
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        return cantidadExamen;
+    }
+
     public static String getEstadoP(String username) {
 
         String str = "";

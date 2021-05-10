@@ -34,6 +34,7 @@
         </div>
         <label class="nomadminM"><img src="svg/Group 49.svg"> ${admin} </label>
         <div class="contenedor1">
+            <form action = "listaexamenesadmin" method = "GET">
             <div class="hder">
                 <img id="logo2" src="svg/Letras logoA.svg">
                 <label class="histo">Historial</label>
@@ -42,7 +43,8 @@
                 <label class="nexa">N° Examen</label>
                 <label class="fere">Fecha de Resultados</label>
             </div>
-            <form action="historialp" method="GET">
+            </form>
+            <form action="listaexamenesadmin" method="GET">
                 <!-- <div class="exa">
                 <hr id="divisor3" color="white" size="1" class="linea">
             
