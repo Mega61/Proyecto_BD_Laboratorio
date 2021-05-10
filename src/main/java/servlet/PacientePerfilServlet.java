@@ -19,10 +19,13 @@ public class PacientePerfilServlet extends HttpServlet {
 
         String correop, telefonop, contrasegnap, correocep, telefonocep, idcep = "";
 
-        HttpSession session = req.getSession();
-        String usuarioIngresado = session.getAttribute("paciente").toString();
-        String nombreUsuario = session.getAttribute("pacienteNombre").toString();
         RequestDispatcher rDispatcher = req.getRequestDispatcher("perfilp.jsp");
+        String usuarioIngresado = "";
+        String nombreUsuario = "";
+
+        HttpSession session = req.getSession();
+        usuarioIngresado = session.getAttribute("paciente").toString();
+        nombreUsuario = session.getAttribute("pacienteNombre").toString();
 
         session = req.getSession();
         session.setAttribute("pacienteNombre", nombreUsuario);
@@ -35,66 +38,71 @@ public class PacientePerfilServlet extends HttpServlet {
         idcep = req.getParameter("idcepp");
 
         if (req.getParameter("botcambpac") != null) {
-            
+
             Singleton.connectarBD();
 
-            if (!correop.equals("")){
+            if (!correop.equals("")) {
 
-                Singleton.cambiarColumna("paciente", "correo_paciente", correop, "id_paciente",usuarioIngresado);
-
-            }
-
-            if (!telefonop.equals("")){
-
-                Singleton.cambiarColumna("paciente", "telefono_paciente", telefonop, "id_paciente",usuarioIngresado);
+                Singleton.cambiarColumna("paciente", "correo_paciente", correop, "id_paciente", usuarioIngresado);
 
             }
 
-            if (!contrasegnap.equals("")){
+            if (!telefonop.equals("")) {
 
-                Singleton.cambiarColumna("paciente", "contrasegna_paciente", contrasegnap, "id_paciente",usuarioIngresado);
+                Singleton.cambiarColumna("paciente", "telefono_paciente", telefonop, "id_paciente", usuarioIngresado);
+
+            }
+
+            if (!contrasegnap.equals("")) {
+
+                Singleton.cambiarColumna("paciente", "contrasegna_paciente", contrasegnap, "id_paciente",
+                        usuarioIngresado);
 
             }
 
             String info = Singleton.getInfoPacientes(usuarioIngresado);
             req.setAttribute("infopac", info);
+            req.setAttribute("usuarioLogeado", nombreUsuario);
             Singleton.cerrarConexion();
-            rDispatcher =  req.getRequestDispatcher("perfilp.jsp");
-            
+            rDispatcher = req.getRequestDispatcher("perfilp.jsp");
+
         }
 
-        if (req.getParameter("botcambpacep") != null){
+        if (req.getParameter("botcambpacep") != null) {
 
             Singleton.connectarBD();
-            if (!correocep.equals("")){
+            if (!correocep.equals("")) {
 
-                Singleton.cambiarColumna("contacto_emergencia_paciente", "correo_contacto_emergencia", correocep, "id_contacto_emergencia",idcep);
+                Singleton.cambiarColumna("contacto_emergencia_paciente", "correo_contacto_emergencia", correocep,
+                        "id_contacto_emergencia", idcep);
 
             }
 
-            if (!telefonocep.equals("")){
+            if (!telefonocep.equals("")) {
 
-                Singleton.cambiarColumna("contacto_emergencia_paciente", "telefono_contacto_emergencia", telefonocep, "id_contacto_emergencia",idcep);
+                Singleton.cambiarColumna("contacto_emergencia_paciente", "telefono_contacto_emergencia", telefonocep,
+                        "id_contacto_emergencia", idcep);
 
             }
 
             String info = Singleton.getInfoPacientes(usuarioIngresado);
             req.setAttribute("infopac", info);
+            req.setAttribute("usuarioLogeado", nombreUsuario);
             Singleton.cerrarConexion();
-            rDispatcher =  req.getRequestDispatcher("perfilp.jsp");
+            rDispatcher = req.getRequestDispatcher("perfilp.jsp");
 
         }
 
         if (req.getParameter("botonlogout") != null) {
 
             System.out.println("Se ha oprimido logout");
-            session = req.getSession();  
-            session.invalidate(); 
+            session = req.getSession();
+            session.invalidate();
             rDispatcher = req.getRequestDispatcher("login.html");
 
         }
 
-        if(req.getParameter("botonvolver") != null){
+        if (req.getParameter("botonvolver") != null) {
 
             session = req.getSession();
             session.setAttribute("pacienteNombre", nombreUsuario);
@@ -105,9 +113,9 @@ public class PacientePerfilServlet extends HttpServlet {
             rDispatcher = req.getRequestDispatcher("paciente.jsp");
 
         }
-    
+
         rDispatcher.forward(req, resp);
-        
+
     }
 
     @Override
@@ -115,4 +123,4 @@ public class PacientePerfilServlet extends HttpServlet {
 
     }
 
-} 
+}
