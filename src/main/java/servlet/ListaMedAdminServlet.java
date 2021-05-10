@@ -64,8 +64,8 @@ public class ListaMedAdminServlet extends HttpServlet {
             session = req.getSession();
             session.setAttribute("admin", "admin");
             req.setAttribute("admin", "admin");
-            String lista = Singleton.getHistorialExamenes();
-            req.setAttribute("listaexamenes", lista);
+            String lista = Singleton.getListaMedicos();
+            req.setAttribute("listamed", lista);
             rDispatcher = req.getRequestDispatcher("listaexa.jsp");
 
         }
