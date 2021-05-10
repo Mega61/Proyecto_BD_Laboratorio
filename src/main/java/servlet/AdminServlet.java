@@ -59,6 +59,15 @@ public class AdminServlet extends HttpServlet {
 
         }
 
+        if (req.getParameter("botonstats") != null) {
+
+            System.out.println("Se ha oprimido lista stats");
+            String statsini = Singleton.estadisticas();
+            req.setAttribute("statsiniciales", statsini);
+            rDispatcher = req.getRequestDispatcher("consultas.jsp");
+
+        }
+
         if (req.getParameter("botonvolver")  != null){
 
             session = req.getSession();

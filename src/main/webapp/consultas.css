@@ -238,7 +238,7 @@ body {
 }
 
 .consulta1 {
-    position: absolute;
+    position: relative;
     width: 612px;
     height: 55px;
     left: 89px;
@@ -254,7 +254,7 @@ body {
 }
 
 .consulta2 {
-    position: absolute;
+    position: relative;
     width: 612px;
     height: 55px;
     left: 89px;
@@ -270,7 +270,7 @@ body {
 }
 
 .consulta3 {
-    position: absolute;
+    position: relative;
     width: 612px;
     height: 55px;
     left: 89px;
@@ -286,7 +286,7 @@ body {
 }
 
 .consulta1der {
-    position: absolute;
+    position: relative;
     width: 612px;
     height: 55px;
     left: 769px;
@@ -302,7 +302,7 @@ body {
 }
 
 .consulta2der {
-    position: absolute;
+    position: relative;
     width: 612px;
     height: 55px;
     left: 769px;
@@ -318,7 +318,7 @@ body {
 }
 
 .consulta3der {
-    position: absolute;
+    position: relative;
     width: 612px;
     height: 55px;
     left: 769px;
