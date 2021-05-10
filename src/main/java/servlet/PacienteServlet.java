@@ -24,15 +24,23 @@ public class PacienteServlet extends HttpServlet {
 
         if (req.getParameter("botonagendar") != null) {
 
-            Singleton.cambiarEstadoP(usuarioIngresado, "ESPERANDO CITA");
-            req.setAttribute("usuarioLogeado", nombreUsuario);
-            System.out.println("Se ha oprimido agendar");
-            String barraEstado = Singleton.getBarraEstado(usuarioIngresado);
-            req.setAttribute("barraestado", barraEstado);
-            rDispatcher = req.getRequestDispatcher("paciente.jsp");
             
+            if (Singleton.getEstadoP(usuarioIngresado).equals("DEFAULT")) {
+                String barraEstado = Singleton.getBarraEstado(usuarioIngresado);
+                Singleton.cambiarEstadoP(usuarioIngresado, "ESPERANDO CITA");
+                req.setAttribute("usuarioLogeado", nombreUsuario);
+                System.out.println("Se ha oprimido agendar");
+                req.setAttribute("barraestado", barraEstado);
+                rDispatcher = req.getRequestDispatcher("paciente.jsp");
+            } else {
+                String barraEstado = Singleton.getBarraEstado(usuarioIngresado);
+                req.setAttribute("usuarioLogeado", nombreUsuario);
+                req.setAttribute("barraestado", barraEstado);
+                rDispatcher = req.getRequestDispatcher("paciente.jsp");
+            }
+
         }
-        
+
         if (req.getParameter("botonsolicitar") != null) {
 
             System.out.println("Se ha oprimido solicitar");
@@ -47,7 +55,7 @@ public class PacienteServlet extends HttpServlet {
 
             System.out.println("Se ha oprimido resultados");
             String estador = Singleton.getEstadoP(usuarioIngresado);
-            if(estador.equals("RESULTADOS GENERADOS")){
+            if (estador.equals("RESULTADOS GENERADOS")) {
 
                 Singleton.cambiarEstadoP(usuarioIngresado, "DEFAULT");
 
@@ -77,8 +85,8 @@ public class PacienteServlet extends HttpServlet {
         if (req.getParameter("botonlogoutpac") != null) {
 
             System.out.println("Se ha oprimido logout");
-            session = req.getSession();  
-            session.invalidate(); 
+            session = req.getSession();
+            session.invalidate();
             rDispatcher = req.getRequestDispatcher("login.html");
 
         }
@@ -89,7 +97,7 @@ public class PacienteServlet extends HttpServlet {
             int idExImp = Integer.parseInt(req.getParameter("ingnumorden"));
             int idEX = Singleton.getIdExamenPaciente(usuarioIngresado);
 
-            if (idExImp == idEX){
+            if (idExImp == idEX) {
 
                 Singleton.cambiarEstadoP(usuarioIngresado, "ESPERANDO RESULTADOS");
                 Singleton.setFechaRealizacion(idEX);
@@ -99,13 +107,13 @@ public class PacienteServlet extends HttpServlet {
             }
 
             Singleton.cerrarConexion();
-            session.setAttribute("usuarioLogueado", nombreUsuario);
+            req.setAttribute("usuarioLogueado", nombreUsuario);
             session.setAttribute("pacienteNombre", nombreUsuario);
             session.setAttribute("paciente", usuarioIngresado);
             rDispatcher = req.getRequestDispatcher("paciente.jsp");
         }
 
-        if(req.getParameter("botonvolver") != null){
+        if (req.getParameter("botonvolver") != null) {
 
             session = req.getSession();
             session.setAttribute("pacienteNombre", nombreUsuario);
@@ -117,13 +125,14 @@ public class PacienteServlet extends HttpServlet {
 
         }
 
+        req.setAttribute("usuarioLogeado", nombreUsuario);
         rDispatcher.forward(req, resp);
 
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        
+
     }
 
 }

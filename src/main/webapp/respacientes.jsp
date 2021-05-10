@@ -43,14 +43,16 @@
             </form>
         </div>
         <div class="contenedor1">
+            <form action = "historialp" method = "GET">
             <div class="hder">
                 <img id="logo2" src="svg/Letras logo.svg">
                 <label class="histo">Historial</label>
-                <input type="date" class="busquedaexa" placeholder="Ingrese la fecha del examen...">
-                <button class="botbuscar">Buscar</button>
+                <input type="date" class="busquedaexa" name = "fechabuscada" placeholder="Ingrese la fecha del examen..." required>
+                <button class="botbuscar" name = "buscarexamenfecha">Buscar</button>
                 <label class="nexa">N° Examen</label>
                 <label class="fere">Fecha de Resultados</label>
             </div>
+            </form>
             <form action="historialp" method="GET">
                 <%-- <div class="exa">
                 <hr id="divisor3" color="white" size="1" class="linea">

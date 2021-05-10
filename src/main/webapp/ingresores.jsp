@@ -21,8 +21,8 @@
 <body>
     <div>
         <div>
-            <img id="logoh" src="Logo completo.svg ">
-            <img id="bannerM" src="Banner indicativoM.svg">
+            <img id="logoh" src="svg/Logo completo.svg ">
+            <img id="bannerM" src="svg/Banner indicativoM.svg">
         </div>
         <div class="subhM">
             <form>
@@ -33,7 +33,7 @@
 
         <div class="contenedor">
             <div class="headerGe">
-                <img id="logopac" src="Letras logo.svg">
+                <img id="logopac" src="svg/Letras logo.svg">
                 <label class="nombrepac">${nomPaciente}</label></div>
             <label class="h3">Ingresa Resultados de Examenes</label>
             <br>

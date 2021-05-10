@@ -28,6 +28,21 @@ public class HistorialPacientes extends HttpServlet {
         String nomHidden = "";
         int idEx = 0;
 
+        String listaBuscada = "";
+
+        if(req.getParameter("buscarexamenfecha") != null){
+
+            String fechaBuscada = req.getParameter("fechabuscada");
+            listaBuscada = Singleton.getExamenesPacienteFecha(usuarioIngresado, fechaBuscada);
+
+            req.setAttribute("listaexamenes", listaBuscada);
+            req.setAttribute("usuarioLogeado", nombreUsuario);
+
+            System.out.println(fechaBuscada);
+
+            rDispatcher = req.getRequestDispatcher("respacientes.jsp");
+        }
+
         for (int i = 0; i < iteraciones; i++) {
             
             nomBoton = "verres"+i;

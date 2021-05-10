@@ -1513,6 +1513,44 @@ public class Singleton {
 
     }
 
+    public static String getExamenesPacienteFecha(String username, String fechaResultados) {
+
+        String queryExamenesFecha = "SELECT id_examen, fecha_resultados FROM examen_laboratorio WHERE id_paciente = "
+                + username + " AND fecha_resultados = '"+fechaResultados+"';";
+        String str = "";
+        int contador = 0;
+        connectarBD();
+        try {
+            PreparedStatement statement = connSQL.prepareStatement(queryExamenesFecha);
+            ResultSet rs = statement.executeQuery();
+
+            // String ruta = "";
+
+            while (rs.next()) {
+
+                // ruta = "src=\"pdf/E"+rs.getInt("id_examen")+".pdf";
+                str += "<div class=\"exa\">\r\n"
+                        + "                   <hr id=\"divisor3\" color=\"white\" size=\"1\" class=\"linea\">\r\n"
+                        + "                   <label class=\"codexa\">" + rs.getInt("id_examen") + "</label>\r\n"
+                        + "                   <label class=\"ferem\">" + rs.getDate("fecha_resultados") + "</label>\r\n"
+                        + "                   <button class=\"verres\" name = \"verres" + contador
+                        + "\">Ver Resultados</button>\r\n"
+                        + "                   <input type = \"hidden\" name =\"idexamen" + contador + "\" value = \""
+                        + rs.getInt("id_examen") + "\"></div>";
+
+                contador++;
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        cerrarConexion();
+
+        return str;
+
+    }
+
     public static int getCantidadExamenesPaciente(String username) {
         connectarBD();
 
