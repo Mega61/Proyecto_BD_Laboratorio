@@ -36,7 +36,7 @@
         <div class="subhP">
             <img id="oficina" src="svg/oficina virtual.svg">
             <button class="nomperfil" onmouseover="mostrarbots()">${admin} <img id="flecha" src="svg/CaretDown.svg"></button>
-            <form action="perfilPaciente" method="GET">
+            <form action="listaexamenesadmin" method="GET">
                 <div id=divinferior hidden=true>
                     <button class="botperfil" name="botonvolver">Volver <img src="svg/User.svg"></button>
                     <button class="botlogout" name="botonlogout">LogOut <img src="svg/Upload.svg"></button>

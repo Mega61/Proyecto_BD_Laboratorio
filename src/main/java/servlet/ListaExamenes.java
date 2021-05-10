@@ -25,12 +25,9 @@ public class ListaExamenes extends HttpServlet {
         if (req.getParameter("buscarexamen") != null) {
 
             int busquedaExamen = Integer.parseInt(req.getParameter("idbuscado"));
-
             String listaexamenes = Singleton.buscarExamen(busquedaExamen);
-
             req.setAttribute("listaexamenes", listaexamenes);
             req.setAttribute("admin", "admin");
-
             rDispatcher = req.getRequestDispatcher("listaexa.jsp");
 
         }

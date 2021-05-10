@@ -59,6 +59,26 @@ public class ListaMedAdminServlet extends HttpServlet {
             
         }
 
+        if (req.getParameter("botonvolver")  != null){
+
+            session = req.getSession();
+            session.setAttribute("admin", "admin");
+            req.setAttribute("admin", "admin");
+            String lista = Singleton.getHistorialExamenes();
+            req.setAttribute("listaexamenes", lista);
+            rDispatcher = req.getRequestDispatcher("listaexa.jsp");
+
+        }
+
+        if (req.getParameter("botonlogout") != null) {
+
+            System.out.println("Se ha oprimido logout");
+            session = req.getSession();  
+            session.invalidate(); 
+            rDispatcher = req.getRequestDispatcher("index.html");
+
+        }
+
         rDispatcher.forward(req, resp);
     }
 

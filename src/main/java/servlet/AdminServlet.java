@@ -71,8 +71,8 @@ public class AdminServlet extends HttpServlet {
         if (req.getParameter("botonvolver")  != null){
 
             session = req.getSession();
-            session.setAttribute("admin", usuarioIngresado);
-            req.setAttribute("admin", usuarioIngresado);
+            session.setAttribute("admin", "admin");
+            req.setAttribute("usuarioLogeado", "admin");
             rDispatcher = req.getRequestDispatcher("admin.jsp");
 
         }
