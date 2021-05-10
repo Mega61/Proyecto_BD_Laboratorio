@@ -37,15 +37,15 @@
             </form>
             <br>
             <hr color="white" size="1">
-            <form>
-                <input type="search" id="busquedamed" name="busmed" placeholder="Escriba el ID del Médico...">
-                <button class="botbuscar">Buscar</button>
+            <form action = "listamedicosadmin" method = "GET">
+                <input type="search" id="busquedamed" name="busmed" placeholder="Escriba el ID del Médico..." required>
+                <button class="botbuscar" name = "buscarmed">Buscar</button>
             </form>
             <label class="nombre">Nombre-Medico</label>
             <label class="doc">Documento</label>
             <label class="con">Consultorio</label>
 
-            <form>
+            <form action = "listamedicosadmin" method = "GET">
                 <%-- <hr color="white" size="1" class="linea">
                 <label class="nombreMed">Ana Maria Perez Briceño</label>
                 <label class="docmed">1010101010</label>

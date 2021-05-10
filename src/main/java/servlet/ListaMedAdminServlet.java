@@ -15,17 +15,46 @@ import javax.servlet.http.HttpSession;
 public class ListaMedAdminServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         HttpSession session = req.getSession();
         String usuarioIngresado = session.getAttribute("admin").toString();
 
-        RequestDispatcher rDispatcher = req.getRequestDispatcher("admin.html");
+        RequestDispatcher rDispatcher = req.getRequestDispatcher("listamed.jsp");
 
-        if(req.getParameter("botonagregarmed") != null){
+        if (req.getParameter("botonagregarmed") != null) {
 
             rDispatcher = req.getRequestDispatcher("registromed.html");
+
+        }
+
+        if (req.getParameter("buscarmed") != null) {
+
+            String busquedaMed = req.getParameter("busmed");
+
+            String listaMedicos = Singleton.buscarMedico(busquedaMed);
+
+            req.setAttribute("listamed", listaMedicos);
+            req.setAttribute("admin", "admin");
+
+        }
+
+        int cantidadMedicos = Singleton.getCantidadMedicos();
+        String nombrebot = "";
+        String documentoMedico = "";
+        for (int i = 0; i < cantidadMedicos; i++) {
+
+            nombrebot = "botoneditarmed"+i;
+            documentoMedico = "idmed" + i;
+
+            if(req.getParameter(nombrebot) != null){
+
+                String listaedit = Singleton.getInfoMedico(req.getParameter(documentoMedico));
+                req.setAttribute("infomed", listaedit);
+                req.setAttribute("usuarioLogeado", "admin");
+
+                rDispatcher = req.getRequestDispatcher("editarm.jsp");
+            }
             
         }
 

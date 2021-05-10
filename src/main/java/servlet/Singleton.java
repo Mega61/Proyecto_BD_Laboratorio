@@ -519,6 +519,29 @@ public class Singleton {
         return cantidadPacientes;
     }
 
+    public static int getCantidadMedicos() {
+        connectarBD();
+
+        String query = "SELECT count(*) FROM medico;";
+        int cantidadMedico = 0;
+
+        try {
+            PreparedStatement statement = connSQL.prepareStatement(query);
+            ;
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                cantidadMedico = rs.getInt("count(*)");
+            } else {
+                System.out.println("No se han encontrado medicos");
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        return cantidadMedico;
+    }
+
     public static String getEstadoP(String username) {
 
         String str = "";
@@ -684,8 +707,7 @@ public class Singleton {
                         + "                <button class=\"confirmar\" name = \"botcambpac\">Confirmar Cambios</button>\r\n"
                         + "            </div></div>\r\n"
                         + "    <div class = \"contenedor2\">        <div class=\"hder\">\r\n"
-                        + "                <img id=\"logoce\" src=\"svg/Group 66.svg\">\r\n"
-                        + "            <div>\r\n"
+                        + "                <img id=\"logoce\" src=\"svg/Group 66.svg\">\r\n" + "            <div>\r\n"
                         + "                <img class=\"puntonomce\" src=\"svg/Ellipse 2.svg\">\r\n"
                         + "                <label id=\"nomce\">Nombre:</label>\r\n"
                         + "                <label id=\"vnomce\">" + nombrecep + "</label>\r\n"
@@ -902,6 +924,44 @@ public class Singleton {
 
         return str;
 
+    }
+
+    public static String buscarMedico(String idmedico) {
+
+        String buscarPaciente = "SELECT nombre_medico, id_medico, consultorio_medico FROM medico WHERE id_medico = '"
+                + idmedico + "';";
+        String listaBuscadaMed = "";
+
+        connectarBD();
+
+        try {
+            PreparedStatement statement = connSQL.prepareStatement(buscarPaciente);
+            ResultSet rs = statement.executeQuery();
+
+            int contb = 0;
+
+            if (rs.next()) {
+                String nombre = rs.getString("nombre_medico");
+                String idmed = rs.getString("id_medico");
+                int consultorio = rs.getInt("consultorio_medico");
+
+                listaBuscadaMed += "<br><div class=\"pacienteM\"><hr color=\"white\" size=\"1\" class=\"linea\"> <label class=\"nombreMed\">"
+                        + nombre + "</label>\r\n" + "                <label class=\"docmed\">" + idmed + "</label>\r\n"
+                        + "                <label class=\"consul\">" + consultorio + "</label>\r\n"
+                        + "                <input type = \"hidden\" name =\"idmed" + contb + "\" value = \"" + idmed
+                        + "\"><button class=\"editarmed\" name=\"botoneditarmed" + contb + "\">Editar</button></div>";
+
+                contb++;
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        cerrarConexion();
+
+        return listaBuscadaMed;
     }
 
     public static String buscarPaciente(int idPaciente) {
@@ -1479,7 +1539,7 @@ public class Singleton {
 
     }
 
-    public static String getHistorialExamenes(){
+    public static String getHistorialExamenes() {
 
         connectarBD();
         String query = "SELECT id_examen, fecha_resultados FROM examen_laboratorio";
@@ -1487,29 +1547,29 @@ public class Singleton {
         int contador = 0;
 
         try {
-            
+
             PreparedStatement statement = connSQL.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                str += "<div class=\"exa\">\r\n" + 
-"                <hr id=\"divisor3\" color=\"white\" size=\"1\" class=\"linea\">\r\n" +
-"                <label class=\"codexa\">"+rs.getInt("id_examen")+"</label>\r\n" + 
-"                <label class=\"ferem\">"+rs.getDate("fecha_resultados")+"</label> <input type = \"hidden\" name =\"idexamen"
-                        + contador + "\" value = \"" + rs.getInt("id_examen") + "\">"+ 
-"                <button class=\"verres\" name=\"verres"+contador+"\">Ver Resultados</button>\r\n" + 
-"            </div>";
+                str += "<div class=\"exa\">\r\n"
+                        + "                <hr id=\"divisor3\" color=\"white\" size=\"1\" class=\"linea\">\r\n"
+                        + "                <label class=\"codexa\">" + rs.getInt("id_examen") + "</label>\r\n"
+                        + "                <label class=\"ferem\">" + rs.getDate("fecha_resultados")
+                        + "</label> <input type = \"hidden\" name =\"idexamen" + contador + "\" value = \""
+                        + rs.getInt("id_examen") + "\">" + "                <button class=\"verres\" name=\"verres"
+                        + contador + "\">Ver Resultados</button>\r\n" + "            </div>";
 
                 contador++;
             }
 
         } catch (Exception e) {
-            //TODO: handle exception
+            // TODO: handle exception
             e.printStackTrace();
         }
-        
+
         cerrarConexion();
         return str;
-    
+
     }
 
     public static String estadisticas() {
