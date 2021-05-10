@@ -38,7 +38,7 @@
             <hr color="white" size="1">
             <form action="pacientesadmin" method="GET">
                 <input type="search" id="busquedapac" name="buspac" placeholder="Escriba el Documento del Paciente...">
-                <button class="botbuscar">Buscar</button>
+                <button class="botbuscar" name="buspacb">Buscar</button>
             </form>
             <label class="nombre">Nombre-Paciente</label>
             <label class="doc">Documento</label>

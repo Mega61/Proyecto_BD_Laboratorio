@@ -24,7 +24,7 @@ public class ListaPacientesAdmin extends HttpServlet {
         String listaPac = "";
         String usuarioIngresado = session.getAttribute("admin").toString();
 
-        if (req.getParameter("") != null) {
+        if (req.getParameter("buspacb") != null) {
 
             int busqueda = Integer.parseInt(req.getParameter("buspac"));
             listaPac = Singleton.buscarPaciente(busqueda);
@@ -41,23 +41,25 @@ public class ListaPacientesAdmin extends HttpServlet {
             String botonEliminar = "botoneliminarpac" + i;
             String botonEditar = "botoneditarpac" + i;
             String pelicula = "idpac" + i;
-            int idPaciente = Integer.parseInt(req.getParameter(pelicula));
+            
 
             if (req.getParameter(botonEditar) != null) {
+
+                int idPaciente = Integer.parseInt(req.getParameter(pelicula));
 
                 String lista = Singleton.getInfoPacientes(idPaciente + "");
                 req.setAttribute("infopac", lista);
                 session.setAttribute("paciente", idPaciente);
                 req.setAttribute("admin", usuarioIngresado);
-
+                listaPac = Singleton.getListaPacientes();
+                req.setAttribute("listapac", listaPac);
                 rDispatcher = req.getRequestDispatcher("editarp.jsp");
 
             }
 
         }
 
-        listaPac = Singleton.getListaPacientes();
-        req.setAttribute("listapac", listaPac);
+        
         req.setAttribute("admin", usuarioIngresado);
         rDispatcher.forward(req, resp);
 

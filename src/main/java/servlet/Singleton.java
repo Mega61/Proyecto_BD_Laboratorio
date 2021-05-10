@@ -918,7 +918,7 @@ public class Singleton {
 
             int contb = 0;
 
-            while (rs.next()) {
+            if (rs.next()) {
                 String nombre = rs.getString("nombre_paciente");
                 String estado = rs.getString("estado_paciente");
                 int id = rs.getInt("id_paciente");
