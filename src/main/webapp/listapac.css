@@ -44,15 +44,10 @@ body {
 }
 
 .editarpac {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 16px;
     position: absolute;
-    width: 138px;
+    width: 238px;
     height: 40px;
-    left: 510px;
+    left: 540px;
     top: 23px;
     /* Cyan / 7 */
     background: #08979C;
@@ -71,6 +66,14 @@ body {
     text-align: center;
     /* Character / Primary(inverse) */
     color: #FFFFFF;
+    cursor: pointer;
+}
+
+.editarpac:hover {
+    background: #00474F;
+    color: #E6FFFB;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #5CDBD3, 0 0 25px #5CDBD3, 0 0 50px #5CDBD3, 0 0 100px #5CDBD3;
 }
 
 .eliminarpac {
@@ -348,7 +351,7 @@ body {
     transform: scale(1.1);
 }
 
-#busquedamed {
+#busquedapac {
     position: relative;
     width: 486px;
     height: 29px;
@@ -362,7 +365,7 @@ body {
     position: relative;
     width: 86px;
     height: 29px;
-    left: 70px;
+    left: 20px;
     top: 10px;
     background: #08979C;
     /* Cyan / 6 */

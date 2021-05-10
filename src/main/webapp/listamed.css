@@ -42,15 +42,10 @@ body {
 }
 
 .editarmed {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 16px;
     position: absolute;
-    width: 138px;
+    width: 238px;
     height: 40px;
-    left: 510px;
+    left: 540px;
     top: 23px;
     /* Cyan / 7 */
     background: #08979C;
@@ -234,7 +229,7 @@ body {
     position: relative;
     width: 86px;
     height: 29px;
-    left: 70px;
+    left: 20px;
     top: 10px;
     background: #08979C;
     /* Cyan / 6 */
