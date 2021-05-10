@@ -10,12 +10,13 @@
     <style>
         body {
             background-size: cover;
+
         }
 
         .h1 {
             width: 796.8px;
             height: 144px;
-            top: 0px;
+            top: -50px;
             left: 0px;
         }
 
@@ -320,11 +321,11 @@
         }
 
         .tipo {
-            position: absolute;
+            position: relative;
             width: 500px;
             height: 23px;
             left: 25px;
-            top: 361px;
+            top: 350px;
             font-family: Roboto;
             font-style: normal;
             font-weight: 500;
@@ -338,7 +339,7 @@
             width: 400px;
             height: 21px;
             left: 25px;
-            top: 401px;
+            top: 380px;
             font-family: Roboto;
             font-style: normal;
             font-weight: normal;
@@ -353,7 +354,7 @@
             width: 400px;
             height: 21px;
             left: 25px;
-            top: 439px;
+            top: 415px;
             font-family: Roboto;
             font-style: normal;
             font-weight: normal;
@@ -368,7 +369,7 @@
             width: 400px;
             height: 21px;
             left: 25px;
-            top: 477px;
+            top: 450px;
             font-family: Roboto;
             font-style: normal;
             font-weight: normal;
@@ -383,7 +384,7 @@
             width: 25px;
             height: 21px;
             left: 342px;
-            top: 401px;
+            top: 380px;
             font-family: Roboto;
             font-style: normal;
             font-weight: normal;
@@ -398,7 +399,7 @@
             width: 25px;
             height: 21px;
             left: 342px;
-            top: 439px;
+            top: 415px;
             font-family: Roboto;
             font-style: normal;
             font-weight: normal;
@@ -413,7 +414,7 @@
             width: 25px;
             height: 21px;
             left: 342px;
-            top: 477px;
+            top: 450px;
             font-family: Roboto;
             font-style: normal;
             font-weight: normal;
@@ -428,7 +429,7 @@
             width: 250px;
             height: 21px;
             left: 582px;
-            top: 401px;
+            top: 380px;
             font-family: Roboto;
             font-style: normal;
             font-weight: normal;
@@ -443,7 +444,7 @@
             width: 250px;
             height: 21px;
             left: 582px;
-            top: 439px;
+            top: 415px;
             font-family: Roboto;
             font-style: normal;
             font-weight: normal;
@@ -458,7 +459,7 @@
             width: 250px;
             height: 21px;
             left: 582px;
-            top: 477px;
+            top: 450px;
             font-family: Roboto;
             font-style: normal;
             font-weight: normal;
@@ -479,8 +480,8 @@
         .elingreso {
             position: relative;
             width: 836px;
-            height: 200px;
-            top: -70px;
+            height: 300px;
+            top: -80px;
             left: 0px;
         }
     </style>
@@ -491,8 +492,6 @@
 
 <body>
     <div class="h1">
-        <img id="logoh" src="Logocompleto.svg">
-        <img id="codbarras" src="codigobarras.svg">
         <label class="nom">Nombre:</label>
         <label class="nombreP">Felipe</label>
         <label class="exa">Exámen Número:</label>
@@ -517,10 +516,21 @@
         <label class="unidades">UNIDADES</label>
         <hr id="linea3">
     </div>
-        <div class="elingreso"><div class="elingreso"><label class="tipo">Hemograma</label><label class="cri1">Globulos Blancos</label><label class="res1">2000</label><label class="uni1">x10^3/uL</label><label class="cri2">Globulos Rojos</label><label class="res2">2000</label><label class="uni2">x10^6/uL</label><label class="cri3">Plaquetas</label><label class="res3">2000</label><label class="uni3">x10^3/uL</label></div><br><div class="elingreso"><label class="tipo">Uroanalisis</label><label class="cri1">Presencia de Globulos blancos</label><label class="res1">SI</label><label class="uni1"></label><label class="cri2">Presencia de Globulos rojos</label><label class="res2">NO</label><label class="uni2"></label></div><br><div class="elingreso"><label class="tipo">PCR Covid-19</label><label class="cri1">Presencia del Virus SARS-COV-2</label><label class="res1">Negativo</label><label class="uni1"></label></div><br><div class="elingreso"><label class="tipo">Prueba VIH</label><label class="cri1">Presencia de anticuerpos</label><label class="res1">SI</label><label class="uni1"></label><label class="cri2">Presencia de antigenos</label><label class="res2">NO</label><label class="uni2"></label></div>    
-    <div>
-        <img class="footer" src="FooterPdf.svg">
-    </div>
+    <div class="elingreso">
+        <div class="elingreso"><label class="tipo">Hemograma</label><label class="cri1">Globulos Blancos</label><label
+                class="res1">2000</label><label class="uni1">x10^3/uL</label><label class="cri2">Globulos
+                Rojos</label><label class="res2">2000</label><label class="uni2">x10^6/uL</label><label
+                class="cri3">Plaquetas</label><label class="res3">2000</label><label class="uni3">x10^3/uL</label></div>
+        <br>
+        <div class="elingreso"><label class="tipo">Uroanalisis</label><label class="cri1">Presencia de Globulos
+                blancos</label><label class="res1">SI</label><label class="uni1"></label><label class="cri2">Presencia
+                de Globulos rojos</label><label class="res2">NO</label><label class="uni2"></label></div><br>
+        <div class="elingreso"><label class="tipo">PCR Covid-19</label><label class="cri1">Presencia del Virus
+                SARS-COV-2</label><label class="res1">Negativo</label><label class="uni1"></label></div><br>
+        <div class="elingreso"><label class="tipo">Prueba VIH</label><label class="cri1">Presencia de
+                anticuerpos</label><label class="res1">SI</label><label class="uni1"></label><label
+                class="cri2">Presencia de antigenos</label><label class="res2">NO</label><label class="uni2"></label>
+        </div>
 </body>
 
 </html>

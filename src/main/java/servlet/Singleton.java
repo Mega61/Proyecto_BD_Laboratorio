@@ -1516,7 +1516,7 @@ public class Singleton {
     public static String getExamenesPacienteFecha(String username, String fechaResultados) {
 
         String queryExamenesFecha = "SELECT id_examen, fecha_resultados FROM examen_laboratorio WHERE id_paciente = "
-                + username + " AND fecha_resultados = '"+fechaResultados+"';";
+                + username + " AND fecha_resultados = '" + fechaResultados + "';";
         String str = "";
         int contador = 0;
         connectarBD();
@@ -1675,63 +1675,77 @@ public class Singleton {
 
         String str = "";
         String query = "";
-
+        connectarBD();
         try {
             PreparedStatement statement = null;
             query = "SELECT count(*) FROM medico";
             statement = connSQL.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                str += "medicos: " + rs.getInt("count(*)") + " \n";
+                str += "<div class=\"consulta1\">\r\n" + 
+"                       <label class=\"cons1\">medicos: "+rs.getInt("count(*)")+"</label>\r\n" + 
+"                       </div>";
             }
 
             query = "SELECT count(*) FROM paciente";
             statement = connSQL.prepareStatement(query);
             rs = statement.executeQuery();
             if (rs.next()) {
-                str += "pacientes: " + rs.getInt("count(*)") + " \n";
+                str += "<div class=\"consulta2\">\r\n" + 
+"                       <label class=\"cons2\">pacientes: "+rs.getInt("count(*)")+"</label>\r\n" + 
+"                       </div>";
             }
 
             query = "SELECT count(*) FROM examen_laboratorio";
             statement = connSQL.prepareStatement(query);
             rs = statement.executeQuery();
             if (rs.next()) {
-                str += "examenes: " + rs.getInt("count(*)") + " \n";
+                str += "<div class=\"consulta3\">\r\n" + 
+"                       <label class=\"cons\">examenes: "+rs.getInt("count(*)")+"</label>\r\n" + 
+"                       </div>";
             }
 
             query = "SELECT count(*) FROM examen_laboratorio WHERE fecha_resultados is not null";
             statement = connSQL.prepareStatement(query);
             rs = statement.executeQuery();
             if (rs.next()) {
-                str += "examenes con resultados: " + rs.getInt("count(*)") + " \n";
+                str += "<div class=\"consulta1der\">\r\n" + 
+"                       <label class=\"cons1der\">examenes con resultados: "+rs.getInt("count(*)")+"</label>\r\n" + 
+"                       </div>";
             }
 
             query = "SELECT count(*) FROM examen_laboratorio WHERE fecha_resultados is null";
             statement = connSQL.prepareStatement(query);
             rs = statement.executeQuery();
             if (rs.next()) {
-                str += "examenes sin resultados: " + rs.getInt("count(*)") + " \n";
+                str += "<div class=\"consulta2der\">\r\n" + 
+"                       <label class=\"cons2der\">examenes sin resultados: "+rs.getInt("count(*)")+"</label>\r\n" + 
+"                       </div>";
             }
 
             query = "SELECT sum(costo_prueba) FROM tipo_prueba t INNER JOIN examen_lab_tiene_tipo_prueba e WHERE e.id_tipo_prueba = t.id_tipo_prueba";
             statement = connSQL.prepareStatement(query);
             rs = statement.executeQuery();
             if (rs.next()) {
-                str += "costo total de todos los examenes: " + rs.getInt("count(*)") + " \n";
+                str += "<div class=\"consulta3der\">\r\n" + 
+"                       <label class=\"cons\">ingresos totales: $"+rs.getInt("sum(costo_prueba)")+"</label>\r\n" + 
+"                       </div>";
             }
 
             query = "SELECT count(resultado) FROM examen_lab_tiene_tipo_prueba WHERE resultado is not null";
             statement = connSQL.prepareStatement(query);
             rs = statement.executeQuery();
             if (rs.next()) {
-                str += "resultados ingresados: " + rs.getInt("count(resultado)") + " \n";
+                str += "<div>\r\n" + 
+"                       <label class=\"cons1\">cantidad de resultados ingresados: "+rs.getInt("count(resultado)")+"</label>\r\n" + 
+"                       </div>";
             }
 
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
         }
-
+        cerrarConexion();
         return str;
 
     }
