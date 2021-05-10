@@ -46,7 +46,7 @@
             <div class="hder">
                 <img id="logo2" src="svg/Letras logo.svg">
                 <label class="histo">Historial</label>
-                <input type="search" class="busquedaexa" placeholder="Ingrese el ID del examen...">
+                <input type="date" class="busquedaexa" placeholder="Ingrese la fecha del examen...">
                 <button class="botbuscar">Buscar</button>
                 <label class="nexa">N° Examen</label>
                 <label class="fere">Fecha de Resultados</label>
