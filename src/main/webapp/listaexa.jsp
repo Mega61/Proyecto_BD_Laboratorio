@@ -34,15 +34,17 @@
         </div>
         <label class="nomadminM"><img src="svg/Group 49.svg"> ${admin} </label>
         <div class="contenedor1">
+            <form action = "listaexamenesadmin" method = "GET">
             <div class="hder">
                 <img id="logo2" src="svg/Letras logoA.svg">
                 <label class="histo">Historial</label>
-                <input type="search" class="busquedaexa" placeholder="Ingrese el ID del examen...">
-                <button class="botbuscar">Buscar</button>
+                <input type="search" class="busquedaexa" name = "idbuscado" placeholder="Ingrese el ID del examen..." required>
+                <button class="botbuscar" name = "buscarexamen">Buscar</button>
                 <label class="nexa">N° Examen</label>
                 <label class="fere">Fecha de Resultados</label>
             </div>
-            <form action="historialp" method="GET">
+            </form>
+            <form action="listaexamenesadmin" method="GET">
                 <!-- <div class="exa">
                 <hr id="divisor3" color="white" size="1" class="linea">
             

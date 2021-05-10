@@ -20,43 +20,42 @@ public class ListaExamenes extends HttpServlet {
         HttpSession session = req.getSession();
         String usuarioIngresado = session.getAttribute("admin").toString();
 
-        RequestDispatcher rDispatcher = req.getRequestDispatcher("listamed.jsp");
+        RequestDispatcher rDispatcher = req.getRequestDispatcher(".jsp");
 
-        if (req.getParameter("botonagregarmed") != null) {
+        if (req.getParameter("buscarexamen") != null) {
 
-            rDispatcher = req.getRequestDispatcher("registromed.html");
+            int busquedaExamen = Integer.parseInt(req.getParameter("idbuscado"));
 
-        }
+            String listaexamenes = Singleton.buscarExamen(busquedaExamen);
 
-        if (req.getParameter("buscarmed") != null) {
-
-            String busquedaMed = req.getParameter("busmed");
-
-            String listaMedicos = Singleton.buscarMedico(busquedaMed);
-
-            req.setAttribute("listamed", listaMedicos);
+            req.setAttribute("listaexamenes", listaexamenes);
             req.setAttribute("admin", "admin");
 
+            rDispatcher = req.getRequestDispatcher("listaexa.jsp");
+
         }
 
-        int cantidadMedicos = Singleton.getCantidadMedicos();
+        int cantidadExamene = Singleton.getCantidadExamenes();
         String nombrebot = "";
-        String documentoMedico = "";
-        for (int i = 0; i < cantidadMedicos; i++) {
+        String nomExamen = "";
+        int idExamen = 0;
+        for (int i = 0; i < cantidadExamene; i++) {
 
-            nombrebot = "botoneditarmed"+i;
-            documentoMedico = "idmed" + i;
+            nombrebot = "verres" + i;
+            nomExamen = "idexamen" + i;
 
-            if(req.getParameter(nombrebot) != null){
+            if (req.getParameter(nombrebot) != null) {
 
-                String listaedit = Singleton.getInfoMedico(req.getParameter(documentoMedico));
-                req.setAttribute("infomed", listaedit);
-                req.setAttribute("usuarioLogeado", "admin");
-
-                rDispatcher = req.getRequestDispatcher("editarm.jsp");
+                idExamen = Integer.parseInt(req.getParameter(nomExamen));
+                rDispatcher = req.getRequestDispatcher("vistaexamenadmin.jsp");
             }
-            
+
         }
+
+        String ruta = "src=\"pdf/E"+idExamen+".pdf\"";
+        req.setAttribute("admin", "admin");
+        req.setAttribute("numeroexamen", idExamen);
+        req.setAttribute("rutaexamen", ruta);
 
         rDispatcher.forward(req, resp);
     }

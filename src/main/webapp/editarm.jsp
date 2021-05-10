@@ -36,7 +36,7 @@
                 <label class="info">Información</label>
             </div>
             <div>
-                <form action="perfilMedico" method="GET">
+                <form action="perfilMedicoEd" method="GET">
                     ${infomed}
                 </form>
 

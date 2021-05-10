@@ -542,6 +542,29 @@ public class Singleton {
         return cantidadMedico;
     }
 
+    public static int getCantidadExamenes() {
+        connectarBD();
+
+        String query = "SELECT count(*) FROM examen_laboratorio;";
+        int cantidadExamen = 0;
+
+        try {
+            PreparedStatement statement = connSQL.prepareStatement(query);
+
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                cantidadExamen = rs.getInt("count(*)");
+            } else {
+                System.out.println("No se han encontrado examenes");
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        return cantidadExamen;
+    }
+
     public static String getEstadoP(String username) {
 
         String str = "";
@@ -924,6 +947,44 @@ public class Singleton {
 
         return str;
 
+    }
+
+    public static String buscarExamen(int idexamen) {
+
+        String buscarexamen = "SELECT id_examen, fecha_resultados FROM examen_laboratorio WHERE id_examen = " + idexamen
+                + ";";
+        String listabuscadaexamen = "";
+
+        connectarBD();
+
+        try {
+            PreparedStatement statement = connSQL.prepareStatement(buscarexamen);
+            ResultSet rs = statement.executeQuery();
+
+            int contb = 0;
+
+            if (rs.next()) {
+
+                listabuscadaexamen += "<div class=\"exa\">\r\n"
+                        + "                <hr id=\"divisor3\" color=\"white\" size=\"1\" class=\"linea\">\r\n"
+                        + "                <label class=\"codexa\">" + rs.getInt("id_examen") + "</label>\r\n"
+                        + "                <label class=\"ferem\">" + rs.getDate("fecha_resultados")
+                        + "</label> <input type = \"hidden\" name =\"idexamen" + contb + "\" value = \""
+                        + rs.getInt("id_examen") + "\">" + "                <button class=\"verres\" name=\"verres"
+                        + contb + "\">Ver Resultados</button>\r\n" + "            </div>";
+
+                contb++;
+
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        cerrarConexion();
+
+        return listabuscadaexamen;
     }
 
     public static String buscarMedico(String idmedico) {
