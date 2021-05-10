@@ -260,6 +260,7 @@ body {
     text-align: center;
     /* Página laboratorio médico/10 */
     color: #E6FFFB;
+    cursor: pointer;
 }
 
 .botperfil:hover {
@@ -285,6 +286,7 @@ body {
     text-align: center;
     /* Página laboratorio médico/10 */
     color: #E6FFFB;
+    cursor: pointer;
 }
 
 .botlogout:hover {
