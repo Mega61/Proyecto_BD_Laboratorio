@@ -1481,6 +1481,7 @@ public class Singleton {
 
     public static String getHistorialExamenes(){
 
+        connectarBD();
         String query = "SELECT id_examen, fecha_resultados FROM examen_laboratorio";
         String str = "";
         int contador = 0;
@@ -1492,17 +1493,22 @@ public class Singleton {
             while (rs.next()) {
                 str += "<div class=\"exa\">\r\n" + 
 "                <hr id=\"divisor3\" color=\"white\" size=\"1\" class=\"linea\">\r\n" +
-"                <label class=\"codexa\">E12560</label>\r\n" + 
-"                <label class=\"ferem\">10/04/2021</label>\r\n" + 
-"                <button class=\"verres\">Ver Resultados</button>\r\n" + 
+"                <label class=\"codexa\">"+rs.getInt("id_examen")+"</label>\r\n" + 
+"                <label class=\"ferem\">"+rs.getDate("fecha_resultados")+"</label> <input type = \"hidden\" name =\"idexamen"
+                        + contador + "\" value = \"" + rs.getInt("id_examen") + "\">"+ 
+"                <button class=\"verres\" name=\"verres"+contador+"\">Ver Resultados</button>\r\n" + 
 "            </div>";
+
+                contador++;
             }
 
         } catch (Exception e) {
             //TODO: handle exception
             e.printStackTrace();
         }
-
+        
+        cerrarConexion();
+        return str;
     
     }
 

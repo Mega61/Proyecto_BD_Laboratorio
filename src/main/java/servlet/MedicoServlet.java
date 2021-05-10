@@ -3,9 +3,12 @@ package servlet;
 import java.io.IOException;
 import java.nio.file.DirectoryStream.Filter;
 
+import javax.servlet.FilterChain;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,10 +17,24 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "MedicoServlet", urlPatterns = { "/medico" })
 
-public class MedicoServlet extends HttpServlet implements Servlet, Filter{
+public class MedicoServlet extends HttpServlet implements Servlet, Filter {
 
-    
+    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
+            throws IOException, ServletException {
+        HttpServletRequest request = (HttpServletRequest) req;
+        HttpServletResponse response = (HttpServletResponse) res;
 
+        HttpSession session = request.getSession(false);         
+        if (session == null) {
+            response.sendRedirect("index.html"); // No logged-in user found, so redirect to login page.
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+            response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+            response.setDateHeader("Expires", 0);
+        } else {
+            chain.doFilter(req, res);  
+        }
+
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -48,6 +65,7 @@ public class MedicoServlet extends HttpServlet implements Servlet, Filter{
             session = req.getSession();
             session.invalidate();
             rDispatcher = req.getRequestDispatcher("login.html");
+            //doFilter(req, resp, chain);
 
         }
 

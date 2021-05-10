@@ -53,7 +53,9 @@ public class AdminServlet extends HttpServlet {
         if (req.getParameter("botonlistaexa") != null) {
 
             System.out.println("Se ha oprimido lista examenes");
-            rDispatcher = req.getRequestDispatcher("admin.jsp");
+            String lista = Singleton.getHistorialExamenes();
+            req.setAttribute("listaexamenes", lista);
+            rDispatcher = req.getRequestDispatcher("listaexa.jsp");
 
         }
 
