@@ -28,7 +28,7 @@
     </head>
 
 
-    <body onclick="ocultarbots()">
+    <body>
         <div> <img id="logoh" src="svg/Logo completo.svg ">
             <img id="bannerM" src="svg/Banner indicativoM.svg">
         </div>

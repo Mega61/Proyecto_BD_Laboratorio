@@ -9,7 +9,7 @@
         <meta charset="UTF-8">
         <meta name="viewport">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <title>Laboratorio Genesis</title>
+        <title>Menú de Médico</title>
         <link href="perfilm.css" rel="stylesheet">
         <link>
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -61,6 +61,8 @@
                 <label class="histo">Historial</label>
             </div>
             <div class="pelicula">
+                <input type="date" class="busquedaexa" name="fechabuscada" placeholder="Ingrese la fecha del examen..." required>
+                <button class="botbuscar" name="buscarexamenfecha">Buscar</button>
                 <label class="nexa">N° Examen</label>
                 <label class="fere">Fecha de Remisión</label>
                 <hr id="divisor3" color="white" size="1" class="linea">

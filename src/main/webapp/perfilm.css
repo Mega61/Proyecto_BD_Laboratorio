@@ -717,7 +717,7 @@
         width: 100px;
         height: 28px;
         left: 57px;
-        top: 89px;
+        top: 134px;
         /* Typography Laboratorio/Headers/H4 */
         font-family: Roboto;
         font-style: normal;
@@ -737,7 +737,7 @@
         width: 243px;
         height: 28px;
         left: 219px;
-        top: 89px;
+        top: 134px;
         /* Typography Laboratorio/Headers/H4 */
         font-family: Roboto;
         font-style: normal;
@@ -839,7 +839,7 @@
         width: 705px;
         height: 91px;
         left: 0px;
-        top: 151px;
+        top: 191px;
         display: flex;
         align-items: center;
     }
@@ -943,4 +943,76 @@
         position: absolute;
         left: 82px;
         top: 10px;
+    }
+    
+    .busquedaexa {
+        position: absolute;
+        width: 486px;
+        height: 29px;
+        left: 50px;
+        top: 89px;
+        /* Neutral / 1 */
+        background: #FFFFFF;
+        /* Cyan / 6 */
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 24px;
+        border: 1px solid #13C2C2;
+        box-sizing: border-box;
+        border-radius: 2px;
+    }
+    
+     ::placeholder {
+        /* Subheading 16 / regular */
+        position: relative;
+        width: 466px;
+        height: 24px;
+        left: 12px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 24px;
+        display: flex;
+        align-items: center;
+    }
+    
+    input:focus {
+        border-color: #006D75;
+        box-shadow: 0 1px 1px #08979C inset, 0 0 8px #08979C;
+        outline: 0 none;
+    }
+    
+    .botbuscar {
+        position: absolute;
+        width: 86px;
+        height: 29px;
+        left: 542px;
+        top: 89px;
+        background: #08979C;
+        /* Cyan / 6 */
+        border: 1px solid #13C2C2;
+        box-sizing: border-box;
+        /* drop-shadow / button-primary */
+        box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
+        border-radius: 10px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 24px;
+        /* identical to box height, or 150% */
+        text-align: center;
+        /* Character / Primary(inverse) */
+        color: #FFFFFF;
+        cursor: pointer;
+    }
+    
+    .botbuscar:hover {
+        background: #00474F;
+        color: #E6FFFB;
+        border-radius: 10px;
+        box-shadow: 0 0 5px #5CDBD3, 0 0 25px #5CDBD3, 0 0 50px #5CDBD3, 0 0 100px #5CDBD3;
     }

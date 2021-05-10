@@ -25,7 +25,7 @@ body {
 .subhP {
     position: absolute;
     width: 1920px;
-    height: 48px;
+    height: 33px;
     left: 0px;
     top: 67.05px;
     background: #36CFC9;
@@ -132,4 +132,97 @@ body {
     height: 25px;
     top: 800px;
     left: 0px;
+}
+
+.nommedico {
+    position: absolute;
+    width: 325px;
+    height: 31px;
+    top: -5px;
+    left: 1525px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    /* identical to box height, or 140% */
+    text-align: right;
+    vertical-align: middle;
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
+    background-color: transparent;
+    cursor: pointer;
+    border: transparent;
+}
+
+#divinferior {
+    position: relative;
+    top: 34px;
+    left: 1782px;
+    width: 89px;
+    height: 66px;
+    background: #08979C;
+}
+
+.botperfil {
+    position: absolute;
+    width: 89px;
+    height: 24px;
+    left: 0px;
+    top: 4px;
+    background-color: transparent;
+    border: transparent;
+    /* Typography Laboratorio/Headers/SubHeader */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    text-align: center;
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
+    cursor: pointer;
+}
+
+.botperfil:hover {
+    color: #002329;
+    transform: scale(1.1);
+}
+
+.botlogout {
+    position: absolute;
+    width: 89px;
+    height: 24px;
+    left: 0px;
+    top: 38px;
+    background-color: transparent;
+    border: transparent;
+    /* Typography Laboratorio/Headers/SubHeader */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    text-align: center;
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
+    cursor: pointer;
+}
+
+#flecha {
+    position: relative;
+    top: 5px;
+}
+
+.botlogout:hover {
+    color: #002329;
+    transform: scale(1.1);
+}
+
+#oficina {
+    position: absolute;
+    left: 82px;
+    top: 10px;
 }
