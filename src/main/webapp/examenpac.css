@@ -286,3 +286,17 @@ body {
     color: #002329;
     transform: scale(1.1);
 }
+
+.nommedico {
+    position: absolute;
+    width: 325px;
+    height: 31px;
+    top: 75px;
+    left: 1525px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    color: #E6FFFB;
+}
