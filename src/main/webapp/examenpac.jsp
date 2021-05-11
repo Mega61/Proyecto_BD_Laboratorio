@@ -26,7 +26,7 @@
             <img id="oficina" src="svg/oficina virtual.svg">
             <form action="perfilPaciente" method="GET">
                 <button class="botvolver" name="botonvolver"><img src="svg/button.svg"></button>
-                <button class="botlogout" name="logoutAdmin"><img src="svg/Upload.svg"></button>
+                <button class="botlogout" name="botonlogout"><img src="svg/Upload.svg"></button>
 
             </form>
         </div>
