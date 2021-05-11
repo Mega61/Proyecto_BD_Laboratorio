@@ -66,7 +66,7 @@ public class ListaMedAdminServlet extends HttpServlet {
             req.setAttribute("admin", "admin");
             String lista = Singleton.getListaMedicos();
             req.setAttribute("listamed", lista);
-            rDispatcher = req.getRequestDispatcher("listaexa.jsp");
+            rDispatcher = req.getRequestDispatcher("listamed.jsp");
 
         }
 

@@ -28,7 +28,21 @@
                 <button class="botvolver" name="botonvolver"><img src="svg/button.svg"></button>
                 <button class="botlogout" name="logoutAdmin"><img src="svg/Upload.svg"></button>
 
-            </form>
+        </form>
+    </div>
+    <div class="consultas">
+        <img class="barra" src="svg/consultas.svg">
+        <form action="admin" method="GET">
+            <button class="botbarra" id="med" name="botmed">Médicos</button>
+            <button class="botbarra" id="pac" name="botpac">Pacientes</button>
+            <button class="botbarra" id="exa" name="botex">Exámenes</button>
+        </form>
+    </div>
+    <label class="nomadminM"><img src="svg/Group 49.svg"> admin </label>
+    <div class="contenedor">
+        <div class="hder">
+            <img id="subt" src="svg/Group 71.svg">
+            <label id="cons">La Consulta</label>
         </div>
         <div class="consultas">
             <img class="barra" src="svg/consultas.svg">

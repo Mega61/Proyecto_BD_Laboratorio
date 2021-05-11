@@ -72,6 +72,7 @@ body {
 }
 
 #cons {
+    float: left;
     position: absolute;
     width: 300px;
     height: 46px;
@@ -239,11 +240,12 @@ body {
 
 .consulta1 {
     position: relative;
-    width: 612px;
+    width: 1000px;
     height: 55px;
     left: 89px;
     top: 161px;
     /* Typography Laboratorio/Headers/H2 */
+    text-align: left;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
@@ -255,11 +257,12 @@ body {
 
 .consulta2 {
     position: relative;
-    width: 612px;
+    width: 700px;
     height: 55px;
     left: 89px;
     top: 261px;
     /* Typography Laboratorio/Headers/H2 */
+    text-align: left;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
@@ -271,11 +274,12 @@ body {
 
 .consulta3 {
     position: relative;
-    width: 612px;
+    width: 600px;
     height: 55px;
     left: 89px;
     top: 361px;
     /* Typography Laboratorio/Headers/H2 */
+    text-align: left;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
@@ -287,11 +291,12 @@ body {
 
 .consulta1der {
     position: relative;
-    width: 612px;
+    width: 800px;
     height: 55px;
     left: 769px;
     top: 161px;
     /* Typography Laboratorio/Headers/H2 */
+    text-align: left;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
@@ -303,11 +308,12 @@ body {
 
 .consulta2der {
     position: relative;
-    width: 612px;
+    width: 800px;
     height: 55px;
     left: 769px;
     top: 261px;
     /* Typography Laboratorio/Headers/H2 */
+    text-align: left;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
@@ -319,11 +325,12 @@ body {
 
 .consulta3der {
     position: relative;
-    width: 612px;
+    width: 800px;
     height: 55px;
     left: 769px;
     top: 361px;
     /* Typography Laboratorio/Headers/H2 */
+    text-align: left;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;

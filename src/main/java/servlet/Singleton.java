@@ -1263,12 +1263,13 @@ public class Singleton {
 
                 connectarBD();
                 idexamen = getIdExamenPaciente(username);
+                int precio = getPrecioExamen(idexamen);
 
                 str = "<div class=\"estado\">\r\n" + "                       <div class=\"estgen\">\r\n"
                         + "                       <img src=\"svg/Estado Genesis.svg\">\r\n"
                         + "                       </div>\r\n" + "                       <label class=\"feedback\">"
-                        + "Ya se ha generado su orden, con el número: " + idexamen + "</label>\r\n"
-                        + "                       </div>";
+                        + "Ya se ha generado su orden, con el número: " + idexamen + ", el costo de este es: $" + precio
+                        + ". Recomendamos ir en ayunas y con ropa comoda.</label>\r\n" + "                       </div>";
                 ;
 
                 cerrarConexion();
@@ -1383,6 +1384,31 @@ public class Singleton {
         }
 
         return str;
+
+    }
+
+    public static int getPrecioExamen(int id) {
+
+        String query = "SELECT e.id_examen, e.id_tipo_prueba, t.costo_prueba, sum(costo_prueba) FROM tipo_prueba as t INNER JOIN ( SELECT"
+                + " DISTINCT id_examen, id_tipo_prueba FROM examen_lab_tiene_tipo_prueba) as e ON e.id_tipo_prueba = t.id_tipo_prueba AND e.id_examen = "
+                + id + " ORDER BY  e.id_examen";
+
+        int precio = 0;
+
+        try {
+
+            PreparedStatement statement = connSQL.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                precio = rs.getInt("sum(costo_prueba)");
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        return precio;
 
     }
 
@@ -1581,7 +1607,8 @@ public class Singleton {
         connectarBD();
         String str = "";
         int contador = 0;
-        String query = "SELECT id_examen, fecha_remision FROM examen_laboratorio WHERE id_medico = '" + id + "' AND fecha_remision = '" + fechaBuscada +"';";
+        String query = "SELECT id_examen, fecha_remision FROM examen_laboratorio WHERE id_medico = '" + id
+                + "' AND fecha_remision = '" + fechaBuscada + "';";
 
         try {
 
@@ -1717,66 +1744,239 @@ public class Singleton {
             statement = connSQL.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                str += "<div class=\"consulta1\">\r\n" + 
-"                       <label class=\"cons1\">medicos: "+rs.getInt("count(*)")+"</label>\r\n" + 
-"                       </div>";
+                str += "<div class=\"consulta2\">\r\n" + "                       <label class=\"cons1\">medicos: "
+                        + rs.getInt("count(*)") + "</label>\r\n" + "                       </div>";
             }
 
             query = "SELECT count(*) FROM paciente";
             statement = connSQL.prepareStatement(query);
             rs = statement.executeQuery();
             if (rs.next()) {
-                str += "<div class=\"consulta2\">\r\n" + 
-"                       <label class=\"cons2\">pacientes: "+rs.getInt("count(*)")+"</label>\r\n" + 
-"                       </div>";
+                str += "<div class=\"consulta2\">\r\n" + "                       <label class=\"cons2\">pacientes: "
+                        + rs.getInt("count(*)") + "</label>\r\n" + "                       </div>";
             }
 
             query = "SELECT count(*) FROM examen_laboratorio";
             statement = connSQL.prepareStatement(query);
             rs = statement.executeQuery();
             if (rs.next()) {
-                str += "<div class=\"consulta3\">\r\n" + 
-"                       <label class=\"cons\">examenes: "+rs.getInt("count(*)")+"</label>\r\n" + 
-"                       </div>";
+                str += "<div class=\"consulta2\">\r\n" + "                       <label class=\"cons\">examenes: "
+                        + rs.getInt("count(*)") + "</label>\r\n" + "                       </div>";
             }
 
             query = "SELECT count(*) FROM examen_laboratorio WHERE fecha_resultados is not null";
             statement = connSQL.prepareStatement(query);
             rs = statement.executeQuery();
             if (rs.next()) {
-                str += "<div class=\"consulta1der\">\r\n" + 
-"                       <label class=\"cons1der\">examenes con resultados: "+rs.getInt("count(*)")+"</label>\r\n" + 
-"                       </div>";
+                str += "<div class=\"consulta1der\">\r\n"
+                        + "                       <label class=\"cons1der\">examenes con resultados: "
+                        + rs.getInt("count(*)") + "</label>\r\n" + "                       </div>";
             }
 
             query = "SELECT count(*) FROM examen_laboratorio WHERE fecha_resultados is null";
             statement = connSQL.prepareStatement(query);
             rs = statement.executeQuery();
             if (rs.next()) {
-                str += "<div class=\"consulta2der\">\r\n" + 
-"                       <label class=\"cons2der\">examenes sin resultados: "+rs.getInt("count(*)")+"</label>\r\n" + 
-"                       </div>";
+                str += "<div class=\"consulta1der\">\r\n"
+                        + "                       <label class=\"cons2der\">examenes sin resultados: "
+                        + rs.getInt("count(*)") + "</label>\r\n" + "                       </div>";
             }
-
-            query = "SELECT sum(costo_prueba) FROM tipo_prueba t INNER JOIN examen_lab_tiene_tipo_prueba e WHERE e.id_tipo_prueba = t.id_tipo_prueba";
-            statement = connSQL.prepareStatement(query);
-            rs = statement.executeQuery();
-            if (rs.next()) {
-                str += "<div class=\"consulta3der\">\r\n" + 
-"                       <label class=\"cons\">ingresos totales: $"+rs.getInt("sum(costo_prueba)")+"</label>\r\n" + 
-"                       </div>";
-            }
-
             query = "SELECT count(resultado) FROM examen_lab_tiene_tipo_prueba WHERE resultado is not null";
             statement = connSQL.prepareStatement(query);
             rs = statement.executeQuery();
             if (rs.next()) {
-                str += "<div>\r\n" + 
-"                       <label class=\"cons1\">cantidad de resultados ingresados: "+rs.getInt("count(resultado)")+"</label>\r\n" + 
-"                       </div>";
+                str += "<div class=\"consulta1der\">\r\n"
+                        + "                       <label class=\"cons3\">cantidad de resultados ingresados: "
+                        + rs.getInt("count(resultado)") + "</label>\r\n" + "                       </div>";
             }
 
         } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        cerrarConexion();
+        return str;
+
+    }
+
+    public static String estadisticasMedicos() {
+
+        String str = "";
+        String query = "";
+        connectarBD();
+
+        try {
+
+            PreparedStatement statement = null;
+            query = "SELECT m.nombre_medico, count(e.id_medico) FROM examen_laboratorio e INNER JOIN medico m WHERE e.id_medico = m.id_medico GROUP BY e.id_medico ORDER BY count(e.id_medico) DESC LIMIT 5";
+            statement = connSQL.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            str+="<br><div class=\"consulta1\"><label class=\"cons\">Medicos con más examenes realizados: </label></div>";
+            while (rs.next()) {
+                str += "<div class=\"consulta1\">\r\n"
+                        + "                       <label class=\"cons1\">"
+                        + rs.getString("nombre_medico") + ", Examenes: " + rs.getInt("count(e.id_medico)")
+                        + "</label>\r\n" + "                       </div>";
+            }
+
+            query = "SELECT count(*) FROM medico WHERE edad_medico > 50";
+            statement = connSQL.prepareStatement(query);
+            rs = statement.executeQuery();
+            if (rs.next()) {
+                str += "<br><div class=\"consulta2\">\r\n"
+                        + "                       <label class=\"cons2\">Medicos mayores de 50: "
+                        + rs.getInt("count(*)") + "</label>\r\n" + "                       </div>";
+            }
+
+            query = "SELECT nombre_medico, edad_medico FROM medico WHERE edad_medico = (SELECT min(edad_medico) FROM medico)";
+            statement = connSQL.prepareStatement(query);
+            rs = statement.executeQuery();
+            if (rs.next()) {
+                str += "<br><div class=\"consulta3\">\r\n"
+                        + "                       <label class=\"cons\"> Medico más jóven: "
+                        + rs.getString("nombre_medico") + ", " + rs.getInt("edad_medico") + " años</label>\r\n"
+                        + "                       </div>";
+            }
+
+            query = "SELECT count(1) FROM (SELECT id_medico, count(id_medico) FROM especialidad_medico GROUP BY id_medico HAVING count(id_medico) = 3 ORDER BY count(id_medico) desc) a";
+            statement = connSQL.prepareStatement(query);
+            rs = statement.executeQuery();
+            if (rs.next()) {
+                str += "<br><div class=\"consulta2\">\r\n"
+                        + "                       <label class=\"cons\"> Cantidad de médicos con 3 especialidades: "
+                        + rs.getInt("count(1)") + "</label>\r\n" + "                       </div>";
+            }
+
+            query = "SELECT nombre_medico, edad_medico FROM medico WHERE edad_medico = (SELECT max(edad_medico) FROM medico)";
+            statement = connSQL.prepareStatement(query);
+            rs = statement.executeQuery();
+            if (rs.next()) {
+                str += "<br><div class=\"consulta3\">\r\n"
+                        + "                       <label class=\"cons\"> Medico más viejo: "
+                        + rs.getString("nombre_medico") + ", " + rs.getInt("edad_medico") + " años</label>\r\n"
+                        + "                       </div>";
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        cerrarConexion();
+        return str;
+
+    }
+
+    public static String estadisticasPacientes() {
+
+        String str = "";
+        String query = "";
+        connectarBD();
+
+        try {
+
+            PreparedStatement statement = null;
+            query = "SELECT p.nombre_paciente, count(e.id_paciente) FROM examen_laboratorio e INNER JOIN paciente p WHERE e.id_paciente = p.id_paciente GROUP BY e.id_paciente ORDER BY count(e.id_paciente) DESC LIMIT 5";
+            statement = connSQL.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            str+="<br><div class=\"consulta1\"><label class=\"cons\">Pacientes con más examenes practicados: </label></div>";
+            while (rs.next()) {
+                str += "<div class=\"consulta1\"><label class=\"cons\">"+rs.getString("nombre_paciente") + " | Examenes: " + rs.getInt("count(e.id_paciente)")
+                        + "</label>\r\n" + "                       </div>";
+            }
+
+            query = "SELECT count(*) FROM paciente WHERE edad_paciente > 30";
+            statement = connSQL.prepareStatement(query);
+            rs = statement.executeQuery();
+            if (rs.next()) {
+                str += "<br><div class=\"consulta2\">\r\n"
+                        + "                       <label class=\"cons\">Pacientes mayores de 30: "
+                        + rs.getInt("count(*)") + "</label>\r\n" + "                       </div>";
+            }
+
+            query = "SELECT sangre_paciente, count(sangre_paciente) FROM paciente GROUP BY sangre_paciente ORDER BY count(sangre_paciente) DESC LIMIT 1";
+            statement = connSQL.prepareStatement(query);
+            rs = statement.executeQuery();
+            if (rs.next()) {
+                str += "<br><div class=\"consulta2\">\r\n"
+                        + "                       <label class=\"cons\"> Tipo de sangre más común: "
+                        + rs.getString("sangre_paciente") + ", " + rs.getInt("count(sangre_paciente)") + "</label>\r\n"
+                        + "                       </div>";
+            }
+
+            query = "SELECT nombre_paciente, edad_paciente FROM paciente WHERE edad_paciente = (SELECT min(edad_paciente) FROM paciente)";
+            statement = connSQL.prepareStatement(query);
+            rs = statement.executeQuery();
+            if (rs.next()) {
+                str += "<br><div class=\"consulta3\">\r\n"
+                        + "                       <label class=\"cons\"> Paciente más joven: "
+                        + rs.getString("nombre_paciente") + ", " + rs.getInt("edad_paciente") + " años</label>\r\n"
+                        + "                       </div>";
+            }
+
+            query = "SELECT nombre_paciente, edad_paciente FROM paciente WHERE edad_paciente = (SELECT max(edad_paciente) FROM paciente)";
+            statement = connSQL.prepareStatement(query);
+            rs = statement.executeQuery();
+            if (rs.next()) {
+                str += "<br><div class=\"consulta3\">\r\n"
+                        + "                       <label class=\"cons\"> Paciente más viejo: "
+                        + rs.getString("nombre_paciente") + ", " + rs.getInt("edad_paciente") + " años</label>\r\n"
+                        + "                       </div>";
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        cerrarConexion();
+        return str;
+
+    }
+
+    public static String estadisticasexamenes() {
+
+        String str = "";
+        String query = "";
+        connectarBD();
+        try {
+
+            // 3 Examen más caro
+            query = "SELECT e.id_examen, e.id_tipo_prueba, sum(t.costo_prueba) as costo FROM tipo_prueba as t INNER JOIN ( SELECT DISTINCT id_examen, id_tipo_prueba FROM examen_lab_tiene_tipo_prueba ) as e ON e.id_tipo_prueba = t.id_tipo_prueba GROUP BY id_examen ORDER BY costo DESC LIMIT 3;";
+            PreparedStatement statement = connSQL.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            str+="<div class=\"consulta1\"><label class=\"cons\">Examenes más caros: </label></div>";
+            while (rs.next()) {
+                str += "<div class=\"consulta1\">\r\n"
+                        + "                       <label class=\"cons1\">"
+                        + rs.getString("id_examen") + ", Costo: " + rs.getInt("costo") + "</label>\r\n"
+                        + "                       </div>";
+            }
+
+            // examenes sin resultados
+            query = "SELECT count(id_examen) as chin FROM examen_laboratorio WHERE fecha_resultados IS NULL;";
+            statement = connSQL.prepareStatement(query);
+            rs = statement.executeQuery();
+            if (rs.next()) {
+                str += "<br><div class=\"consulta2\">\r\n"
+                        + "                       <label class=\"cons2\">Cantidad de examenes sin resultados: "
+                        + rs.getString("chin") + "</label>\r\n" + "                       </div>";
+            }
+
+            // Cantidad de tipos de prueba realizados
+            query = "SELECT t.nombre_tipo_prueba, count(a.id_tipo_prueba) as cantidad FROM (SELECT DISTINCT id_examen, id_tipo_prueba FROM examen_lab_tiene_tipo_prueba ORDER BY id_tipo_prueba) a INNER JOIN tipo_prueba t WHERE a.id_tipo_prueba ="
+                    + "t.id_tipo_prueba GROUP BY a.id_tipo_prueba ORDER BY count(a.id_tipo_prueba) DESC;";
+            statement = connSQL.prepareStatement(query);
+            rs = statement.executeQuery();
+            str+="<br><div class=\"consulta3\"><label class=\"cons\">Cantidad de examenes por tipo: </label></div>";
+            while (rs.next()) {
+                str += "<div class=\"consulta3\">\r\n"
+                        + "                       <label class=\"cons\">"
+                        + rs.getString("t.nombre_tipo_prueba") + ", Cantidad: " + rs.getInt("cantidad") + "</label>\r\n"
+                        + "                       </div>";
+            }
+
+        } catch (
+
+        Exception e) {
             // TODO: handle exception
             e.printStackTrace();
         }

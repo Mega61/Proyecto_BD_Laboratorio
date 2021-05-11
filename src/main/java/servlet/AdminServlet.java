@@ -68,6 +68,30 @@ public class AdminServlet extends HttpServlet {
 
         }
 
+        if (req.getParameter("botmed")  != null){
+
+            String statsini = Singleton.estadisticasMedicos();
+            req.setAttribute("statsiniciales", statsini);
+            rDispatcher = req.getRequestDispatcher("consultas.jsp");
+
+        }
+
+        if (req.getParameter("botpac")  != null){
+
+            String statsini = Singleton.estadisticasPacientes();
+            req.setAttribute("statsiniciales", statsini);
+            rDispatcher = req.getRequestDispatcher("consultas.jsp");
+
+        }
+
+        if (req.getParameter("botex")  != null){
+
+            String statsini = Singleton.estadisticasexamenes();
+            req.setAttribute("statsiniciales", statsini);
+            rDispatcher = req.getRequestDispatcher("consultas.jsp");
+
+        }
+
         if (req.getParameter("botonvolver")  != null){
 
             session = req.getSession();

@@ -33,6 +33,7 @@ body {
 
 .contenedor {
     position: absolute;
+    overflow-y: scroll;
     width: 836px;
     height: 698px;
     left: 543px;
