@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.PreparedStatement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,7 +37,6 @@ public class ListaPacientesAdmin extends HttpServlet {
 
         for (int i = 0; i < cantidadPaciente; i++) {
 
-            String botonEliminar = "botoneliminarpac" + i;
             String botonEditar = "botoneditarpac" + i;
             String pelicula = "idpac" + i;
             

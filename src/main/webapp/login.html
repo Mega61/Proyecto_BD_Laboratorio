@@ -6,16 +6,19 @@
 
     <meta charset="UTF-8">
     <meta name="viewport">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>Inicio de Sesión</title>
     <link href="login.css" rel="stylesheet">
     <link>
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
 
 </head>
 
-<body onkeypress= "if (event.keyCode == 13) document.formlogin.submit();">
+<body onkeypress="if (event.keyCode == 13) document.formlogin.submit();">
     <div class="logologin">
         <img src="svg/Logo grande.svg">
     </div>
@@ -25,11 +28,15 @@
     <div class="container">
 
         <form action="ingresar" method="GET" name="formlogin">
-            <input type="text" class="documentoP" placeholder="Identificación" name="docP">
-            <input type="text" class="contraseñaP" placeholder="Contraseña" name="conP">
+            <input type="text" class="documentoP" placeholder="Identificación" name="docP" required>
+            <input type="password" class="contraseñaP" placeholder="Contraseña" name="conP" required>
 
             <button class="olvido">¿Olvidaste tu contraseña?</button>
             <button class="iniciarS" name="botoniniciars">Iniciar Sesión</button>
+
+        </form>
+
+        <form action="ingresar" method="GET" name="formlogin">
             <button class="registro" name="botonRegister">Registrate</button>
             <label class="pregunta">¿Aun no tienes cuenta?</label>
         </form>

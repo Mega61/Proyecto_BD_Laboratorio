@@ -19,7 +19,7 @@ public class IngresarResultados extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         HttpSession session = req.getSession();
-        int idPaciente = Integer.parseInt(session.getAttribute("idPac").toString());
+        //int idPaciente = Integer.parseInt(session.getAttribute("idPac").toString());
         String idPacienteS = session.getAttribute("idPac").toString();
         String idMedico = session.getAttribute("medico").toString();
         String nombreMedico = session.getAttribute("medicoNombre").toString();

@@ -18,7 +18,7 @@ public class ListaMedAdminServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         HttpSession session = req.getSession();
-        String usuarioIngresado = session.getAttribute("admin").toString();
+        //String usuarioIngresado = session.getAttribute("admin").toString();
 
         RequestDispatcher rDispatcher = req.getRequestDispatcher("listamed.jsp");
 
