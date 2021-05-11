@@ -57,6 +57,15 @@ public class generarOrden extends HttpServlet {
 
         }
 
+        if (req.getParameter("botonlogout") != null) {
+
+            System.out.println("Se ha oprimido logout");
+            session = req.getSession();
+            session.invalidate();
+            rDispatcher = req.getRequestDispatcher("login.html");
+
+        }
+
         rDispatcher.forward(req, resp);
 
     }
