@@ -25,10 +25,31 @@ body {
 .subhM {
     position: absolute;
     width: 1920px;
-    height: 48px;
+    height: 33px;
     left: 0px;
     top: 67.05px;
     background: #36CFC9;
+}
+
+.nommedico {
+    position: absolute;
+    width: 325px;
+    height: 31px;
+    top: -5px;
+    left: 1525px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    /* identical to box height, or 140% */
+    text-align: right;
+    vertical-align: middle;
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
+    background-color: transparent;
+    cursor: pointer;
+    border: transparent;
 }
 
 .contenedor {
@@ -164,7 +185,7 @@ body {
 
 .criterio1 {
     position: absolute;
-    left: 141px;
+    left: 41px;
     top: 63px;
     /* Typography Laboratorio/Headers/H4 */
     font-family: Roboto;
@@ -181,7 +202,7 @@ body {
 
 .criterio2 {
     position: absolute;
-    left: 141px;
+    left: 41px;
     top: 123px;
     /* Typography Laboratorio/Headers/H4 */
     font-family: Roboto;
@@ -198,7 +219,7 @@ body {
 
 .criterio3 {
     position: absolute;
-    left: 141px;
+    left: 41px;
     top: 183px;
     /* Typography Laboratorio/Headers/H4 */
     font-family: Roboto;
@@ -215,7 +236,7 @@ body {
 
 .criterio4 {
     position: absolute;
-    left: 141px;
+    left: 41px;
     top: 243px;
     /* Typography Laboratorio/Headers/H4 */
     font-family: Roboto;
@@ -238,7 +259,7 @@ body {
     position: absolute;
     width: 455px;
     height: 29px;
-    left: 239px;
+    left: 339px;
     top: 63px;
     /* Neutral / 1 */
     background: #FFFFFF;
@@ -256,7 +277,7 @@ body {
     position: absolute;
     width: 455px;
     height: 29px;
-    left: 239px;
+    left: 339px;
     top: 123px;
     /* Neutral / 1 */
     background: #FFFFFF;
@@ -274,7 +295,7 @@ body {
     position: absolute;
     width: 455px;
     height: 29px;
-    left: 239px;
+    left: 339px;
     top: 183px;
     /* Neutral / 1 */
     background: #FFFFFF;
@@ -292,7 +313,7 @@ body {
     position: absolute;
     width: 455px;
     height: 29px;
-    left: 239px;
+    left: 339px;
     top: 243px;
     /* Neutral / 1 */
     background: #FFFFFF;
@@ -307,13 +328,123 @@ body {
     width: 463px;
     height: 40px;
     left: 185px;
-    top: 515px;
+    top: 355px;
     /* Cyan / 7 */
     background: #08979C;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    /* identical to box height, or 140% */
+    text-align: center;
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
     /* Cyan / 6 */
     border: 1px solid #13C2C2;
     box-sizing: border-box;
     /* drop-shadow / button-primary */
     box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043);
     border-radius: 10px;
+    cursor: pointer;
+}
+
+.genorden:hover {
+    background: #00474F;
+    color: #E6FFFB;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #5CDBD3, 0 0 25px #5CDBD3, 0 0 50px #5CDBD3, 0 0 100px #5CDBD3;
+}
+
+#oficina {
+    position: absolute;
+    left: 82px;
+    top: 10px;
+}
+
+ ::placeholder {
+    /* Subheading 16 / regular */
+    position: relative;
+    width: 466px;
+    height: 24px;
+    left: 12px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+}
+
+input:focus {
+    border-color: #006D75;
+    box-shadow: 0 1px 1px #08979C inset, 0 0 8px #08979C;
+    outline: 0 none;
+}
+
+#divinferior {
+    position: relative;
+    top: 34px;
+    left: 1782px;
+    width: 89px;
+    height: 66px;
+    background: #08979C;
+}
+
+#flecha {
+    position: relative;
+    top: 5px;
+}
+
+.botperfil {
+    position: absolute;
+    width: 89px;
+    height: 24px;
+    left: 0px;
+    top: 4px;
+    background-color: transparent;
+    border: transparent;
+    /* Typography Laboratorio/Headers/SubHeader */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    text-align: center;
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
+    cursor: pointer;
+}
+
+.botperfil:hover {
+    color: #002329;
+    transform: scale(1.1);
+}
+
+.botlogout {
+    position: absolute;
+    width: 89px;
+    height: 24px;
+    left: 0px;
+    top: 38px;
+    background-color: transparent;
+    border: transparent;
+    /* Typography Laboratorio/Headers/SubHeader */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    text-align: center;
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
+    cursor: pointer;
+}
+
+.botlogout:hover {
+    color: #002329;
+    transform: scale(1.1);
 }

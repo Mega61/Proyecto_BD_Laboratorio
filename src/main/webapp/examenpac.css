@@ -25,7 +25,7 @@ body {
 .subhP {
     position: absolute;
     width: 1920px;
-    height: 33px;
+    height: 48px;
     left: 0px;
     top: 67.05px;
     background: #36CFC9;
@@ -225,4 +225,64 @@ body {
     position: absolute;
     left: 82px;
     top: 10px;
+}
+
+.nomadminM {
+    position: absolute;
+    width: 64px;
+    height: 28px;
+    left: 1713px;
+    top: 75px;
+    /* Typography Laboratorio/Headers/H4 */
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    /* identical to box height, or 140% */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    /* Página laboratorio médico/10 */
+    color: #E6FFFB;
+    cursor: pointer;
+}
+
+.botlogout {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    left: 1819px;
+    top: 9px;
+    background-color: transparent;
+    border: transparent;
+    cursor: pointer;
+}
+
+.botlogout:hover {
+    color: #002329;
+    transform: scale(1.1);
+    filter: invert(0.8);
+}
+
+#oficina {
+    position: absolute;
+    left: 82px;
+    top: 15px;
+}
+
+.botvolver {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    left: 25px;
+    top: 2px;
+    background-color: transparent;
+    border: transparent;
+    cursor: pointer;
+}
+
+.botvolver:hover {
+    color: #002329;
+    transform: scale(1.1);
 }
