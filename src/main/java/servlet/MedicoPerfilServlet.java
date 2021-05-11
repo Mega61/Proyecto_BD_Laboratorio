@@ -58,6 +58,9 @@ public class MedicoPerfilServlet extends HttpServlet {
 
             String info = Singleton.getInfoMedico(usuarioIngresado);
             req.setAttribute("infomed", info);
+            req.setAttribute("nameM", nombreUsuario);
+            session.setAttribute("medico", usuarioIngresado);
+            session.setAttribute("medicoNombre", nombreUsuario);
             Singleton.cerrarConexion();
             rDispatcher =  req.getRequestDispatcher("perfilm.jsp");
             

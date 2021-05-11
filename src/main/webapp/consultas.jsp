@@ -32,14 +32,10 @@
     </div>
     <div class="consultas">
         <img class="barra" src="svg/consultas.svg">
-        <form>
-            <button class="botbarra" id="cant">Cantidad</button>
-            <button class="botbarra" id="med">Médico</button>
-            <button class="botbarra" id="pac">Paciente</button>
-            <button class="botbarra" id="exa">Exámenes</button>
-            <button class="botbarra" id="cost">Costos</button>
-            <button class="botbarra" id="ano">Año</button>
-            <button class="botbarra" id="tipo">Tipos</button>
+        <form action="admin" method="GET">
+            <button class="botbarra" id="med" name="botmed">Médicos</button>
+            <button class="botbarra" id="pac" name="botpac">Pacientes</button>
+            <button class="botbarra" id="exa" name="botex">Exámenes</button>
         </form>
     </div>
     <label class="nomadminM"><img src="svg/Group 49.svg"> admin </label>
