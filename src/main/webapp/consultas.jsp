@@ -44,24 +44,6 @@
             <img id="subt" src="svg/Group 71.svg">
             <label id="cons">La Consulta</label>
         </div>
-        <div class="consultas">
-            <img class="barra" src="svg/consultas.svg">
-            <form>
-                <button class="botbarra" id="cant">Cantidad</button>
-                <button class="botbarra" id="med">Médico</button>
-                <button class="botbarra" id="pac">Paciente</button>
-                <button class="botbarra" id="exa">Exámenes</button>
-                <button class="botbarra" id="cost">Costos</button>
-                <button class="botbarra" id="ano">Año</button>
-                <button class="botbarra" id="tipo">Tipos</button>
-            </form>
-        </div>
-        <label class="nomadminM"><img src="svg/Group 49.svg"> admin </label>
-        <div class="contenedor">
-            <div class="hder">
-                <img id="subt" src="svg/Group 71.svg">
-                <label id="cons">La Consulta</label>
-            </div>
             <div class="lasconsultas">
                 <form>
                     <%-- <div class="consulta1">
