@@ -34,13 +34,14 @@
         </div>
         <div class="subhP">
             <img id="oficina" src="svg/oficina virtual.svg">
-            <button class="nomperfil" onmouseover="mostrarbots()">${nameM} <img id="flecha" src="svg/CaretDown.svg"></button>
+
             <form action="historialm" method="GET">
-                <div id=divinferior hidden=true>
-                    <button class="botperfil" name="botonvolver">Volver<img src="svg/User.svg"></button>
-                    <button class="botlogout" name="botonlogout">LogOut <img src="svg/Upload.svg"></button>
-                </div>
-            </form>
+
+                <button class="botperfil" name="botonvolver"><img src="svg/button.svg"></button>
+                <button class="botlogout" name="botonlogout"> <img src="svg/Upload.svg"></button>
+        </div>
+        </form>
+        <label class="nommedico">${nameM}</label>
         </div>
         <div class="contenedor1">
             <div class="hder">
